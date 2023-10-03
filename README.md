@@ -1,1 +1,7 @@
-# inventv7
+# invent2023
+
+This software is a basic inventory / POS system, specifically designed for Auroville, an internation city in South India
+
+The software was created in 2005, and without using a PHP framework.
+
+The software will eventually be replaced, using the Laravel framework.
