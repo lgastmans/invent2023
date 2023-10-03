@@ -1,0 +1,225 @@
+<?
+    require_once("../include/const.inc.php");
+    require_once("../include/session.inc.php");
+    require_once("../include/db.inc.php");
+    require_once("../common/tax.php");
+    require_once("../Numbers/Words.php");
+    require_once("../common/number_to_words.php");
+
+    if (IsSet($_GET['id']))
+        $int_id = $_GET['id'];
+    
+    function ExpandAmount($amount) {
+        $nw = new Numbers_Words();
+        if (strpos($amount,'.') !== false) {
+            $numwords = explode('.',$amount);
+            if (intval($numwords[1]) > 0)
+                $res = $nw->toWords($numwords[0]).' and paise '.$nw->toWords($numwords[1]).' only';
+            else
+                $res = $nw->toWords($numwords[0]).' only';
+        }
+        else  {
+            $res = $nw->toWords($amount);
+        }
+        return $res;
+    }
+
+    $qry = new Query("SELECT * FROM templates WHERE template_type = ".TEMPLATE_ORDER_INVOICE." AND is_default = 'Y'");
+    if ($qry->RowCount() == 0)
+        die('No template found');
+
+    //======================================
+    // get the tax details for the storeroom
+    //--------------------------------------
+    $qry_tax = new Query("
+            SELECT is_taxed, is_cash_taxed, is_account_taxed
+            FROM stock_storeroom
+            WHERE (storeroom_id = ".$_SESSION["int_current_storeroom"].")"
+    );
+    $is_taxed = 'Y';
+    $is_cash_taxed = 'Y';
+    $is_account_taxed = 'Y';
+    if ($qry_tax->RowCount() > 0) {
+            $is_taxed = $qry_tax->FieldByName('is_taxed');
+            $is_cash_taxed = $qry_tax->FieldByName('is_cash_taxed');
+            $is_account_taxed = $qry_tax->FieldByName('is_account_taxed');
+    }
+
+    $str_title = stripslashes($qry->FieldByName('title'));
+    $str_header = stripslashes($qry->FieldByName('header'));
+    $str_content = stripslashes($qry->FieldByName('content'));
+    $str_footer = stripslashes($qry->FieldByName('footer'));
+    
+    $qry_bill = new Query("
+        SELECT *
+        FROM ".Monthalize('bill')."
+        WHERE bill_id = $int_id");
+    
+    $qry_items = new Query("
+        SELECT *, SUM(bi.quantity + bi.adjusted_quantity) AS quantity
+        FROM ".Monthalize('bill_items')." bi
+        LEFT JOIN stock_product sp ON (sp.product_id = bi.product_id)
+        WHERE bi.bill_id = $int_id
+        GROUP BY bi.product_id
+        ORDER BY sp.product_code
+    ");
+
+    $qry_order = new Query("
+        SELECT *
+        FROM ".Monthalize('orders')."
+        WHERE order_id = ".$qry_bill->FieldByName('module_record_id'));
+    
+    $qry_customer = new Query("
+        SELECT *
+        FROM customer
+        WHERE id = ".$qry_order->FieldByName('CC_id'));
+
+    $qry_tax = new Query("
+        SELECT *
+        FROM ".Monthalize('stock_tax')."
+        WHERE tax_id = ".$qry_customer->FieldByName('tax_id')
+    );
+    $str_tax_description = $qry_tax->FieldByName('tax_description');
+
+    function get_date($str_mysql_date) {
+        $str_date = substr($str_mysql_date, 0, 10);
+        $arr_date = explode("-", $str_date);
+        return $arr_date[2]."-".$arr_date[1]."-".$arr_date[0];
+    }
+    
+    //========================================================
+    // header
+    //--------------------------------------------------------
+    $str_header = str_replace('$customer', $qry_customer->FieldByName('company'), $str_header);
+    $str_header = str_replace('$address', $qry_customer->FieldByName('address'), $str_header);
+    $str_header = str_replace('$city', $qry_customer->FieldByName('city')." ".$qry_customer->FieldByName('zip'), $str_header);
+    $str_header = str_replace('$sales_tax_no', $qry_customer->FieldByName('sales_tax_no'), $str_header);
+    $str_header = str_replace('$invoice_number', $qry_bill->FieldByName('bill_number'), $str_header);
+    $str_header = str_replace('$bill_date', get_date($qry_bill->FieldByName('date_created')), $str_header);
+    $str_header = str_replace('$current_date', date('d-m-Y', time()), $str_header);
+    $str_header = str_replace('$order_reference', $qry_order->FieldByName('order_reference'), $str_header);
+    $str_header = str_replace('$order_date', get_date($qry_order->FieldByName('order_date')), $str_header);
+    $str_header = str_replace('$dc_date', get_date($qry_order->FieldByName('order_date')), $str_header);
+    $str_header = str_replace('$dc_number', $qry_order->FieldByName('order_id'), $str_header);
+    
+    //========================================================
+    // content
+    //--------------------------------------------------------
+    $str_items = '';
+    $flt_total = 0;
+
+    $qry_tax_percent = new Query("SELECT * FROM stock_product LIMIT 1");
+
+	for ($i=0; $i<$qry_items->RowCount(); $i++) {
+        
+		$str_tax_percent = "
+		SELECT std.definition_percent
+		FROM ".Monthalize('stock_tax_links')." stl
+		INNER JOIN ".Monthalize('stock_tax_definition')." std ON (std.definition_id = stl.tax_definition_id)
+		WHERE stl.tax_id = ".$qry_items->FieldByName('tax_id');
+
+        $qry_tax_percent->Query($str_tax_percent);
+
+		$item_total = 0;
+        
+        $calculate_tax = $is_taxed;
+        // calculate the tax and the total cost per item billed
+        if ($is_taxed == 'Y') {
+            if ($qry_order->FieldByName('payment_type') == BILL_CASH) {
+                if ($is_cash_taxed == 'Y')
+                    $calculate_tax = 'Y';
+                else
+                    $calculate_tax = 'N';
+            }
+            else if ($qry_order->FieldByName('payment_type') == BILL_ACCOUNT) {
+                if ($is_account_taxed == 'Y')
+                    $calculate_tax = 'Y';
+                else
+                    $calculate_tax = 'N';
+            }
+        }
+        else
+            $calculate_tax = 'N';
+        
+        $total_quantity = $qry_items->FieldByName('quantity');
+        
+        $flt_price = 0;
+
+        if ($calculate_tax == 'Y') {
+            if ($qry_items->FieldByName('discount') > 0) {
+                $discount_price = $qry_items->FieldByName('price') * (1 - ($qry_items->FieldByName('discount')/100));
+                $tax_amount = calculateTax($discount_price, $qry_items->FieldByName('tax_id'));
+                $flt_price = round($discount_price + $tax_amount);
+                $item_total = ($total_quantity * ($discount_price + $tax_amount));
+            }
+            else {
+                $tax_amount = calculateTax($qry_items->FieldByName('price'), $qry_items->FieldByName('tax_id'));
+                $flt_price = round($qry_items->FieldByName('price') + $tax_amount);
+                $item_total = round($total_quantity * ($qry_items->FieldByName('price') + $tax_amount));
+            }
+        }
+        else {
+            $tax_amount = 0;
+            if ($qry_items->FieldByName('discount') > 0) {
+                $discount_price = $qry_items->FieldByName('price') * (1 - ($qry_items->FieldByName('discount')/100));
+                $flt_price = $qry_items->FieldByName('price'); //$discount_price;
+                $item_total = round($total_quantity * $flt_price); //($total_quantity * $discount_price);
+            }
+            else {
+                $flt_price = $qry_items->FieldByName('price');
+                $item_total = round($total_quantity * $flt_price);
+            }
+        }
+        
+//        $qry_tax->Query("SELECT * FROM ".Monthalize('stock_tax')." WHERE tax_id = ".$qry_items->FieldByName('tax_id'));
+        
+        $flt_total += $item_total;
+        
+        if ($qry_tax_percent->FieldByName('definition_percent') > 0) {
+		$str_items .= "<tr><td style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".$qry_items->FieldByName('product_code')."</td>".
+            "<td style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".$qry_items->FieldByName('product_description')."</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($total_quantity, 0, '.', '')."</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($qry_items->FieldByName('price'), 2, '.', '')."</td>".
+		"<td>&nbsp;</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($item_total, 2, '.', '')."</td></tr>";
+	}
+	else {
+		$str_items .= "<tr><td style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".$qry_items->FieldByName('product_code')."</td>".
+            "<td style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".$qry_items->FieldByName('product_description')."</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($total_quantity, 0, '.', '')."</td>".
+		"<td>&nbsp;</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($qry_items->FieldByName('price'), 2, '.', '')."</td>".
+            "<td align='right' style='font-family:Arial,sans-serif;font-size:12px;font-weight:normal;'>".number_format($item_total, 2, '.', '')."</td></tr>";
+	}
+                
+        $qry_items->Next();
+    }
+    
+    $flt_discount = $flt_total * $qry_customer->FieldByName('discount') / 100;
+    $flt_subtotal = $flt_total - $flt_discount;
+    $flt_tax = calculateTax(($flt_total - $flt_discount), $qry_customer->FieldByName('tax_id'));
+    $flt_handling = $qry_order->FieldByName('handling_charge');
+    $flt_grand_total = $flt_total - $flt_discount + $flt_tax + $flt_handling;
+    $flt_total_due = $flt_grand_total - ($qry_order->FieldByName('advance_paid'));
+    $flt_total_due = round($flt_total_due);
+    $str_amount = ExpandAmount(number_format($flt_total_due,2,'.',''));
+
+    $str_content = str_replace('$items', $str_items, $str_content);
+    
+    $str_content = str_replace('$first_total', number_format($flt_total, 2, '.', ','), $str_content);
+    $str_content = str_replace('$subtotal', number_format($flt_subtotal, 2, '.', ','), $str_content);
+    $str_content = str_replace('$discount_percentage', $qry_customer->FieldByName('discount')."%", $str_content);
+    $str_content = str_replace('$discount', number_format($flt_discount, 2, '.', ','), $str_content);
+    $str_content = str_replace('$tax_percentage', $str_tax_description , $str_content);
+    $str_content = str_replace('$salestax', number_format($flt_tax, 2, '.', ','), $str_content);
+    $str_content = str_replace('$handling', number_format($flt_handling, 2, '.', ','), $str_content);
+    $str_content = str_replace('$total', number_format($flt_grand_total, 2, '.', ','), $str_content);
+    $str_content = str_replace('$paid', number_format($qry_order->FieldByName('advance_paid'), 2, '.', ','), $str_content);
+    $str_content = str_replace('$due', number_format($flt_total_due, 2, '.', ','), $str_content);
+    $str_content = str_replace('$str_amount_words', $str_amount, $str_content);
+
+    $str_template = $str_title.$str_header.$str_content.$str_footer;
+    
+    echo $str_template;
+
+?>
