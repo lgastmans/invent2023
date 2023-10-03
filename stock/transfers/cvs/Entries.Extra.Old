@@ -1,0 +1,16 @@
+/index.php////*///
+/index_dispatched.php////*///
+/index_received.php////*///
+/index_requested.php////*///
+/stockcomplete.inc.php////*///
+/stockdispatch.inc.php////*///
+/stockrequest.inc.php////*///
+/test.php////*///
+/transfer_requested.php////*///
+/transferbatch.php////*///
+/viewtransfer.php////*///
+/transfer.php////*///
+/transfer_dispatched.php////*///
+/directReceive.php////*///
+/productDetails.php////*///
+/transfer_received.php////*///
