@@ -1,0 +1,6 @@
+define('TYPE_DC', 9);
+
+//delivery challans
+define('DC_STATUS_UNRESOLVED', 1);
+define('DC_STATUS_RESOLVED', 2);
+define('DC_STATUS_CANCELLED', 3);

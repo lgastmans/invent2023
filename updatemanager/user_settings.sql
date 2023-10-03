@@ -1,0 +1,1 @@
+ALTER TABLE `user_settings` ADD `bill_global_bill_number` INT NOT NULL DEFAULT '0' AFTER `bill_print_lines_to_eject`, ADD INDEX `global_bill_number` (`bill_global_bill_number`);

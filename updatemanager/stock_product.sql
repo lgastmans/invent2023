@@ -1,0 +1,1 @@
+ALTER TABLE `stock_product` ADD `is_active` CHAR(1) NOT NULL DEFAULT 'Y' AFTER `is_image_modified`;

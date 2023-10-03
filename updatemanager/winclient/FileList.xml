@@ -1,0 +1,1397 @@
+<?xml version='1.0' encoding='UTF-8'?><DirectoryStructure><directory name='orders'><file name='order_community_menu.php'>
+<filectime>1191474546 </filectime><filesize>4065 </filesize></file>
+<file name='order_totals_content.php'>
+<filectime>1191474579 </filectime><filesize>2420 </filesize></file>
+<file name='deliver_orders_date.php'>
+<filectime>1191474564 </filectime><filesize>2131 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191474563 </filectime><filesize>8788 </filesize></file>
+<file name='order_edit_frameset.php'>
+<filectime>1191474503 </filectime><filesize>5100 </filesize></file>
+<file name='get_product_details.php'>
+<filectime>1191474554 </filectime><filesize>2606 </filesize></file>
+<file name='order_sessions.php'>
+<filectime>1191474572 </filectime><filesize>1210 </filesize></file>
+<file name='order_bill_cancel.php'>
+<filectime>1191474558 </filectime><filesize>1558 </filesize></file>
+<file name='order_items.php'>
+<filectime>1191474545 </filectime><filesize>1962 </filesize></file>
+<file name='order_sheet_products.php'>
+<filectime>1191474522 </filectime><filesize>3096 </filesize></file>
+<file name='order_import_tab_delimited.php'>
+<filectime>1191474509 </filectime><filesize>10615 </filesize></file>
+<file name='print_delivery_notes.php'>
+<filectime>1191474568 </filectime><filesize>426 </filesize></file>
+<file name='edit_order_bill.php'>
+<filectime>1191474573 </filectime><filesize>21543 </filesize></file>
+<file name='order_edit_enter.php'>
+<filectime>1191474556 </filectime><filesize>7733 </filesize></file>
+<file name='order_enter.php'>
+<filectime>1191474550 </filectime><filesize>7927 </filesize></file>
+<file name='update_order_quantity.php'>
+<filectime>1191474526 </filectime><filesize>2580 </filesize></file>
+<file name='order_sheet_print.php'>
+<filectime>1191474542 </filectime><filesize>16205 </filesize></file>
+<file name='order_sheet_menu.php'>
+<filectime>1191474528 </filectime><filesize>4368 </filesize></file>
+<file name='order_edit_details.php'>
+<filectime>1191474530 </filectime><filesize>16813 </filesize></file>
+<file name='index_order_settings.php'>
+<filectime>1191474524 </filectime><filesize>2927 </filesize></file>
+<file name='order_bill_items.php'>
+<filectime>1191474588 </filectime><filesize>2116 </filesize></file>
+<file name='print_internal_order.php'>
+<filectime>1191474522 </filectime><filesize>3915 </filesize></file>
+<file name='order_bill_items_frameset.php'>
+<filectime>1191474555 </filectime><filesize>295 </filesize></file>
+<file name='print_order_bill_textmode.php'>
+<filectime>1191474533 </filectime><filesize>9072 </filesize></file>
+<file name='order_bill_deliver.php'>
+<filectime>1191474542 </filectime><filesize>29231 </filesize></file>
+<file name='print_delivery_note.php'>
+<filectime>1191474555 </filectime><filesize>6680 </filesize></file>
+<file name='order_details.php'>
+<filectime>1191474543 </filectime><filesize>16840 </filesize></file>
+<file name='order_edit_quantities.php'>
+<filectime>1191474525 </filectime><filesize>2419 </filesize></file>
+<file name='order_frameset.php'>
+<filectime>1191474591 </filectime><filesize>4297 </filesize></file>
+<file name='order_community_content.php'>
+<filectime>1191474568 </filectime><filesize>12402 </filesize></file>
+<file name='orders.php'>
+<filectime>1191474567 </filectime><filesize>18846 </filesize></file>
+<file name='print_invoice_quiet.php'>
+<filectime>1191474531 </filectime><filesize>11219 </filesize></file>
+<directory name='client'><file name='order_edit_frameset.php'>
+<filectime>1191474611 </filectime><filesize>4166 </filesize></file>
+<file name='get_product_details.php'>
+<filectime>1191474625 </filectime><filesize>2615 </filesize></file>
+<file name='order_sessions.php'>
+<filectime>1191474629 </filectime><filesize>997 </filesize></file>
+<file name='order_edit_enter.php'>
+<filectime>1191474626 </filectime><filesize>7808 </filesize></file>
+<file name='order_enter.php'>
+<filectime>1191474625 </filectime><filesize>7822 </filesize></file>
+<file name='update_order_quantity.php'>
+<filectime>1191474622 </filectime><filesize>2589 </filesize></file>
+<file name='order_edit_details.php'>
+<filectime>1191474622 </filectime><filesize>8990 </filesize></file>
+<file name='order_details.php'>
+<filectime>1191474624 </filectime><filesize>9009 </filesize></file>
+<file name='order_edit_quantities.php'>
+<filectime>1191474621 </filectime><filesize>2432 </filesize></file>
+<file name='order_frameset.php'>
+<filectime>1191474630 </filectime><filesize>4169 </filesize></file>
+<file name='order_action.php'>
+<filectime>1191474628 </filectime><filesize>7911 </filesize></file>
+<file name='order_edit_action.php'>
+<filectime>1191474627 </filectime><filesize>9599 </filesize></file>
+<file name='order_edit_list.php'>
+<filectime>1191474625 </filectime><filesize>1643 </filesize></file>
+<file name='order_list.php'>
+<filectime>1191474630 </filectime><filesize>1517 </filesize></file>
+<file name='order_quantities.php'>
+<filectime>1191474623 </filectime><filesize>1999 </filesize></file>
+<file name='product_description.php'>
+<filectime>1191474627 </filectime><filesize>2192 </filesize></file>
+<file name='get_client_details.php'>
+<filectime>1191474628 </filectime><filesize>675 </filesize></file>
+<file name='order_edit_product_description.php'>
+<filectime>1191474623 </filectime><filesize>2240 </filesize></file>
+</directory><file name='order_create_bills.php'>
+<filectime>1191474536 </filectime><filesize>2272 </filesize></file>
+<file name='test.php'>
+<filectime>1191474536 </filectime><filesize>21 </filesize></file>
+<file name='order_sheet_frameset.php'>
+<filectime>1191474507 </filectime><filesize>371 </filesize></file>
+<file name='order_sheet_content.php'>
+<filectime>1191474521 </filectime><filesize>12951 </filesize></file>
+<file name='index_order_community.php'>
+<filectime>1191474520 </filectime><filesize>369 </filesize></file>
+<file name='order_action.php'>
+<filectime>1191474569 </filectime><filesize>10537 </filesize></file>
+<file name='order_create_bill.php'>
+<filectime>1191474526 </filectime><filesize>1160 </filesize></file>
+<file name='order_items_frameset.php'>
+<filectime>1191474536 </filectime><filesize>295 </filesize></file>
+<file name='order_totals_print.php'>
+<filectime>1191474549 </filectime><filesize>4697 </filesize></file>
+<file name='deliver_selected_orders.php'>
+<filectime>1191474527 </filectime><filesize>2273 </filesize></file>
+<file name='print_invoice_shr.php'>
+<filectime>1191474569 </filectime><filesize>9988 </filesize></file>
+<file name='order_edit_action.php'>
+<filectime>1191474561 </filectime><filesize>10587 </filesize></file>
+<file name='index.php'>
+<filectime>1191474565 </filectime><filesize>410 </filesize></file>
+<file name='print_order_bill.php'>
+<filectime>1191474544 </filectime><filesize>452 </filesize></file>
+<file name='order_bills.php'>
+<filectime>1191474582 </filectime><filesize>20381 </filesize></file>
+<file name='edit_order_bill_frameset.php'>
+<filectime>1191474515 </filectime><filesize>1103 </filesize></file>
+<directory name='images'><directory name='calendar'><file name='logo.gif'>
+<filectime>1191474599 </filectime><filesize>660 </filesize></file>
+<file name='prev.gif'>
+<filectime>1191474597 </filectime><filesize>212 </filesize></file>
+<file name='next.gif'>
+<filectime>1191474606 </filectime><filesize>214 </filesize></file>
+<file name='prev_year.gif'>
+<filectime>1191474598 </filectime><filesize>259 </filesize></file>
+<file name='Thumbs.db'>
+<filectime>1191474609 </filectime><filesize>8704 </filesize></file>
+<file name='icon_demo.gif'>
+<filectime>1191474600 </filectime><filesize>160 </filesize></file>
+<file name='icon_home.gif'>
+<filectime>1191474606 </filectime><filesize>198 </filesize></file>
+<file name='icon_forum.gif'>
+<filectime>1191474607 </filectime><filesize>204 </filesize></file>
+<file name='icon_download.gif'>
+<filectime>1191474597 </filectime><filesize>157 </filesize></file>
+<file name='next_year.gif'>
+<filectime>1191474593 </filectime><filesize>256 </filesize></file>
+<file name='icon_docs.gif'>
+<filectime>1191474610 </filectime><filesize>151 </filesize></file>
+<file name='cal.gif'>
+<filectime>1191474608 </filectime><filesize>127 </filesize></file>
+<file name='pixel.gif'>
+<filectime>1191474592 </filectime><filesize>67 </filesize></file>
+<file name='tc.gif'>
+<filectime>1191474596 </filectime><filesize>8301 </filesize></file>
+</directory></directory><file name='fs_account.php'>
+<filectime>1191474570 </filectime><filesize>578 </filesize></file>
+<directory name='include'><file name='calendar.html'>
+<filectime>1191474631 </filectime><filesize>6760 </filesize></file>
+</directory><file name='index_order_totals.php'>
+<filectime>1191474535 </filectime><filesize>369 </filesize></file>
+<file name='order_edit_list.php'>
+<filectime>1191474553 </filectime><filesize>1634 </filesize></file>
+<file name='order_list.php'>
+<filectime>1191474589 </filectime><filesize>1661 </filesize></file>
+<file name='order_cancel.php'>
+<filectime>1191474566 </filectime><filesize>6647 </filesize></file>
+<file name='order_functions.inc.php'>
+<filectime>1191474579 </filectime><filesize>18887 </filesize></file>
+<file name='order_totals_menu.php'>
+<filectime>1191474527 </filectime><filesize>2266 </filesize></file>
+<file name='index_order_sheet.php'>
+<filectime>1191474591 </filectime><filesize>353 </filesize></file>
+<file name='order_delete.php'>
+<filectime>1191474547 </filectime><filesize>1105 </filesize></file>
+<file name='order_quantities.php'>
+<filectime>1191474537 </filectime><filesize>1726 </filesize></file>
+<file name='order_community_print.php'>
+<filectime>1191474510 </filectime><filesize>15528 </filesize></file>
+<file name='order_sheet_update_array.php'>
+<filectime>1191474557 </filectime><filesize>5124 </filesize></file>
+<file name='product_description.php'>
+<filectime>1191474559 </filectime><filesize>2183 </filesize></file>
+<file name='print_proforma_shr.php'>
+<filectime>1191474505 </filectime><filesize>8175 </filesize></file>
+<file name='load_edit_order_bills.php'>
+<filectime>1191474580 </filectime><filesize>604 </filesize></file>
+<file name='order_edit_product_description.php'>
+<filectime>1191474541 </filectime><filesize>2231 </filesize></file>
+<file name='index_order_bills.php'>
+<filectime>1191474546 </filectime><filesize>435 </filesize></file>
+</directory><directory name='billing'><file name='billing_frameset.php'>
+<filectime>1191474728 </filectime><filesize>4526 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191474707 </filectime><filesize>9826 </filesize></file>
+<file name='billing_list.php'>
+<filectime>1191474689 </filectime><filesize>12872 </filesize></file>
+<file name='billing_enter.php'>
+<filectime>1191474701 </filectime><filesize>21048 </filesize></file>
+<file name='print_bill.php'>
+<filectime>1191474670 </filectime><filesize>28190 </filesize></file>
+<file name='statements_frameset.php'>
+<filectime>1191474711 </filectime><filesize>405 </filesize></file>
+<file name='print_bill_backup.php'>
+<filectime>1191474684 </filectime><filesize>24890 </filesize></file>
+<file name='bill_statement_footer.php'>
+<filectime>1191474637 </filectime><filesize>598 </filesize></file>
+<file name='billing_total.php'>
+<filectime>1191474638 </filectime><filesize>2902 </filesize></file>
+<file name='billing_account.php'>
+<filectime>1191474653 </filectime><filesize>8169 </filesize></file>
+<file name='print_bill_win.php'>
+<filectime>1191474676 </filectime><filesize>8696 </filesize></file>
+<file name='bill_cancel_new.php'>
+<filectime>1191474665 </filectime><filesize>5502 </filesize></file>
+<file name='engine.js'>
+<filectime>1191474717 </filectime><filesize>457 </filesize></file>
+<file name='get_bill_number.php'>
+<filectime>1191474699 </filectime><filesize>8142 </filesize></file>
+<file name='set_connect_method.php'>
+<filectime>1191474686 </filectime><filesize>371 </filesize></file>
+<file name='pt_account.php'>
+<filectime>1191474642 </filectime><filesize>1145 </filesize></file>
+<file name='bill_cancel_old.php'>
+<filectime>1191474687 </filectime><filesize>4826 </filesize></file>
+<file name='index_totals_statement.php'>
+<filectime>1191474677 </filectime><filesize>330 </filesize></file>
+<file name='page1.php'>
+<filectime>1191474634 </filectime><filesize>152 </filesize></file>
+<file name='billing_creditcard.php'>
+<filectime>1191474639 </filectime><filesize>4180 </filesize></file>
+<file name='bill_funcs.inc.php'>
+<filectime>1191474666 </filectime><filesize>5502 </filesize></file>
+<file name='daily_sales_menu.php'>
+<filectime>1191474711 </filectime><filesize>4681 </filesize></file>
+<file name='bill_items_frameset.php'>
+<filectime>1191474723 </filectime><filesize>300 </filesize></file>
+<file name='bill_new.php'>
+<filectime>1191474731 </filectime><filesize>2349 </filesize></file>
+<file name='daily_sales_print.php'>
+<filectime>1191474698 </filectime><filesize>10445 </filesize></file>
+<file name='bill_cancel.php'>
+<filectime>1191474731 </filectime><filesize>12321 </filesize></file>
+<file name='statements_menu.php'>
+<filectime>1191474683 </filectime><filesize>2952 </filesize></file>
+<file name='monthly_sales_register_print.php'>
+<filectime>1191474709 </filectime><filesize>22836 </filesize></file>
+<file name='statements_content.php'>
+<filectime>1191474729 </filectime><filesize>6577 </filesize></file>
+<file name='bill_statement_print.php'>
+<filectime>1191474641 </filectime><filesize>13049 </filesize></file>
+<file name='daily_sales_register_menu.php'>
+<filectime>1191474657 </filectime><filesize>4405 </filesize></file>
+<file name='statement_totals_print.php'>
+<filectime>1191474633 </filectime><filesize>7164 </filesize></file>
+<file name='get_bill_change.php'>
+<filectime>1191474648 </filectime><filesize>593 </filesize></file>
+<file name='index.php'>
+<filectime>1191474708 </filectime><filesize>420 </filesize></file>
+<file name='stock_funcs.inc.php'>
+<filectime>1191474658 </filectime><filesize>11868 </filesize></file>
+<file name='billing_type.php'>
+<filectime>1191474636 </filectime><filesize>9834 </filesize></file>
+<file name='index_profit_statement.php'>
+<filectime>1191474640 </filectime><filesize>412 </filesize></file>
+<file name='statements_print.php'>
+<filectime>1191474678 </filectime><filesize>10867 </filesize></file>
+<file name='billing_action.php'>
+<filectime>1191474714 </filectime><filesize>34353 </filesize></file>
+<file name='monthly_sales_register.php'>
+<filectime>1191474640 </filectime><filesize>19228 </filesize></file>
+<file name='statement_totals.php'>
+<filectime>1191474633 </filectime><filesize>4814 </filesize></file>
+<file name='bill_statement_menu.php'>
+<filectime>1191474697 </filectime><filesize>7864 </filesize></file>
+<file name='index_monthly_sales_register.php'>
+<filectime>1191474669 </filectime><filesize>343 </filesize></file>
+<file name='daily_sales.php'>
+<filectime>1191474632 </filectime><filesize>9211 </filesize></file>
+<file name='bill_items.php'>
+<filectime>1191474636 </filectime><filesize>2006 </filesize></file>
+<file name='number_test.php'>
+<filectime>1191474695 </filectime><filesize>231 </filesize></file>
+<file name='print_pt_bill.php'>
+<filectime>1191474644 </filectime><filesize>8387 </filesize></file>
+<file name='profit_statement.php'>
+<filectime>1191474685 </filectime><filesize>5565 </filesize></file>
+<file name='daily_sales_register.php'>
+<filectime>1191474642 </filectime><filesize>16146 </filesize></file>
+<file name='statements_footer.php'>
+<filectime>1191474649 </filectime><filesize>2254 </filesize></file>
+<file name='statements.php'>
+<filectime>1191474656 </filectime><filesize>7445 </filesize></file>
+<file name='bill_statement.php'>
+<filectime>1191474668 </filectime><filesize>11758 </filesize></file>
+<file name='statement_totals_menu.php'>
+<filectime>1191474655 </filectime><filesize>1850 </filesize></file>
+<file name='index_statements.php'>
+<filectime>1191474665 </filectime><filesize>327 </filesize></file>
+<file name='set_sales_promotion.php'>
+<filectime>1191474650 </filectime><filesize>747 </filesize></file>
+<file name='index_bill_statement.php'>
+<filectime>1191474668 </filectime><filesize>407 </filesize></file>
+<file name='statements_header.php'>
+<filectime>1191474664 </filectime><filesize>806 </filesize></file>
+<file name='profit_statement_menu.php'>
+<filectime>1191474647 </filectime><filesize>368 </filesize></file>
+<file name='index_bill_settings.php'>
+<filectime>1191474708 </filectime><filesize>9809 </filesize></file>
+<file name='monthly_sales_register_menu.php'>
+<filectime>1191474716 </filectime><filesize>3859 </filesize></file>
+<file name='index_daily_sales_register.php'>
+<filectime>1191474713 </filectime><filesize>351 </filesize></file>
+<file name='index_daily_sales.php'>
+<filectime>1191474732 </filectime><filesize>325 </filesize></file>
+<directory name='debit'><file name='billing_frameset.php'>
+<filectime>1191474741 </filectime><filesize>4303 </filesize></file>
+<file name='billing_list.php'>
+<filectime>1191474737 </filectime><filesize>12887 </filesize></file>
+<file name='billing_enter.php'>
+<filectime>1191474738 </filectime><filesize>21065 </filesize></file>
+<file name='billing_total.php'>
+<filectime>1191474734 </filectime><filesize>2080 </filesize></file>
+<file name='billing_account.php'>
+<filectime>1191474736 </filectime><filesize>6944 </filesize></file>
+<file name='billing_creditcard.php'>
+<filectime>1191474735 </filectime><filesize>2700 </filesize></file>
+<file name='billing_type.php'>
+<filectime>1191474733 </filectime><filesize>10021 </filesize></file>
+<file name='billing_action.php'>
+<filectime>1191474740 </filectime><filesize>32342 </filesize></file>
+</directory><file name='daily_sales_register_print.php'>
+<filectime>1191474712 </filectime><filesize>17755 </filesize></file>
+<file name='bills.php'>
+<filectime>1191474718 </filectime><filesize>13802 </filesize></file>
+<file name='profit_statement_footer.php'>
+<filectime>1191474658 </filectime><filesize>1807 </filesize></file>
+</directory><file name='help.php'>
+<filectime>1191474153 </filectime><filesize>469 </filesize></file>
+<directory name='clients'><file name='module.inc.php'>
+<filectime>1191475083 </filectime><filesize>3162 </filesize></file>
+<file name='index_salestax_statement.php'>
+<filectime>1191475082 </filectime><filesize>327 </filesize></file>
+<file name='client_master.php'>
+<filectime>1191475082 </filectime><filesize>306 </filesize></file>
+<file name='salestax_statement_content.php'>
+<filectime>1191475070 </filectime><filesize>7075 </filesize></file>
+<file name='print_salestax_statement.php'>
+<filectime>1191475067 </filectime><filesize>7386 </filesize></file>
+<file name='salestax_statement_menu.php'>
+<filectime>1191475068 </filectime><filesize>1295 </filesize></file>
+<file name='client.php'>
+<filectime>1191475076 </filectime><filesize>7034 </filesize></file>
+<file name='viewcustomer.php'>
+<filectime>1191475069 </filectime><filesize>12398 </filesize></file>
+</directory><file name='login.php'>
+<filectime>1191474154 </filectime><filesize>9418 </filesize></file>
+<directory name='help'><file name='index.php'>
+<filectime>1191474888 </filectime><filesize>333 </filesize></file>
+<file name='title.php'>
+<filectime>1191474895 </filectime><filesize>515 </filesize></file>
+</directory><directory name='nav'><file name='title.php'>
+<filectime>1191474743 </filectime><filesize>5068 </filesize></file>
+</directory><file name='print.php'>
+<filectime>1191474154 </filectime><filesize>539 </filesize></file>
+<directory name='admin'><file name='module.inc.php'>
+<filectime>1191474458 </filectime><filesize>6746 </filesize></file>
+<directory name='verification'><file name='fs_duplicate_transfers.php'>
+<filectime>1191474494 </filectime><filesize>3885 </filesize></file>
+<file name='stock_reset_ord_res.php'>
+<filectime>1191474495 </filectime><filesize>3984 </filesize></file>
+<file name='fs_verify_web_transfers.php'>
+<filectime>1191474491 </filectime><filesize>8002 </filesize></file>
+<file name='stock_closing_balance.php'>
+<filectime>1191474492 </filectime><filesize>8477 </filesize></file>
+<file name='fs_verify_transactions.php'>
+<filectime>1191474493 </filectime><filesize>3103 </filesize></file>
+<file name='pt_accounts_totals.php'>
+<filectime>1191474496 </filectime><filesize>3711 </filesize></file>
+</directory><file name='categorydelete.php'>
+<filectime>1191474485 </filectime><filesize>920 </filesize></file>
+<file name='mysql_backup_old.php'>
+<filectime>1191474452 </filectime><filesize>1074 </filesize></file>
+<file name='measurementmaster.php'>
+<filectime>1191474405 </filectime><filesize>313 </filesize></file>
+<file name='usersmaster.php'>
+<filectime>1191474441 </filectime><filesize>390 </filesize></file>
+<file name='stockmaster.php'>
+<filectime>1191474425 </filectime><filesize>307 </filesize></file>
+<file name='stockdelete_permanent.php'>
+<filectime>1191474443 </filectime><filesize>4769 </filesize></file>
+<file name='index_verification_tools.php'>
+<filectime>1191474488 </filectime><filesize>4251 </filesize></file>
+<file name='viewuser.php'>
+<filectime>1191474431 </filectime><filesize>11760 </filesize></file>
+<file name='newmonth.php'>
+<filectime>1191474436 </filectime><filesize>3159 </filesize></file>
+<file name='storeroommaster.php'>
+<filectime>1191474446 </filectime><filesize>311 </filesize></file>
+<file name='supplier.php'>
+<filectime>1191474448 </filectime><filesize>6104 </filesize></file>
+<file name='menu.inc.php'>
+<filectime>1191474451 </filectime><filesize>414 </filesize></file>
+<file name='print_image_barcode.php'>
+<filectime>1191474404 </filectime><filesize>1888 </filesize></file>
+<file name='print_barcode_dialog.php'>
+<filectime>1191474445 </filectime><filesize>1434 </filesize></file>
+<file name='taxdefinition.php'>
+<filectime>1191474472 </filectime><filesize>4547 </filesize></file>
+<file name='taxdetailsframeset.php'>
+<filectime>1191474445 </filectime><filesize>236 </filesize></file>
+<file name='index_communities.php'>
+<filectime>1191474398 </filectime><filesize>331 </filesize></file>
+<file name='viewuser_new.php'>
+<filectime>1191474486 </filectime><filesize>11986 </filesize></file>
+<file name='viewtaxdefinition.php'>
+<filectime>1191474474 </filectime><filesize>6453 </filesize></file>
+<file name='viewuserpermission.php'>
+<filectime>1191474463 </filectime><filesize>6462 </filesize></file>
+<file name='restore.php'>
+<filectime>1191474489 </filectime><filesize>34 </filesize></file>
+<file name='suppliermaster.php'>
+<filectime>1191474448 </filectime><filesize>310 </filesize></file>
+<file name='print_barcode.php'>
+<filectime>1191474484 </filectime><filesize>2508 </filesize></file>
+<file name='print_barcodes.php'>
+<filectime>1191474487 </filectime><filesize>255 </filesize></file>
+<file name='categorymaster.php'>
+<filectime>1191474485 </filectime><filesize>310 </filesize></file>
+<file name='viewsupplier.php'>
+<filectime>1191474449 </filectime><filesize>11305 </filesize></file>
+<file name='userdetailsframeset.php'>
+<filectime>1191474478 </filectime><filesize>236 </filesize></file>
+<file name='storeroom.php'>
+<filectime>1191474446 </filectime><filesize>5703 </filesize></file>
+<file name='measurementdelete.php'>
+<filectime>1191474423 </filectime><filesize>755 </filesize></file>
+<file name='stockdelete.php'>
+<filectime>1191474422 </filectime><filesize>1507 </filesize></file>
+<file name='viewstoreroom.php'>
+<filectime>1191474407 </filectime><filesize>10482 </filesize></file>
+<file name='viewstock.php'>
+<filectime>1191474459 </filectime><filesize>13657 </filesize></file>
+<file name='backup.php'>
+<filectime>1191474404 </filectime><filesize>47 </filesize></file>
+<file name='community_edit.php'>
+<filectime>1191474424 </filectime><filesize>3469 </filesize></file>
+<file name='index.php'>
+<filectime>1191474462 </filectime><filesize>0 </filesize></file>
+<file name='taxmaster.php'>
+<filectime>1191474452 </filectime><filesize>388 </filesize></file>
+<file name='accountload.php'>
+<filectime>1191474491 </filectime><filesize>3292 </filesize></file>
+<file name='viewtax.php'>
+<filectime>1191474415 </filectime><filesize>8342 </filesize></file>
+<file name='print_image.php'>
+<filectime>1191474405 </filectime><filesize>2728 </filesize></file>
+<file name='viewcategory.php'>
+<filectime>1191474442 </filectime><filesize>6637 </filesize></file>
+<file name='taxdefinitionmaster.php'>
+<filectime>1191474451 </filectime><filesize>315 </filesize></file>
+<file name='nusoap.php'>
+<filectime>1191474472 </filectime><filesize>238653 </filesize></file>
+<file name='community_new.php'>
+<filectime>1191474450 </filectime><filesize>3507 </filesize></file>
+<file name='taxdetails.php'>
+<filectime>1191474440 </filectime><filesize>3503 </filesize></file>
+<file name='user.php'>
+<filectime>1191474490 </filectime><filesize>7553 </filesize></file>
+<file name='accountloadall.php'>
+<filectime>1191474473 </filectime><filesize>4323 </filesize></file>
+<file name='accounttransfer.php'>
+<filectime>1191474406 </filectime><filesize>3231 </filesize></file>
+<file name='community_delete.php'>
+<filectime>1191474398 </filectime><filesize>1045 </filesize></file>
+<file name='taxdefinitiondelete.php'>
+<filectime>1191474442 </filectime><filesize>805 </filesize></file>
+<file name='stock.php'>
+<filectime>1191474421 </filectime><filesize>8673 </filesize></file>
+<file name='taxes_replace.php'>
+<filectime>1191474477 </filectime><filesize>6313 </filesize></file>
+<file name='toolmaster.php'>
+<filectime>1191474476 </filectime><filesize>4820 </filesize></file>
+<file name='measurement.php'>
+<filectime>1191474408 </filectime><filesize>4058 </filesize></file>
+<file name='viewmeasurement.php'>
+<filectime>1191474454 </filectime><filesize>5733 </filesize></file>
+<file name='tax.php'>
+<filectime>1191474461 </filectime><filesize>7344 </filesize></file>
+<file name='viewcustomer.php'>
+<filectime>1191474437 </filectime><filesize>11529 </filesize></file>
+<file name='communities.php'>
+<filectime>1191474439 </filectime><filesize>6779 </filesize></file>
+<file name='category.php'>
+<filectime>1191474453 </filectime><filesize>4574 </filesize></file>
+<file name='userdetails.php'>
+<filectime>1191474435 </filectime><filesize>4445 </filesize></file>
+<file name='mysql_backup.php'>
+<filectime>1191474475 </filectime><filesize>1780 </filesize></file>
+<file name='updatefile.php'>
+<filectime>1191474465 </filectime><filesize>2282 </filesize></file>
+</directory><directory name='settings'><file name='module.inc.php'>
+<filectime>1191474749 </filectime><filesize>3744 </filesize></file>
+<file name='template_delete.php'>
+<filectime>1191474747 </filectime><filesize>938 </filesize></file>
+<file name='templates.php'>
+<filectime>1191474745 </filectime><filesize>4482 </filesize></file>
+<file name='template_edit.php'>
+<filectime>1191474748 </filectime><filesize>5636 </filesize></file>
+<file name='template_new.php'>
+<filectime>1191474743 </filectime><filesize>4936 </filesize></file>
+<file name='index_templates.php'>
+<filectime>1191474745 </filectime><filesize>331 </filesize></file>
+<directory name='images'><file name='Shradhanjali_flower.jpg'>
+<filectime>1191474767 </filectime><filesize>20425 </filesize></file>
+<file name='quiet_logo.jpg'>
+<filectime>1191474769 </filectime><filesize>30184 </filesize></file>
+<file name='shradhanjali_text.jpg'>
+<filectime>1191474770 </filectime><filesize>13982 </filesize></file>
+</directory><file name='index_module_settings.php'>
+<filectime>1191474746 </filectime><filesize>14147 </filesize></file>
+<file name='index_global_settings.php'>
+<filectime>1191474766 </filectime><filesize>4352 </filesize></file>
+</directory><directory name='accounts'><file name='totals_footer.php'>
+<filectime>1191474391 </filectime><filesize>4187 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191474384 </filectime><filesize>3577 </filesize></file>
+<file name='transfer_status.php'>
+<filectime>1191474370 </filectime><filesize>6081 </filesize></file>
+<file name='totals_menu.php'>
+<filectime>1191474383 </filectime><filesize>4597 </filesize></file>
+<file name='viewaccount.php'>
+<filectime>1191474384 </filectime><filesize>5780 </filesize></file>
+<file name='indextransfers.php'>
+<filectime>1191474374 </filectime><filesize>322 </filesize></file>
+<file name='index.php'>
+<filectime>1191474390 </filectime><filesize>412 </filesize></file>
+<file name='accounts.php'>
+<filectime>1191474397 </filectime><filesize>7293 </filesize></file>
+<file name='transfers.php'>
+<filectime>1191474370 </filectime><filesize>7463 </filesize></file>
+<file name='totals_data.php'>
+<filectime>1191474368 </filectime><filesize>7127 </filesize></file>
+<file name='accountstransfersframeset.php'>
+<filectime>1191474369 </filectime><filesize>216 </filesize></file>
+<file name='index_totals.php'>
+<filectime>1191474375 </filectime><filesize>385 </filesize></file>
+<file name='accountstransfers.php'>
+<filectime>1191474396 </filectime><filesize>4112 </filesize></file>
+</directory><file name='index.php'>
+<filectime>1191474155 </filectime><filesize>515 </filesize></file>
+<file name='title.php'>
+<filectime>1191474155 </filectime><filesize>7191 </filesize></file>
+<directory name='storerooms'><file name='current_stock_print.php'>
+<filectime>1191474361 </filectime><filesize>12993 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191474362 </filectime><filesize>3258 </filesize></file>
+<file name='current_stock_menu.php'>
+<filectime>1191474365 </filectime><filesize>5913 </filesize></file>
+<file name='current_stock_export.php'>
+<filectime>1191474366 </filectime><filesize>2191 </filesize></file>
+<file name='current_stock_data_header.php'>
+<filectime>1191474365 </filectime><filesize>1226 </filesize></file>
+<file name='index_registry.php'>
+<filectime>1191474346 </filectime><filesize>317 </filesize></file>
+<file name='current_stock_data_footer.php'>
+<filectime>1191474351 </filectime><filesize>1031 </filesize></file>
+<file name='current_stock_data.php'>
+<filectime>1191474353 </filectime><filesize>10909 </filesize></file>
+<file name='registry_menu.php'>
+<filectime>1191474362 </filectime><filesize>1498 </filesize></file>
+<file name='index_current_stock.php'>
+<filectime>1191474367 </filectime><filesize>327 </filesize></file>
+<file name='registry_content.php'>
+<filectime>1191474352 </filectime><filesize>2382 </filesize></file>
+<file name='current_stock_data_frameset.php'>
+<filectime>1191474364 </filectime><filesize>546 </filesize></file>
+</directory><directory name='pt_accounts'><file name='module.inc.php'>
+<filectime>1191474343 </filectime><filesize>4124 </filesize></file>
+<file name='account_new.php'>
+<filectime>1191474334 </filectime><filesize>6400 </filesize></file>
+<file name='index_totals_statement.php'>
+<filectime>1191474342 </filectime><filesize>338 </filesize></file>
+<file name='account_edit.php'>
+<filectime>1191474333 </filectime><filesize>10725 </filesize></file>
+<file name='accounts_transfer_frameset.php'>
+<filectime>1191474326 </filectime><filesize>216 </filesize></file>
+<file name='index_transfers.php'>
+<filectime>1191474344 </filectime><filesize>323 </filesize></file>
+<file name='common_funcs.inc.php'>
+<filectime>1191474326 </filectime><filesize>597 </filesize></file>
+<file name='carry_over.php'>
+<filectime>1191474336 </filectime><filesize>823 </filesize></file>
+<file name='index.php'>
+<filectime>1191474345 </filectime><filesize>422 </filesize></file>
+<file name='accounts.php'>
+<filectime>1191474345 </filectime><filesize>7604 </filesize></file>
+<file name='account_delete.php'>
+<filectime>1191474343 </filectime><filesize>1377 </filesize></file>
+<file name='totals_statement_menu.php'>
+<filectime>1191474335 </filectime><filesize>2297 </filesize></file>
+<file name='totals_statement.php'>
+<filectime>1191474327 </filectime><filesize>3106 </filesize></file>
+<file name='transfers.php'>
+<filectime>1191474335 </filectime><filesize>7425 </filesize></file>
+<file name='accounts_transfers.php'>
+<filectime>1191474342 </filectime><filesize>3336 </filesize></file>
+</directory><directory name='images'><file name='mainmenu_background.png'>
+<filectime>1191474293 </filectime><filesize>241 </filesize></file>
+<file name='avBoxTopCenterLabel.gif'>
+<filectime>1191474169 </filectime><filesize>79 </filesize></file>
+<file name='prev.gif'>
+<filectime>1191474205 </filectime><filesize>149 </filesize></file>
+<file name='modify.png'>
+<filectime>1191474217 </filectime><filesize>690 </filesize></file>
+<file name='showbalances.gif'>
+<filectime>1191474165 </filectime><filesize>167 </filesize></file>
+<file name='page_over.png'>
+<filectime>1191474174 </filectime><filesize>3350 </filesize></file>
+<file name='avBoxTopLeftLabel.gif'>
+<filectime>1191474251 </filectime><filesize>135 </filesize></file>
+<file name='transfer_inbound.gif'>
+<filectime>1191474222 </filectime><filesize>82 </filesize></file>
+<file name='resultset_first.png'>
+<filectime>1191474278 </filectime><filesize>522 </filesize></file>
+<file name='delete.gif'>
+<filectime>1191474239 </filectime><filesize>1004 </filesize></file>
+<file name='table_relationship.png'>
+<filectime>1191474211 </filectime><filesize>663 </filesize></file>
+<file name='avBoxTopRightLabel.gif'>
+<filectime>1191474158 </filectime><filesize>114 </filesize></file>
+<file name='page_delete.png'>
+<filectime>1191474302 </filectime><filesize>740 </filesize></file>
+<file name='edit.gif'>
+<filectime>1191474189 </filectime><filesize>1103 </filesize></file>
+<file name='flag_red.png'>
+<filectime>1191474264 </filectime><filesize>665 </filesize></file>
+<file name='next.gif'>
+<filectime>1191474267 </filectime><filesize>148 </filesize></file>
+<file name='transfer.gif'>
+<filectime>1191474169 </filectime><filesize>276 </filesize></file>
+<directory name='calendar'><file name='logo.gif'>
+<filectime>1191474311 </filectime><filesize>660 </filesize></file>
+<file name='prev.gif'>
+<filectime>1191474310 </filectime><filesize>212 </filesize></file>
+<file name='next.gif'>
+<filectime>1191474323 </filectime><filesize>214 </filesize></file>
+<file name='prev_year.gif'>
+<filectime>1191474310 </filectime><filesize>259 </filesize></file>
+<file name='Thumbs.db'>
+<filectime>1191474325 </filectime><filesize>8704 </filesize></file>
+<file name='icon_demo.gif'>
+<filectime>1191474311 </filectime><filesize>160 </filesize></file>
+<file name='icon_home.gif'>
+<filectime>1191474322 </filectime><filesize>198 </filesize></file>
+<file name='icon_forum.gif'>
+<filectime>1191474323 </filectime><filesize>204 </filesize></file>
+<file name='icon_download.gif'>
+<filectime>1191474309 </filectime><filesize>157 </filesize></file>
+<file name='next_year.gif'>
+<filectime>1191474304 </filectime><filesize>256 </filesize></file>
+<file name='icon_docs.gif'>
+<filectime>1191474325 </filectime><filesize>151 </filesize></file>
+<file name='cal.gif'>
+<filectime>1191474324 </filectime><filesize>127 </filesize></file>
+<file name='pixel.gif'>
+<filectime>1191474303 </filectime><filesize>67 </filesize></file>
+<file name='tc.gif'>
+<filectime>1191474307 </filectime><filesize>8301 </filesize></file>
+</directory><file name='down.gif'>
+<filectime>1191474219 </filectime><filesize>60 </filesize></file>
+<file name='resultset_next.png'>
+<filectime>1191474244 </filectime><filesize>395 </filesize></file>
+<file name='findfree.gif'>
+<filectime>1191474218 </filectime><filesize>164 </filesize></file>
+<file name='money_add.png'>
+<filectime>1191474238 </filectime><filesize>784 </filesize></file>
+<file name='tick_true.png'>
+<filectime>1191474185 </filectime><filesize>533 </filesize></file>
+<file name='avBoxTopLeft.gif'>
+<filectime>1191474252 </filectime><filesize>122 </filesize></file>
+<file name='Thumbs.db'>
+<filectime>1191474284 </filectime><filesize>159744 </filesize></file>
+<file name='db-first.png'>
+<filectime>1191474292 </filectime><filesize>588 </filesize></file>
+<file name='edit2.GIF'>
+<filectime>1191474236 </filectime><filesize>1103 </filesize></file>
+<file name='basket_go.png'>
+<filectime>1191474223 </filectime><filesize>777 </filesize></file>
+<file name='db-last.png'>
+<filectime>1191474186 </filectime><filesize>591 </filesize></file>
+<file name='tick.png'>
+<filectime>1191474253 </filectime><filesize>537 </filesize></file>
+<file name='user_add.png'>
+<filectime>1191474237 </filectime><filesize>746 </filesize></file>
+<file name='icon_home.gif'>
+<filectime>1191474253 </filectime><filesize>198 </filesize></file>
+<file name='avBoxTopCenterFill.gif'>
+<filectime>1191474269 </filectime><filesize>92 </filesize></file>
+<file name='graydot.gif'>
+<filectime>1191474237 </filectime><filesize>60 </filesize></file>
+<file name='importselected.gif'>
+<filectime>1191474157 </filectime><filesize>205 </filesize></file>
+<file name='print.gif'>
+<filectime>1191474204 </filectime><filesize>963 </filesize></file>
+<file name='mark.gif'>
+<filectime>1191474227 </filectime><filesize>193 </filesize></file>
+<file name='search_icon.jpg'>
+<filectime>1191474196 </filectime><filesize>460 </filesize></file>
+<file name='new.gif'>
+<filectime>1191474218 </filectime><filesize>140 </filesize></file>
+<file name='avBoxBottomCenter.gif'>
+<filectime>1191474229 </filectime><filesize>57 </filesize></file>
+<file name='transmit_go.png'>
+<filectime>1191474238 </filectime><filesize>842 </filesize></file>
+<file name='avBoxTopCenter.gif'>
+<filectime>1191474265 </filectime><filesize>47 </filesize></file>
+<file name='transmit_edit.png'>
+<filectime>1191474184 </filectime><filesize>848 </filesize></file>
+<file name='new.png'>
+<filectime>1191474234 </filectime><filesize>483 </filesize></file>
+<file name='user_edit.png'>
+<filectime>1191474183 </filectime><filesize>3451 </filesize></file>
+<file name='application_get.png'>
+<filectime>1191474235 </filectime><filesize>581 </filesize></file>
+<file name='printer.png'>
+<filectime>1191474270 </filectime><filesize>3417 </filesize></file>
+<file name='resultset_previous.png'>
+<filectime>1191474290 </filectime><filesize>389 </filesize></file>
+<file name='avsymbol.jpg'>
+<filectime>1191474204 </filectime><filesize>6109 </filesize></file>
+<file name='transfer_outbound.gif'>
+<filectime>1191474240 </filectime><filesize>57 </filesize></file>
+<file name='printer_active.png'>
+<filectime>1191474229 </filectime><filesize>3443 </filesize></file>
+<file name='resultset_last.png'>
+<filectime>1191474228 </filectime><filesize>524 </filesize></file>
+<file name='avBoxTopCenterLabel2.gif'>
+<filectime>1191474201 </filectime><filesize>72 </filesize></file>
+<file name='but_showhiddendown.gif'>
+<filectime>1191474190 </filectime><filesize>310 </filesize></file>
+<file name='lightning_add.png'>
+<filectime>1191474201 </filectime><filesize>746 </filesize></file>
+<file name='modify.gif'>
+<filectime>1191474303 </filectime><filesize>982 </filesize></file>
+<file name='icon_download.gif'>
+<filectime>1191474202 </filectime><filesize>157 </filesize></file>
+<file name='flag_green.png'>
+<filectime>1191474278 </filectime><filesize>672 </filesize></file>
+<file name='search_icon.png'>
+<filectime>1191474196 </filectime><filesize>1534 </filesize></file>
+<file name='barcode.png'>
+<filectime>1191474296 </filectime><filesize>271 </filesize></file>
+<file name='refresh.gif'>
+<filectime>1191474233 </filectime><filesize>986 </filesize></file>
+<file name='importall.gif'>
+<filectime>1191474231 </filectime><filesize>207 </filesize></file>
+<file name='avBoxBottomLeft.gif'>
+<filectime>1191474277 </filectime><filesize>202 </filesize></file>
+<file name='but_grid.gif'>
+<filectime>1191474206 </filectime><filesize>210 </filesize></file>
+<file name='avBoxMiddleLeft.gif'>
+<filectime>1191474230 </filectime><filesize>69 </filesize></file>
+<file name='lightbulb_delete.png'>
+<filectime>1191474189 </filectime><filesize>857 </filesize></file>
+<file name='user_edit_over.png'>
+<filectime>1191474266 </filectime><filesize>3562 </filesize></file>
+<file name='cart_remove.png'>
+<filectime>1191474165 </filectime><filesize>769 </filesize></file>
+<file name='but_showhidden.gif'>
+<filectime>1191474220 </filectime><filesize>331 </filesize></file>
+<file name='lock_edit.png'>
+<filectime>1191474200 </filectime><filesize>861 </filesize></file>
+<file name='print.png'>
+<filectime>1191474203 </filectime><filesize>826 </filesize></file>
+<file name='user_delete.png'>
+<filectime>1191474156 </filectime><filesize>3368 </filesize></file>
+<file name='user_add_over.png'>
+<filectime>1191474262 </filectime><filesize>3416 </filesize></file>
+<file name='delete.png'>
+<filectime>1191474219 </filectime><filesize>715 </filesize></file>
+<file name='user_delete_over.png'>
+<filectime>1191474166 </filectime><filesize>3473 </filesize></file>
+<file name='transfer_return.gif'>
+<filectime>1191474188 </filectime><filesize>303 </filesize></file>
+<file name='last.gif'>
+<filectime>1191474292 </filectime><filesize>161 </filesize></file>
+<file name='pixel.gif'>
+<filectime>1191474170 </filectime><filesize>67 </filesize></file>
+<file name='cancel.png'>
+<filectime>1191474226 </filectime><filesize>587 </filesize></file>
+<file name='dustbin.png'>
+<filectime>1191474159 </filectime><filesize>567 </filesize></file>
+<file name='up.gif'>
+<filectime>1191474228 </filectime><filesize>60 </filesize></file>
+<file name='find.png'>
+<filectime>1191474222 </filectime><filesize>659 </filesize></file>
+<file name='page.png'>
+<filectime>1191474261 </filectime><filesize>3335 </filesize></file>
+<file name='table_multiple.png'>
+<filectime>1191474236 </filectime><filesize>612 </filesize></file>
+<file name='marked.gif'>
+<filectime>1191474269 </filectime><filesize>184 </filesize></file>
+<file name='export.gif'>
+<filectime>1191474191 </filectime><filesize>170 </filesize></file>
+<file name='first.gif'>
+<filectime>1191474301 </filectime><filesize>161 </filesize></file>
+<file name='avBoxMiddleRight.gif'>
+<filectime>1191474295 </filectime><filesize>74 </filesize></file>
+<file name='sort.gif'>
+<filectime>1191474205 </filectime><filesize>1016 </filesize></file>
+<file name='cross.png'>
+<filectime>1191474276 </filectime><filesize>655 </filesize></file>
+<file name='avBoxMiddleCenter.gif'>
+<filectime>1191474302 </filectime><filesize>46 </filesize></file>
+<file name='avBoxBottomRight.gif'>
+<filectime>1191474291 </filectime><filesize>111 </filesize></file>
+<file name='page_edit.png'>
+<filectime>1191474245 </filectime><filesize>807 </filesize></file>
+<file name='avBoxTopRight.gif'>
+<filectime>1191474254 </filectime><filesize>108 </filesize></file>
+<file name='table_go.png'>
+<filectime>1191474268 </filectime><filesize>683 </filesize></file>
+<file name='tick_false.png'>
+<filectime>1191474183 </filectime><filesize>585 </filesize></file>
+<file name='blank.gif'>
+<filectime>1191474212 </filectime><filesize>46 </filesize></file>
+<file name='resize.gif'>
+<filectime>1191474276 </filectime><filesize>1076 </filesize></file>
+</directory><file name='blank.htm'>
+<filectime>1191475957 </filectime><filesize>32 </filesize></file>
+<directory name='include'><file name='check_batches.php'>
+<filectime>1191475064 </filectime><filesize>1605 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191475049 </filectime><filesize>1870 </filesize></file>
+<file name='sweetTitles.css'>
+<filectime>1191475050 </filectime><filesize>639 </filesize></file>
+<file name='mysql_backup_old.php'>
+<filectime>1191475047 </filectime><filesize>7065 </filesize></file>
+<file name='bill_styles_green.css'>
+<filectime>1191475045 </filectime><filesize>11720 </filesize></file>
+<file name='session.inc.php'>
+<filectime>1191475057 </filectime><filesize>4898 </filesize></file>
+<file name='calendar.html'>
+<filectime>1191475028 </filectime><filesize>6760 </filesize></file>
+<file name='account.inc.php'>
+<filectime>1191475031 </filectime><filesize>1702 </filesize></file>
+<file name='purchase_funcs.inc.php'>
+<filectime>1191475052 </filectime><filesize>3486 </filesize></file>
+<file name='sweetTitles.js'>
+<filectime>1191475034 </filectime><filesize>3935 </filesize></file>
+<file name='selectNext.inc.php'>
+<filectime>1191475066 </filectime><filesize>1175 </filesize></file>
+<file name='const.inc.php'>
+<filectime>1191475033 </filectime><filesize>20247 </filesize></file>
+<file name='dbsqlserver.inc.php'>
+<filectime>1191475066 </filectime><filesize>9308 </filesize></file>
+<file name='version.inc.php'>
+<filectime>1191475048 </filectime><filesize>19 </filesize></file>
+<file name='common_funcs.inc.php'>
+<filectime>1191475030 </filectime><filesize>3342 </filesize></file>
+<file name='bill_styles_purple.css'>
+<filectime>1191475065 </filectime><filesize>11720 </filesize></file>
+<file name='bill_styles.css'>
+<filectime>1191475030 </filectime><filesize>11347 </filesize></file>
+<file name='browser_detection.php'>
+<filectime>1191475030 </filectime><filesize>26774 </filesize></file>
+<file name='style.css'>
+<filectime>1191475035 </filectime><filesize>3807 </filesize></file>
+<file name='common_funcs.js.php'>
+<filectime>1191475063 </filectime><filesize>581 </filesize></file>
+<file name='gridcustomize.php'>
+<filectime>1191475032 </filectime><filesize>7171 </filesize></file>
+<file name='calendar1.js'>
+<filectime>1191475047 </filectime><filesize>6059 </filesize></file>
+<file name='bill_styles_blue.css'>
+<filectime>1191475036 </filectime><filesize>11777 </filesize></file>
+<file name='alter_tables.php'>
+<filectime>1191475046 </filectime><filesize>367 </filesize></file>
+<file name='styles.css'>
+<filectime>1191475049 </filectime><filesize>15082 </filesize></file>
+<file name='addEvent.js'>
+<filectime>1191475063 </filectime><filesize>1199 </filesize></file>
+</directory><directory name='stock'><file name='in_list_frameset.php'>
+<filectime>1191475112 </filectime><filesize>329 </filesize></file>
+<file name='supplier_currentstock_menu.php'>
+<filectime>1191476596 </filectime><filesize>7509 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191475125 </filectime><filesize>18012 </filesize></file>
+<file name='stock_registry_type.php'>
+<filectime>1191475140 </filectime><filesize>1023 </filesize></file>
+<file name='supplier_currentstock_print.php'>
+<filectime>1191475116 </filectime><filesize>23292 </filesize></file>
+<file name='stock_registry_print.php'>
+<filectime>1191475124 </filectime><filesize>7533 </filesize></file>
+<directory name='batchgrid'><file name='stockdispatch.inc.php'>
+<filectime>1191475235 </filectime><filesize>5876 </filesize></file>
+<file name='reqestbatch.php'>
+<filectime>1191475218 </filectime><filesize>6871 </filesize></file>
+<file name='returnbatch.php'>
+<filectime>1191475238 </filectime><filesize>6846 </filesize></file>
+<file name='requestbatchmultiple.php'>
+<filectime>1191475233 </filectime><filesize>7703 </filesize></file>
+<file name='transferbatch.php'>
+<filectime>1191475224 </filectime><filesize>9099 </filesize></file>
+<file name='dispatchbatch.php'>
+<filectime>1191475234 </filectime><filesize>9998 </filesize></file>
+<file name='index.php'>
+<filectime>1191475237 </filectime><filesize>313 </filesize></file>
+<file name='requestbatch.php'>
+<filectime>1191475232 </filectime><filesize>6853 </filesize></file>
+<file name='batch.php'>
+<filectime>1191475231 </filectime><filesize>9278 </filesize></file>
+<file name='modifybatch.php'>
+<filectime>1191475240 </filectime><filesize>7804 </filesize></file>
+</directory><file name='stockframeset.php'>
+<filectime>1191475117 </filectime><filesize>392 </filesize></file>
+<file name='stock_registry_details.php'>
+<filectime>1191475114 </filectime><filesize>4926 </filesize></file>
+<file name='stock_registry_month.php'>
+<filectime>1191475110 </filectime><filesize>8439 </filesize></file>
+<file name='stockbatches.php'>
+<filectime>1191475146 </filectime><filesize>4196 </filesize></file>
+<file name='in_list_menu.php'>
+<filectime>1191475124 </filectime><filesize>5710 </filesize></file>
+<file name='supplier_currentstock_info.php'>
+<filectime>1191475123 </filectime><filesize>5935 </filesize></file>
+<directory name='help'><file name='batch.html'>
+<filectime>1191475188 </filectime><filesize>2300 </filesize></file>
+<file name='index.php'>
+<filectime>1191475189 </filectime><filesize>30 </filesize></file>
+</directory><file name='update_active_status.php'>
+<filectime>1191475087 </filectime><filesize>1228 </filesize></file>
+<file name='supplier_statement_menu.php'>
+<filectime>1191475142 </filectime><filesize>4200 </filesize></file>
+<file name='supplier_statement.php'>
+<filectime>1191475096 </filectime><filesize>351 </filesize></file>
+<file name='product_details.php'>
+<filectime>1191475102 </filectime><filesize>3063 </filesize></file>
+<directory name='transfers'><file name='transfer.php'>
+<filectime>1191475187 </filectime><filesize>8856 </filesize></file>
+<file name='stockcomplete.inc.php'>
+<filectime>1191475187 </filectime><filesize>4130 </filesize></file>
+<file name='directReceive.php'>
+<filectime>1191475171 </filectime><filesize>32143 </filesize></file>
+<file name='directReceive.old.php'>
+<filectime>1191475185 </filectime><filesize>31214 </filesize></file>
+<file name='direct_transfer_funcs.php'>
+<filectime>1191475174 </filectime><filesize>34044 </filesize></file>
+<file name='stockdispatch.inc.php'>
+<filectime>1191475164 </filectime><filesize>2447 </filesize></file>
+<file name='index_received.php'>
+<filectime>1191475148 </filectime><filesize>334 </filesize></file>
+<file name='transfer_received.php'>
+<filectime>1191475181 </filectime><filesize>9671 </filesize></file>
+<file name='productDetails.php'>
+<filectime>1191475184 </filectime><filesize>5205 </filesize></file>
+<file name='direct_transfer.php'>
+<filectime>1191475172 </filectime><filesize>11601 </filesize></file>
+<file name='product_details.php'>
+<filectime>1191475158 </filectime><filesize>3064 </filesize></file>
+<file name='transferbatch.php'>
+<filectime>1191475150 </filectime><filesize>5872 </filesize></file>
+<file name='stockrequest.inc.php'>
+<filectime>1191475160 </filectime><filesize>3034 </filesize></file>
+<file name='product_batches.php'>
+<filectime>1191475158 </filectime><filesize>7118 </filesize></file>
+<file name='test.php'>
+<filectime>1191475156 </filectime><filesize>8243 </filesize></file>
+<file name='stock_correct.php'>
+<filectime>1191475166 </filectime><filesize>26985 </filesize></file>
+<file name='transfer_dispatched.php'>
+<filectime>1191475176 </filectime><filesize>9100 </filesize></file>
+<file name='get_product_tax_details.php'>
+<filectime>1191475149 </filectime><filesize>153 </filesize></file>
+<file name='index.php'>
+<filectime>1191475173 </filectime><filesize>325 </filesize></file>
+<file name='bulkPackage.php'>
+<filectime>1191475180 </filectime><filesize>25331 </filesize></file>
+<file name='viewtransfer.php'>
+<filectime>1191475175 </filectime><filesize>5871 </filesize></file>
+<file name='index_requested.php'>
+<filectime>1191475148 </filectime><filesize>335 </filesize></file>
+<file name='index_dispatched.php'>
+<filectime>1191475159 </filectime><filesize>336 </filesize></file>
+<file name='transfer_requested.php'>
+<filectime>1191475178 </filectime><filesize>8644 </filesize></file>
+</directory><file name='index_supplier_statement.php'>
+<filectime>1191475099 </filectime><filesize>339 </filesize></file>
+<file name='supplier_currentstock_footer.php'>
+<filectime>1191475094 </filectime><filesize>1959 </filesize></file>
+<file name='in_list_print.php'>
+<filectime>1191475147 </filectime><filesize>12853 </filesize></file>
+<directory name='rts'><file name='receipt_enter.php'>
+<filectime>1191475209 </filectime><filesize>12419 </filesize></file>
+<file name='receipt_total.php'>
+<filectime>1191475190 </filectime><filesize>2773 </filesize></file>
+<file name='rts_details.php'>
+<filectime>1191475216 </filectime><filesize>2880 </filesize></file>
+<file name='rts.php'>
+<filectime>1191475196 </filectime><filesize>7669 </filesize></file>
+<file name='receipt_action.php'>
+<filectime>1191475195 </filectime><filesize>14812 </filesize></file>
+<file name='update_batch.php'>
+<filectime>1191475191 </filectime><filesize>1166 </filesize></file>
+<file name='print_receipt.php'>
+<filectime>1191475207 </filectime><filesize>7795 </filesize></file>
+<file name='receipt_frameset.php'>
+<filectime>1191475215 </filectime><filesize>2034 </filesize></file>
+<file name='receipt_list.php'>
+<filectime>1191475194 </filectime><filesize>4415 </filesize></file>
+<file name='product_batches.php'>
+<filectime>1191475193 </filectime><filesize>2829 </filesize></file>
+<file name='index_rts.php'>
+<filectime>1191475190 </filectime><filesize>397 </filesize></file>
+<file name='receipt_supplier.php'>
+<filectime>1191475192 </filectime><filesize>4711 </filesize></file>
+<file name='print_temp_receipt.php'>
+<filectime>1191475217 </filectime><filesize>6996 </filesize></file>
+<file name='product_quantities.php'>
+<filectime>1191475208 </filectime><filesize>19847 </filesize></file>
+<file name='rts_cancel.php'>
+<filectime>1191475198 </filectime><filesize>4412 </filesize></file>
+<file name='product_description.php'>
+<filectime>1191475205 </filectime><filesize>2366 </filesize></file>
+<file name='rts_details_frameset.php'>
+<filectime>1191475200 </filectime><filesize>304 </filesize></file>
+</directory><file name='stock_old.php'>
+<filectime>1191475111 </filectime><filesize>26631 </filesize></file>
+<file name='stock_checkbox.php'>
+<filectime>1191475099 </filectime><filesize>11796 </filesize></file>
+<file name='index_in_list.php'>
+<filectime>1191475145 </filectime><filesize>329 </filesize></file>
+<file name='stockbatchesframeset.php'>
+<filectime>1191475128 </filectime><filesize>236 </filesize></file>
+<file name='stockdelete.php'>
+<filectime>1191475097 </filectime><filesize>735 </filesize></file>
+<file name='stock_registry_month_menu.php'>
+<filectime>1191475109 </filectime><filesize>4552 </filesize></file>
+<file name='viewstock.php'>
+<filectime>1191475126 </filectime><filesize>7584 </filesize></file>
+<file name='supplier_statement_header.php'>
+<filectime>1191475134 </filectime><filesize>803 </filesize></file>
+<file name='stock_registry_frameset.php'>
+<filectime>1191475127 </filectime><filesize>1168 </filesize></file>
+<file name='index.php'>
+<filectime>1191475128 </filectime><filesize>392 </filesize></file>
+<file name='in_list_data.php'>
+<filectime>1191475127 </filectime><filesize>9706 </filesize></file>
+<file name='index_stock_settings.php'>
+<filectime>1191475138 </filectime><filesize>4324 </filesize></file>
+<file name='update_transfers.php'>
+<filectime>1191475085 </filectime><filesize>2594 </filesize></file>
+<file name='stock.php'>
+<filectime>1191475093 </filectime><filesize>14576 </filesize></file>
+<file name='supplier_statement_print.php'>
+<filectime>1191475086 </filectime><filesize>8430 </filesize></file>
+<file name='index_stock_register.php'>
+<filectime>1191475113 </filectime><filesize>1208 </filesize></file>
+<file name='index_supplier_currentstock.php'>
+<filectime>1191475144 </filectime><filesize>502 </filesize></file>
+<file name='stock_registry_menu.php'>
+<filectime>1191475102 </filectime><filesize>6092 </filesize></file>
+<file name='supplier_currentstock.php'>
+<filectime>1191476595 </filectime><filesize>20999 </filesize></file>
+<file name='stock_registry_summary.php'>
+<filectime>1191475098 </filectime><filesize>6324 </filesize></file>
+<file name='supplier_statement_content.php'>
+<filectime>1191475122 </filectime><filesize>6214 </filesize></file>
+<file name='in_list_header.php'>
+<filectime>1191475136 </filectime><filesize>757 </filesize></file>
+<file name='update_global_price.php'>
+<filectime>1191475139 </filectime><filesize>8625 </filesize></file>
+</directory><directory name='purchase'><file name='purchase_order_frameset.php'>
+<filectime>1191474822 </filectime><filesize>2555 </filesize></file>
+<file name='purchase_items.php'>
+<filectime>1191474780 </filectime><filesize>1926 </filesize></file>
+<file name='module.inc.php'>
+<filectime>1191474825 </filectime><filesize>8849 </filesize></file>
+<file name='purchase_delete.php'>
+<filectime>1191474772 </filectime><filesize>1867 </filesize></file>
+<file name='commonFiles.inc.php'>
+<filectime>1191474810 </filectime><filesize>6761 </filesize></file>
+<file name='purchase_order_action.php'>
+<filectime>1191474780 </filectime><filesize>7743 </filesize></file>
+<file name='po_list_print.php'>
+<filectime>1191474828 </filectime><filesize>6871 </filesize></file>
+<file name='purchase_list_details.php'>
+<filectime>1191474784 </filectime><filesize>16268 </filesize></file>
+<file name='purchase_receive.php'>
+<filectime>1191474792 </filectime><filesize>32468 </filesize></file>
+<file name='print_price_list.php'>
+<filectime>1191474845 </filectime><filesize>2290 </filesize></file>
+<file name='po_view_list.php'>
+<filectime>1191474785 </filectime><filesize>2006 </filesize></file>
+<file name='purchase_sales_register_content.php'>
+<filectime>1191474787 </filectime><filesize>11224 </filesize></file>
+<file name='purchase_category_list_menu.php'>
+<filectime>1191474789 </filectime><filesize>9209 </filesize></file>
+<file name='supplier_statement_menu.php'>
+<filectime>1191474838 </filectime><filesize>2410 </filesize></file>
+<file name='po_view_header.php'>
+<filectime>1191474775 </filectime><filesize>8112 </filesize></file>
+<file name='purchase_category_list_data.php'>
+<filectime>1191474778 </filectime><filesize>17096 </filesize></file>
+<file name='purchase_order_list.php'>
+<filectime>1191474774 </filectime><filesize>1719 </filesize></file>
+<file name='purchase_list_old.php'>
+<filectime>1191474856 </filectime><filesize>13928 </filesize></file>
+<file name='purchase_sales_register_menu.php'>
+<filectime>1191474794 </filectime><filesize>2329 </filesize></file>
+<file name='purchase_receive_temp.php'>
+<filectime>1191474776 </filectime><filesize>11544 </filesize></file>
+<file name='index_supplier_statement.php'>
+<filectime>1191474783 </filectime><filesize>349 </filesize></file>
+<file name='purchase_view_frameset.php'>
+<filectime>1191474852 </filectime><filesize>618 </filesize></file>
+<file name='po_view_enter.php'>
+<filectime>1191474812 </filectime><filesize>8918 </filesize></file>
+<file name='purchase_order_header.php'>
+<filectime>1191474809 </filectime><filesize>6281 </filesize></file>
+<file name='receive_purchase_order.php'>
+<filectime>1191474796 </filectime><filesize>29455 </filesize></file>
+<file name='index.php'>
+<filectime>1191474830 </filectime><filesize>504 </filesize></file>
+<file name='purchase_category_list_print.php'>
+<filectime>1191474834 </filectime><filesize>17813 </filesize></file>
+<file name='purchase.php'>
+<filectime>1191474807 </filectime><filesize>10836 </filesize></file>
+<file name='purchase_order_enter.php'>
+<filectime>1191474855 </filectime><filesize>6949 </filesize></file>
+<file name='purchase_receive_before_batchsplit.php'>
+<filectime>1191474788 </filectime><filesize>18337 </filesize></file>
+<file name='index_purchase_sales_statement.php'>
+<filectime>1191474785 </filectime><filesize>368 </filesize></file>
+<file name='purchase_list_frameset.php'>
+<filectime>1191474846 </filectime><filesize>328 </filesize></file>
+<file name='po_view_header_new.php'>
+<filectime>1191474839 </filectime><filesize>298 </filesize></file>
+<file name='purchase_items_frameset.php'>
+<filectime>1191474777 </filectime><filesize>300 </filesize></file>
+<file name='purchase_order_sessions.php'>
+<filectime>1191474774 </filectime><filesize>1122 </filesize></file>
+<file name='purchase_category_list_frameset.php'>
+<filectime>1191474781 </filectime><filesize>355 </filesize></file>
+<file name='purchase_sales_register_print.php'>
+<filectime>1191474783 </filectime><filesize>13503 </filesize></file>
+<file name='purchase_list_menu.php'>
+<filectime>1191474836 </filectime><filesize>8708 </filesize></file>
+<file name='po_view_action.php'>
+<filectime>1191474831 </filectime><filesize>5475 </filesize></file>
+<file name='supplier_statement_print.php'>
+<filectime>1191474773 </filectime><filesize>7177 </filesize></file>
+<file name='purchase_list_print.php'>
+<filectime>1191474827 </filectime><filesize>12743 </filesize></file>
+<file name='order_quantities.php'>
+<filectime>1191474782 </filectime><filesize>1941 </filesize></file>
+<file name='prediction_method.php'>
+<filectime>1191474786 </filectime><filesize>1698 </filesize></file>
+<file name='product_description.php'>
+<filectime>1191474820 </filectime><filesize>2031 </filesize></file>
+<file name='supplier_statement_content.php'>
+<filectime>1191474811 </filectime><filesize>5256 </filesize></file>
+</directory><directory name='updatemanager'><directory name='linclient'><file name='updatemanager.php'>
+<filectime>1191474857 </filectime><filesize>1363 </filesize></file>
+<file name='setConfig.php'>
+<filectime>1191474859 </filectime><filesize>4495 </filesize></file>
+<file name='clientclass.php'>
+<filectime>1191474857 </filectime><filesize>12387 </filesize></file>
+<file name='getUpdate1.php'>
+<filectime>1191474858 </filectime><filesize>468 </filesize></file>
+<file name='updatemanager1.php'>
+<filectime>1191474860 </filectime><filesize>578 </filesize></file>
+<file name='nusoap.php'>
+<filectime>1191474864 </filectime><filesize>232119 </filesize></file>
+<file name='updateManager.conf'>
+<filectime>1191474861 </filectime><filesize>0 </filesize></file>
+<file name='getUpdate.php'>
+<filectime>1191474859 </filectime><filesize>639 </filesize></file>
+</directory><directory name='winclient'><file name='updatemanager.php'>
+<filectime>1191474866 </filectime><filesize>1364 </filesize></file>
+<file name='FileList.xml'>
+<filectime>1191474865 </filectime><filesize>6512 </filesize></file>
+<file name='tmpFileList.xml'>
+<filectime>1191474874 </filectime><filesize>78977 </filesize></file>
+<file name='setConfig.php'>
+<filectime>1191474873 </filectime><filesize>4492 </filesize></file>
+<file name='clientclass.php'>
+<filectime>1191474864 </filectime><filesize>11192 </filesize></file>
+<file name='getUpdate1.php'>
+<filectime>1191474867 </filectime><filesize>468 </filesize></file>
+<file name='mynusoap.php'>
+<filectime>1191474885 </filectime><filesize>232123 </filesize></file>
+<file name='updatemanager1.php'>
+<filectime>1191474886 </filectime><filesize>578 </filesize></file>
+<file name='updateManager.conf'>
+<filectime>1191474887 </filectime><filesize>0 </filesize></file>
+<file name='getUpdate.php'>
+<filectime>1191474872 </filectime><filesize>639 </filesize></file>
+</directory></directory><directory name='common'><file name='white.png'>
+<filectime>1191474916 </filectime><filesize>138 </filesize></file>
+<file name='printtest.php'>
+<filectime>1191474936 </filectime><filesize>181 </filesize></file>
+<file name='number_to_words.php'>
+<filectime>1191474908 </filectime><filesize>1677 </filesize></file>
+<file name='printer.inc.php'>
+<filectime>1191474938 </filectime><filesize>5262 </filesize></file>
+<file name='selectcesaccounthead.php'>
+<filectime>1191474914 </filectime><filesize>2858 </filesize></file>
+<file name='get_categories.php'>
+<filectime>1191474909 </filectime><filesize>1472 </filesize></file>
+<file name='selectaccounthead.php'>
+<filectime>1191474907 </filectime><filesize>2858 </filesize></file>
+<file name='print_funcs.inc.php'>
+<filectime>1191474932 </filectime><filesize>17586 </filesize></file>
+<file name='barcode.php'>
+<filectime>1191474942 </filectime><filesize>1406 </filesize></file>
+<file name='update_batch.php'>
+<filectime>1191474906 </filectime><filesize>1597 </filesize></file>
+<file name='js_math_funcs.js'>
+<filectime>1191474910 </filectime><filesize>709 </filesize></file>
+<file name='functions.inc.php'>
+<filectime>1191474937 </filectime><filesize>1936 </filesize></file>
+<file name='ahs.inc.php'>
+<filectime>1191474907 </filectime><filesize>4408 </filesize></file>
+<file name='gridtest.php'>
+<filectime>1191474910 </filectime><filesize>2262 </filesize></file>
+<file name='gridform.php'>
+<filectime>1191474928 </filectime><filesize>241 </filesize></file>
+<file name='peartest.php'>
+<filectime>1191474935 </filectime><filesize>6578 </filesize></file>
+<file name='encode_bars.php'>
+<filectime>1191474934 </filectime><filesize>2616 </filesize></file>
+<file name='account_search.php'>
+<filectime>1191474901 </filectime><filesize>3636 </filesize></file>
+<file name='product_quantities_old.php'>
+<filectime>1191474922 </filectime><filesize>29772 </filesize></file>
+<file name='product_search.php'>
+<filectime>1191474925 </filectime><filesize>6562 </filesize></file>
+<file name='peartest.php.2995.backup'>
+<filectime>1191474924 </filectime><filesize>6527 </filesize></file>
+<file name='product_batches.php'>
+<filectime>1191474911 </filectime><filesize>10771 </filesize></file>
+<file name='ccs.inc.php'>
+<filectime>1191474929 </filectime><filesize>9685 </filesize></file>
+<file name='product_funcs.inc.php'>
+<filectime>1191474913 </filectime><filesize>2507 </filesize></file>
+<file name='product_quantities.php'>
+<filectime>1191474939 </filectime><filesize>22557 </filesize></file>
+<file name='stock_funcs.inc.php'>
+<filectime>1191474917 </filectime><filesize>748 </filesize></file>
+<file name='update_batch_old.php'>
+<filectime>1191474915 </filectime><filesize>1199 </filesize></file>
+<file name='printer.inc.lpt.php'>
+<filectime>1191474896 </filectime><filesize>4749 </filesize></file>
+<file name='encode.php'>
+<filectime>1191474903 </filectime><filesize>331 </filesize></file>
+<file name='ces.inc.php'>
+<filectime>1191474912 </filectime><filesize>14717 </filesize></file>
+<directory name='Numbers'><file name='Words.php'>
+<filectime>1191474943 </filectime><filesize>5061 </filesize></file>
+<directory name='CVS'><file name='Root'>
+<filectime>1191474947 </filectime><filesize>37 </filesize></file>
+<file name='Entries.Extra'>
+<filectime>1191474944 </filectime><filesize>36 </filesize></file>
+<file name='Entries.Extra.Old'>
+<filectime>1191474946 </filectime><filesize>36 </filesize></file>
+<file name='Entries'>
+<filectime>1191474945 </filectime><filesize>56 </filesize></file>
+<file name='Repository'>
+<filectime>1191474945 </filectime><filesize>25 </filesize></file>
+<file name='Entries.Old'>
+<filectime>1191474944 </filectime><filesize>45 </filesize></file>
+</directory><directory name='Words'><file name='lang.pl.php'>
+<filectime>1191474968 </filectime><filesize>18268 </filesize></file>
+<file name='lang.en_GB.php'>
+<filectime>1191474980 </filectime><filesize>8900 </filesize></file>
+<file name='lang.dk.php'>
+<filectime>1191474948 </filectime><filesize>12597 </filesize></file>
+<file name='lang.es.php'>
+<filectime>1191474958 </filectime><filesize>10057 </filesize></file>
+<file name='lang.en_100.php'>
+<filectime>1191474952 </filectime><filesize>9077 </filesize></file>
+<file name='lang.es_AR.php'>
+<filectime>1191474981 </filectime><filesize>15586 </filesize></file>
+<file name='lang.hu_HU.php'>
+<filectime>1191474962 </filectime><filesize>12957 </filesize></file>
+<file name='lang.lt.php'>
+<filectime>1191474965 </filectime><filesize>8647 </filesize></file>
+<file name='lang.it_IT.php'>
+<filectime>1191474970 </filectime><filesize>10207 </filesize></file>
+<file name='lang.ee.php'>
+<filectime>1191474951 </filectime><filesize>11259 </filesize></file>
+<file name='lang.de.php'>
+<filectime>1191474964 </filectime><filesize>9463 </filesize></file>
+<directory name='CVS'><file name='Root'>
+<filectime>1191474984 </filectime><filesize>37 </filesize></file>
+<file name='Entries.Extra'>
+<filectime>1191474982 </filectime><filesize>418 </filesize></file>
+<file name='Entries.Extra.Old'>
+<filectime>1191474984 </filectime><filesize>418 </filesize></file>
+<file name='Entries'>
+<filectime>1191474983 </filectime><filesize>835 </filesize></file>
+<file name='Repository'>
+<filectime>1191474983 </filectime><filesize>31 </filesize></file>
+<file name='Entries.Old'>
+<filectime>1191474982 </filectime><filesize>637 </filesize></file>
+</directory><file name='lang.sv.php'>
+<filectime>1191474957 </filectime><filesize>9041 </filesize></file>
+<file name='lang.ru.php'>
+<filectime>1191474956 </filectime><filesize>21269 </filesize></file>
+<file name='lang.id.php'>
+<filectime>1191474979 </filectime><filesize>8247 </filesize></file>
+<file name='lang.bg.php'>
+<filectime>1191474972 </filectime><filesize>17046 </filesize></file>
+<file name='lang.en_US.php'>
+<filectime>1191474947 </filectime><filesize>17719 </filesize></file>
+<file name='lang.fr.php'>
+<filectime>1191474978 </filectime><filesize>13624 </filesize></file>
+<file name='lang.pt_BR.php'>
+<filectime>1191474971 </filectime><filesize>6506 </filesize></file>
+</directory></directory><file name='account.php'>
+<filectime>1191474940 </filectime><filesize>16964 </filesize></file>
+<file name='selectaccount.php'>
+<filectime>1191474924 </filectime><filesize>3722 </filesize></file>
+<file name='transfertest.php'>
+<filectime>1191474929 </filectime><filesize>415 </filesize></file>
+<directory name='Words'><file name='lang.pl.php'>
+<filectime>1191475004 </filectime><filesize>18268 </filesize></file>
+<file name='lang.en_GB.php'>
+<filectime>1191475015 </filectime><filesize>8900 </filesize></file>
+<file name='lang.dk.php'>
+<filectime>1191474989 </filectime><filesize>12597 </filesize></file>
+<file name='lang.es.php'>
+<filectime>1191474998 </filectime><filesize>10400 </filesize></file>
+<file name='lang.en_100.php'>
+<filectime>1191474993 </filectime><filesize>9077 </filesize></file>
+<file name='lang.es_AR.php'>
+<filectime>1191475019 </filectime><filesize>15586 </filesize></file>
+<file name='lang.hu_HU.php'>
+<filectime>1191474999 </filectime><filesize>12957 </filesize></file>
+<file name='lang.lt.php'>
+<filectime>1191475002 </filectime><filesize>8647 </filesize></file>
+<file name='lang.it_IT.php'>
+<filectime>1191475006 </filectime><filesize>10555 </filesize></file>
+<file name='lang.ee.php'>
+<filectime>1191474991 </filectime><filesize>11259 </filesize></file>
+<file name='lang.de.php'>
+<filectime>1191475000 </filectime><filesize>9463 </filesize></file>
+<directory name='CVS'><file name='Root'>
+<filectime>1191475027 </filectime><filesize>37 </filesize></file>
+<file name='Entries.Extra'>
+<filectime>1191475026 </filectime><filesize>418 </filesize></file>
+<file name='Entries.Extra.Old'>
+<filectime>1191475027 </filectime><filesize>0 </filesize></file>
+<file name='Entries'>
+<filectime>1191475026 </filectime><filesize>835 </filesize></file>
+<file name='Repository'>
+<filectime>1191475027 </filectime><filesize>23 </filesize></file>
+<file name='Entries.Old'>
+<filectime>1191475025 </filectime><filesize>0 </filesize></file>
+</directory><file name='lang.sv.php'>
+<filectime>1191474997 </filectime><filesize>9041 </filesize></file>
+<file name='lang.ru.php'>
+<filectime>1191474995 </filectime><filesize>21269 </filesize></file>
+<file name='lang.id.php'>
+<filectime>1191475013 </filectime><filesize>8247 </filesize></file>
+<file name='lang.bg.php'>
+<filectime>1191475008 </filectime><filesize>17046 </filesize></file>
+<file name='lang.en_US.php'>
+<filectime>1191474985 </filectime><filesize>17719 </filesize></file>
+<file name='lang.fr.php'>
+<filectime>1191475011 </filectime><filesize>13624 </filesize></file>
+<file name='lang.pt_BR.php'>
+<filectime>1191475007 </filectime><filesize>6506 </filesize></file>
+</directory><file name='php-barcode.php'>
+<filectime>1191474902 </filectime><filesize>15290 </filesize></file>
+<file name='print_dialog.php'>
+<filectime>1191474911 </filectime><filesize>2585 </filesize></file>
+<file name='product_batches_old.php'>
+<filectime>1191474939 </filectime><filesize>8677 </filesize></file>
+<file name='tax.php'>
+<filectime>1191474932 </filectime><filesize>3429 </filesize></file>
+<file name='print_funcs.inc.php.save'>
+<filectime>1191474928 </filectime><filesize>12233 </filesize></file>
+<file name='get_suppliers.php'>
+<filectime>1191474937 </filectime><filesize>1214 </filesize></file>
+<file name='product_description.php'>
+<filectime>1191474931 </filectime><filesize>3142 </filesize></file>
+<file name='black.png'>
+<filectime>1191474927 </filectime><filesize>138 </filesize></file>
+</directory></DirectoryStructure>

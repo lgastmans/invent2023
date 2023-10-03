@@ -1,0 +1,1 @@
+ALTER TABLE `purchase_order_2017` ADD `invoice_number` VARCHAR(64) NULL AFTER `discount`, ADD `invoice_date` DATE NULL AFTER `invoice_number`;

@@ -1,0 +1,1 @@
+ALTER TABLE  `module` ADD  `active` CHAR( 1 ) NOT NULL
