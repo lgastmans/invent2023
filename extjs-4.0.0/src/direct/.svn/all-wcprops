@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct
+END
+JsonProvider.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/JsonProvider.js
+END
+RemotingMethod.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/RemotingMethod.js
+END
+Transaction.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/Transaction.js
+END
+RemotingEvent.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/RemotingEvent.js
+END
+Manager.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/Manager.js
+END
+Provider.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/Provider.js
+END
+PollingProvider.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/PollingProvider.js
+END
+RemotingProvider.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/RemotingProvider.js
+END
+ExceptionEvent.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/ExceptionEvent.js
+END
+Event.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn_invent/!svn/ver/73/extjs-4.0.0/src/direct/Event.js
+END
