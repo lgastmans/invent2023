@@ -1,0 +1,151 @@
+
+.normaltext {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#303030;}
+.v3link {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;}
+.catheadertext {font-family:Arial,Verdana,sans-serif;font-weight:bold;font-size:14px;}
+.headertext {font-family:Arial,Verdana,sans-serif;font-size:16px;color:#303030;}
+.deletedtext {
+font-family:Verdana,sans-serif;
+font-size:11px;
+text-decoration:line-through;
+color:white;
+}
+
+.headertable {font-family:Arial,Verdana,sans-serif;font-size:12px;font-weight:bold;color:white;background-color:#707070}
+.normaltextinverted {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#9090C0;}
+.headertextinverted {font-family:Arial,Verdana,sans-serif;font-size:16px;color:#9090C0;}
+.filetextcms {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;;background-color: #efe0e0;}
+.filetextcms2 {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;background-color: #f6f2f2;}
+.filetext {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;;background-color: #F0F0F0;}
+.filetext2 {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;background-color: #FFFFFF;}
+
+a {font-family:Arial,Verdana,sans-serif;font-size:12px;color:#404080;}
+.v3button {
+	background-color: #404080;
+	
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;	
+	padding-left:5px;
+	padding-right:5px;
+	Cursor:Hand;
+}
+
+.v3button:hover {
+	background-color: #606080;
+	
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;	
+	padding-left:5px;
+	padding-right:5px;
+	Cursor:Hand;
+}
+
+.v3button:active {
+	background-color: #606080;
+	
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-right : 2px solid #B0B0F0;
+	border-bottom : 2px solid #B0B0F0;
+	border-left : 2px solid #303030;
+	border-top : 2px solid #303030;	
+	padding-left:5px;
+	padding-right:5px;
+	Cursor:Hand;
+}
+
+.v3buttonindex {
+	background-color: #6060A0;
+	
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;	
+	padding-left:5px;
+	padding-right:5px;
+	Cursor:Hand;
+}
+
+.boxTopLeft {
+	background-image: url(../images/avBoxTopLeft.gif);
+	background-repeat: no-repeat;
+
+	
+}
+
+.boxTopCenter {
+	background-image: url(../images/avBoxTopCenter.gif);
+	background-repeat: repeat-x;
+
+	
+}
+
+.boxTopRight {
+	background-image: url(../images/avBoxTopRight.gif);
+	background-repeat: no-repeat;
+
+	
+}
+
+.boxMiddleLeft {
+	background-image: url(../images/avBoxMiddleLeft.gif);
+	background-repeat: repeat-y;
+
+	
+}
+
+.boxMiddleCenter {
+	background-image: url(../images/avBoxMiddleCenter.gif);
+	background-repeat: repeat;
+
+	
+}
+
+.boxMiddleRight {
+	background-image: url(../images/avBoxMiddleRight.gif);
+	background-repeat: repeat-y;
+
+	
+}
+
+.boxBottomLeft {
+	background-image: url(../images/avBoxBottomLeft.gif);
+	background-repeat: no-repeat;
+
+	
+}
+
+.boxBottomCenter {
+	background-image: url(../images/avBoxBottomCenter.gif);
+	background-repeat: repeat-x;
+
+	
+}
+
+.boxBottomRight {
+	background-image: url(../images/avBoxBottomRight.gif);
+	background-repeat: no-repeat;
+
+	
+}

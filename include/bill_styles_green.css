@@ -1,0 +1,620 @@
+body {
+	background-color: #009029;
+}
+
+.columnheader {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:white;
+}
+
+.normaltext {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:black;
+}
+
+.headertext {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	color:white;
+}
+
+.headertext_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	color:white;
+}
+
+.headertext_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:normal;
+	color:white;
+}
+
+.bill_total {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:white;
+}
+
+.bill_total_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:white;
+}
+
+.bill_total_large {
+	font-family:Verdana,sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:white;
+}
+
+.spantext {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:18px;
+	color:white;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background: #9ac890;
+}
+
+.spantext_small {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:16px;
+	color:white;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background: #9ac890;
+}
+
+.spantext_large {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:20px;
+	color:white;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background: #9ac890;
+}
+
+.headertext_r {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	color:black;
+	text-align:right;
+}
+
+.headertext100 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	width:200px;
+	text-align:right;
+}
+
+.listbox {
+	font-family:Courier,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	border-style : normal;
+	border-color : black;
+	border-width : 1px;
+	color:white;
+	width:100%;
+	height:97%;
+	background: #9ac890;
+}
+
+.listbox_small {
+	font-family:Courier,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	border-style : normal;
+	border-color : black;
+	border-width : 1px;
+	color:white;
+	width:100%;
+	height:97%;
+	background: #9ac890;
+}
+
+.listbox_large {
+	font-family:Courier,sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	border-style : normal;
+	border-color : black;
+	border-width : 1px;
+	color:white;
+	width:100%;
+	height:97%;
+	background: #9ac890;
+}
+
+.listheader {
+	font-family:Courier,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	border-style : none;
+	border-color : black;
+	border-width : 0px;
+	color:black;
+	background: rgb(175,175,175);
+	width:100%;
+}
+
+.listheader_small {
+	font-family:Courier,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	border-style : none;
+	border-color : black;
+	border-width : 0px;
+	color:black;
+	background: rgb(175,175,175);
+	width:100%;
+}
+
+.listheader_large {
+	font-family:Courier,sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	border-style : none;
+	border-color : black;
+	border-width : 0px;
+	color:black;
+	background: rgb(175,175,175);
+	width:100%;
+}
+
+.inputbox60 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:60px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox60_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	width:60px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox60_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:75px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.select {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+.select_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+.select_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:normal;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+.select100 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+.select100_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+.select100_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:normal;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background-color: white;
+	color: black;
+}
+
+
+.inputbox60_blueish {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:60px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: #D8E0ED;
+	color: #3738FC;
+}
+
+.inputbox100 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox100_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox100_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:100px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox300 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:300px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox300_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	width:300px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox300_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:300px;
+	border-style : dotted;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.inputbox200 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:200px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.inputbox200_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	width:200px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.inputbox200_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:200px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.inputbox250 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	width:250px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background:lightgrey;
+}
+
+.inputbox400 {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	width:450px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.inputbox400_small {
+	font-family:Verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	width:450px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.inputbox400_large {
+	font-family:Verdana,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:450px;
+	border-style : solid;
+	border-color : black;
+	border-width : 0;
+	border-bottom-color : grey;
+	border-top-color : black;
+	border-left-color : black;
+	border-right-color : grey;
+	background: white;
+	color: black;
+}
+
+.bill_total_left {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:white;
+	width:800px;
+	text-align:left;
+}
+
+.po_header {
+	font-family:Verdana,sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color: black;
+}
+
+.po_text {
+	font-family:Verdana,sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	color: black;
+}
+
+.po_select {
+	font-family:Verdana,sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	color: black;
+	border-width:0px;
+	width:80px;
+}
+
+.po_select150 {
+	font-family:Verdana,sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	color: black;
+	border-width:0px;
+	width:150px;
+}
+
+.po_input60 {
+	font-family:Verdana,sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	width:60px;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	background: white;
+	color: black;
+}
+
+.v3button {
+	background-color: #404080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3buttonselected {
+	background-color: #808080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3buttonsubmenu {
+	background-color: #8080B0;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3button:hover {
+	background-color: #606080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3button:active {
+	background-color: #606080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-right : 2px solid #B0B0F0;
+	border-bottom : 2px solid #B0B0F0;
+	border-left : 2px solid #303030;
+	border-top : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}

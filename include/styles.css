@@ -1,0 +1,833 @@
+/*
+	this style is for the list boxes of the "billing" screens
+	once updated these styles should be removed
+*/
+.listheader {
+	font-family:Courier,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	border-style : none;
+	border-color : black;
+	border-width : 0px;
+	color:black;
+	width:100%;
+}
+
+.listbox {
+	font-family:Courier,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	border-style : normal;
+	border-color : black;
+	border-width : 1px;
+	color:black;
+	width:100%;
+	height:90%;
+	background: #e4e4e4;
+	white-space:pre;
+}
+
+/*
+	=============================================================
+*/
+
+.headertext {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:white;
+}
+
+.headertext a {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:white;
+}
+
+.title {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	color:black;
+}
+
+#body_bgcolor {
+	background-color:#E1E1E1;
+}
+
+/*
+	table style for edit windows
+*/
+table.edit {
+	border-spacing: 1px;
+	border-color: #4990ce;
+	border-collapse: separate;
+	border-width: 1px 1px 1px 1px;
+	border-style:solid;
+	background-color:#e9ecf1;
+	padding:5px 20px 5px 20px;
+	width:100%;
+	height:100%;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+table.products_list {
+	border-spacing: 0px;
+	border-color: #4990ce;
+	border-collapse: separate;
+	border-width: 0px 0px 0px 0px;
+	border-style:solid;
+	background-color:#e9ecf1;
+	padding:0px 0px 0px 0px;
+	width:100%;
+}
+
+table.products_list tr.even {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	border-width: 0px;
+	border-style:solid;
+	border-color: #4990ce;
+	background-color:#d1dedf;
+	height:17px;
+}
+
+table.products_list tr.odd {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	border-width: 0px;
+	border-style:solid;
+	border-color: #4990ce;
+	background-color:#cbd6d7;
+	height:17px;
+}
+
+/*
+================================================================================
+	Text styles
+--------------------------------------------------------------------------------
+*/
+
+.textarea {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 120px;
+	border: 1px solid #afdbe9;
+	width:200px;
+}
+
+.normaltext {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:black;
+}
+
+.normaltext_20 {
+	font-family:Verdana,sans-serif;
+	font-size:20px;
+	color:black;
+}
+
+.normaltext_bold {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:black;
+}
+
+.normaltext_bold_20 {
+	font-family:Verdana,sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:black;
+}
+
+.spantext {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:12px;
+	color:black;
+	border-style : none;
+	border-color : black;
+	border-width : 1px;
+	width:100px;
+	background: lightgrey;
+}
+
+.largetext {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	color:black;
+}
+
+.boldtext {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:black;
+}
+
+.boldlargetext {
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+}
+
+.deletedtext {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	text-decoration:line-through;
+	color:white;
+	background:#c0c0c0;
+}
+
+.description {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	width:300px;
+}
+
+a {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	text-decoration:underline;
+}
+
+.editbox {
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #333333;
+}
+
+.editbox_number {
+	background: #FFFFFF;
+	border: 1px solid #333333;
+	width:30px;
+	height: 20px;
+}
+
+.editboxreadonly {
+	background: #F8F1E6;
+	height: 20px;
+	border: 1px solid #333333;
+}
+
+.editboxnum {
+	background: #FFFFFF;
+	height: 20px;
+	text-align:right;
+	border: 1px solid #333333;
+}
+.editboxnumreadonly {
+	background: #F8F1E6;
+	height: 20px;
+	text-align:right;
+	border: 1px solid #333333;
+}
+
+/*
+================================================================================
+	Styles for the list of products for the billing, etc...
+--------------------------------------------------------------------------------
+*/
+.list_text_bold {
+	font-family:Courier,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:black;
+}
+
+
+.select_list {
+	font-family:Courier,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:black;
+	border: 0px solid #afdbe9;
+	width:750px;
+	background-color:lightgrey;
+}
+
+.select_list_350 {
+	font-family:Courier,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:black;
+	border: 0px solid #afdbe9;
+	width:90%;
+	background-color:lightgrey;
+}
+
+/*
+================================================================================
+	Main Menu button
+--------------------------------------------------------------------------------
+*/
+
+.mainmenu_button {
+	background-color: #84B3DB;
+	height:24px;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: black; /*#FFD7C4;*/
+	text-decoration:none;
+	border-left : 1px solid #CDDEFC;
+	border-top : 1px solid #CDDEFC;
+	border-right : 1px solid #769DC2;
+	border-bottom : 1px solid #769DC2;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+.mainmenu_button:hover {
+	background-color: #76A5CC;
+	height:24px;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: black;/*#FF874C;*/
+	text-decoration:none;
+	border-left : 1px solid #CDDEFC;
+	border-top : 1px solid #CDDEFC;
+	border-right : 1px solid #4F82B2;
+	border-bottom : 1px solid #4F82B2;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+.mainmenu_buttonselected {
+	background-color: #76A5CC;
+	height:24px;
+	font-family: verdana,arial, sans-serif;
+	font-weight:700;
+	font-size: 12px;
+	color: black;/*#FF874C;*/
+	text-decoration:none;
+	border-left : 2px solid #CDDEFC;
+	border-top : 2px solid #CDDEFC;
+	border-right : 2px solid #4F82B2;
+	border-bottom : 2px solid #4F82B2;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-left:12px;
+	padding-right:12px;
+}
+
+/*
+================================================================================
+	Sub Menu button
+--------------------------------------------------------------------------------
+*/
+
+.tab {
+	background-color: #84B3DB;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 1px solid #CDDEFC;
+	border-top : 1px solid #CDDEFC;
+	border-right : 1px solid #769DC2;
+	border-bottom : 0px solid #769DC2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.tabdown {
+	background-color: #76A5CC;
+	font-family: verdana,arial, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #CDDEFC;
+	border-top : 2px solid #CDDEFC;
+	border-right : 2px solid #4F82B2;
+	border-bottom : 0px solid #4F82B2;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+
+/*
+================================================================================
+	Table border styles
+--------------------------------------------------------------------------------
+*/
+
+.boxTopLeftLabel {
+	background-image: url(../images/avBoxTopLeftLabel.gif);
+	background-repeat: no-repeat;
+}
+
+.boxTopLeft {
+	background-image: url(../images/avBoxTopLeft.gif);
+	background-repeat: no-repeat;
+}
+
+.boxTopCenterLabel {
+	background-image: url(../images/avBoxTopCenterLabel2.gif);
+	background-repeat: repeat-x;
+}
+.boxTopCenter {
+	background-image: url(../images/avBoxTopCenter.gif);
+	background-repeat: repeat-x;
+}
+
+.boxTopRightBullet {
+	background-image: url(../images/avBoxTopCenterLabel.gif);
+	background-repeat: no-repeat;
+}
+
+.boxTopRightLabel {
+	background-image: url(../images/avBoxTopRightLabel.gif);
+	background-repeat: no-repeat;
+}
+
+.boxTopRight {
+	background-image: url(../images/avBoxTopRight.gif);
+	background-repeat: no-repeat;
+}
+
+.boxMiddleLeft {
+	background-image: url(../images/avBoxMiddleLeft.gif);
+	background-repeat: repeat-y;
+}
+
+.boxMiddleCenter {
+	background-image: url(../images/avBoxMiddleCenter.gif);
+	background-repeat: repeat;
+	background-color:red;
+}
+
+.boxMiddleRight {
+	background-image: url(../images/avBoxMiddleRight.gif);
+	background-repeat: repeat-y;
+}
+
+.boxBottomLeft {
+	background-image: url(../images/avBoxBottomLeft.gif);
+	background-repeat: no-repeat;
+}
+
+.boxBottomCenter {
+	background-image: url(../images/avBoxBottomCenter.gif);
+	background-repeat: repeat-x;
+}
+
+.boxBottomRight {
+	background-image: url(../images/avBoxBottomRight.gif);
+	background-repeat: no-repeat;
+}
+
+/*
+================================================================================
+	Selects
+--------------------------------------------------------------------------------
+*/
+
+.v3select {
+	font-family:Verdana,sans-serif;
+	font-weight:normal;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border-width:0;
+	width:300px;
+}
+
+.select_storeroom {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:12px;
+	background-color: #FFFFFF;
+	color: red;
+	border-width:0;
+	width:100px;
+	height:16px;
+}
+
+.select_50 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:50px;
+}
+
+.select_100 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:100px;
+}
+
+.select_150 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:150px;
+}
+
+.select_200 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:200px;
+}
+
+.select_300 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:300px;
+}
+
+.select_400 {
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	color: #1C5A95;
+	border: 1px solid #afdbe9;
+	width:400px;
+}
+
+/*
+================================================================================
+	Button used in the "settings" pages
+--------------------------------------------------------------------------------
+*/
+
+.settings_button {
+	background-color: #84B3DB;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #FFFFFF;
+	height:26px;
+	text-decoration:none;
+	border-left : 2px solid #EAEEF1;
+	border-top : 2px solid #EAEEF1;
+	border-right : 2px solid #769DC2;
+	border-bottom : 2px solid #769DC2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.settings_button:hover {
+	background-color: #76A5CC;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #000000;
+	height:26px;
+	text-decoration:none;
+	border-left : 2px solid #EAEEF1;
+	border-top : 2px solid #EAEEF1;
+	border-right : 2px solid #4F82B2;
+	border-bottom : 2px solid #4F82B2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.settings_button:active {
+	background-color: #76A5CC;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #000000;
+	height:26px;
+	text-decoration:none;
+	border-right : 2px solid #EAEEF1;
+	border-bottom : 2px solid #EAEEF1;
+	border-left : 2px solid #4F82B2;
+	border-top : 2px solid #4F82B2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/*
+================================================================================
+	A small button (example: used in purchase order receive )
+--------------------------------------------------------------------------------
+*/
+
+.small_button {
+	background-color: #84B3DB;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #FFFFFF;
+	height:21px;
+	text-decoration:none;
+	border-left : 2px solid #EAEEF1;
+	border-top : 2px solid #EAEEF1;
+	border-right : 2px solid #769DC2;
+	border-bottom : 2px solid #769DC2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.small_button:hover {
+	background-color: #76A5CC;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #000000;
+	height:21px;
+	text-decoration:none;
+	border-left : 2px solid #EAEEF1;
+	border-top : 2px solid #EAEEF1;
+	border-right : 2px solid #4F82B2;
+	border-bottom : 2px solid #4F82B2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.small_button:active {
+	background-color: #76A5CC;
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 11px;
+	color: #000000;
+	height:21px;
+	text-decoration:none;
+	border-right : 2px solid #EAEEF1;
+	border-bottom : 2px solid #EAEEF1;
+	border-left : 2px solid #4F82B2;
+	border-top : 2px solid #4F82B2;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+
+/*
+================================================================================
+	INPUT
+--------------------------------------------------------------------------------
+*/
+
+.input_settings {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:300px;
+}
+
+.input_50 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:50px;
+}
+
+.input_100 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:100px;
+}
+
+.input_150 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:150px;
+}
+
+.input_200 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:200px;
+}
+
+.input_300 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:300px;
+}
+
+.input_400 {
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #1C5A95;
+	background: #FFFFFF;
+	height: 20px;
+	border: 1px solid #afdbe9;
+	width:400px;
+}
+
+/*
+================================================================================
+	LINK
+--------------------------------------------------------------------------------
+*/
+
+a.settings_link {
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:#1C5A95;
+	text-decoration:none;
+}
+a.settings_link:link
+{
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:#1C5A95;
+	text-decoration: none;
+}
+
+a.settings_link:visited
+{
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:#1C5A95;
+	text-decoration: none;
+}
+
+a.settings_link:hover
+{
+	font-family:Verdana,sans-serif;
+	font-size:11px;
+	color:#000000;
+	text-decoration: none;
+}
+
+/*
+================================================================================
+	V3 button
+--------------------------------------------------------------------------------
+*/
+
+.v3button {
+	background-color: #404080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3buttonselected {
+	background-color: #808080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3buttonsubmenu {
+	background-color: #8080B0;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3button:hover {
+	background-color: #606080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-left : 2px solid #B0B0F0;
+	border-top : 2px solid #B0B0F0;
+	border-right : 2px solid #303030;
+	border-bottom : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.v3button:active {
+	background-color: #606080;
+
+	font-family: verdana,arial, sans-serif;
+	font-weight:normal;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration:none;
+	border-right : 2px solid #B0B0F0;
+	border-bottom : 2px solid #B0B0F0;
+	border-left : 2px solid #303030;
+	border-top : 2px solid #303030;
+	padding-left:5px;
+	padding-right:5px;
+}
