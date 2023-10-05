@@ -140,11 +140,7 @@
 			<div class="panel-body">
 				Check for updates to the software...
 				<br><br>
-				<? if (stripos($_SERVER['HTTP_USER_AGENT'], 'win') !== FALSE) { ?>
-				<input type='button' name='action' value='Check' onclick="javascript:document.location='../updatemanager/winclient/updatemanager.php'" class='settings_button'>
-				<? } else { ?>
-				<input type='button' name='action' value='Check' onclick="javascript:document.location='../updatemanager/linclient/updatemanager.php'" class='settings_button'>
-				<? } ?>
+				<input type='button' name='action' value='Check' onclick="javascript:document.location='software_updater.php'" class='settings_button'>
 			</div>
 		</div>
 
