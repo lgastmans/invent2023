@@ -5,7 +5,6 @@
 
 	$error=false;
 
-
 	if (isset($_POST['action'])) {
     
     	$can_save = true;
