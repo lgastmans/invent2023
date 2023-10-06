@@ -16,7 +16,7 @@
         INNER JOIN stock_product sp ON (sp.product_id = ssp.product_id)
         INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
         INNER JOIN stock_supplier ss ON (ss.supplier_id = sp.supplier_id)
-        WHERE sp.product_code = '".$str_code."'
+        WHERE sp.product_code = '".$str_code."' AND (sp.is_available = 'Y')
         GROUP BY sp.product_id 
         ORDER BY sp.product_code";
     
