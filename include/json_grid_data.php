@@ -269,7 +269,7 @@ function returnData($print="N") {
 				$arr_retval[$i][$field->yui_fieldname] = $obj[$field->yui_fieldname];
 		}
 		
-		$arr_retval[$i]['test'] = $i.'here';
+		//$arr_retval[$i]['test'] = $i.'here';
 
 		$i++;
 	}

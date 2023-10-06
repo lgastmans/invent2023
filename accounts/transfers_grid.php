@@ -384,7 +384,7 @@
 					"&field=" + oSelectField.value+
 					"&filter=" + oTextFilter.value+
 					"&additional_filters="+getFilters();
-				alert(strURL);
+				//console.log(strURL);
 				myWin = window.open(strURL, 'printgrid', '');
 				myWin.focus();
 			}
