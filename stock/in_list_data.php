@@ -80,7 +80,7 @@
 				LEFT JOIN ".Yearalize('stock_batch')." sb ON (sb.batch_id = st.batch_id)
 				LEFT JOIN user u ON (u.user_id = st.user_id)
 				WHERE (DAY(st.date_created) = $int_day)
-					AND (sp.deleted = 'N')
+					AND (sp.deleted = 'N') AND (sp.is_available='Y')
 					$str_transfer_type_filter
 				ORDER BY ".$str_order;
 		}

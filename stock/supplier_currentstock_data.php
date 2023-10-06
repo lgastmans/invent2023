@@ -106,7 +106,7 @@
 
 		LEFT JOIN stock_category sc ON (sc.category_id = sp.category_id)
 
-		WHERE (sp.supplier_id = ".$int_supplier_id.") AND (sp.deleted = 'N')
+		WHERE (sp.supplier_id = ".$int_supplier_id.") AND (sp.deleted = 'N') AND (sp.is_available = 'Y')
 
 			".$str_where."
 

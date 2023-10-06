@@ -272,7 +272,7 @@
 				"INNER JOIN stock_category sc ON (sc.category_id = sp.category_id) "+
 				"LEFT JOIN stock_supplier ss ON (ss.supplier_id = sp.supplier_id)";
 			var ID = "product_id";
-			var uniqueFilter = "(ssp.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>) AND (sp.deleted='N')";
+			var uniqueFilter = "(ssp.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>) AND (sp.deleted='N') AND (sp.is_available='Y')";
 			var canDelete = <? if ($can_delete) echo "true"; else echo "false";?>;
 			
 			function parseKeypress(evt) {

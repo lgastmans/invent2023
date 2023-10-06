@@ -12,6 +12,7 @@
 		FROM ".Monthalize('stock_storeroom_product')." ssp
 		INNER JOIN stock_product sp ON (sp.product_id = ssp.product_id)
 		WHERE ssp.storeroom_id = ".$_SESSION['int_current_storeroom']."
+			AND sp.is_available = 'Y'
 		ORDER BY product_description
 	");
 

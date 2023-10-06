@@ -292,7 +292,8 @@
 				"LEFT JOIN <?php echo Monthalize('stock_tax');?> st ON (st.tax_id=sb.tax_id) "+
 				"INNER JOIN stock_measurement_unit mu ON (sp.measurement_unit_id=mu.measurement_unit_id)";
 			var ID = "batch_id";
-			var uniqueFilter = "sb.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>";
+			//var uniqueFilter = "sb.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>";
+			var uniqueFilter = "(sb.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>) AND (sp.deleted='N') AND (sp.is_available='Y')";
 			var canDelete = <? if ($can_delete) echo "true"; else echo "false";?>;
 			
 			function parseKeypress(evt) {

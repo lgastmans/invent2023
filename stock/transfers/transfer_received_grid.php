@@ -317,7 +317,9 @@
 				"LEFT JOIN stock_supplier sup ON (sup.supplier_id = sb.supplier_id) "+
 				"INNER JOIN user u ON (u.user_id = ssb.user_id)";
 			var ID = "transfer_id";
-			var uniqueFilter = "ssb.storeroom_id_to = <?php echo $_SESSION['int_current_storeroom']?>";
+			//var uniqueFilter = "ssb.storeroom_id_to = <?php echo $_SESSION['int_current_storeroom']?>";
+			var uniqueFilter = "(ssb.storeroom_id = <?php echo $_SESSION['int_current_storeroom']?>) AND (sp.deleted='N') AND (sp.is_available='Y')";
+
 			var canDelete = <? if ($can_delete) echo "true"; else echo "false";?>;
 			
 			function parseKeypress(evt) {

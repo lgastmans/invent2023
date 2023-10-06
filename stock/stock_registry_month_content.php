@@ -66,6 +66,7 @@
 		FROM stock_product sp, stock_measurement_unit mu, ".Monthalize('stock_storeroom_product')." ssp
 		WHERE product_code = '".$str_code."'
 			AND (sp.deleted = 'N')
+			AND (sp.is_available = 'Y')
 			AND (sp.measurement_unit_id = mu.measurement_unit_id)
 			AND (ssp.product_id = sp.product_id)
 			AND (ssp.storeroom_id = ".$_SESSION['int_current_storeroom'].")

@@ -41,12 +41,14 @@
 	if ($str_global_stock == 'Y') {
 		$str_select_global = 'SUM(ssp.stock_current) AS current_stock ';
 	
-	$str_group_clause = ' GROUP BY sp.product_id ';
-	
-	if ($str_show == 'ZERO')
-		$str_group_clause .= 'HAVING (SUM(ssp.stock_current) <= 0)';
-	elseif ($str_show == 'NONZERO')
-		$str_group_clause .= 'HAVING (SUM(ssp.stock_current) > 0)';
+		$str_group_clause = ' GROUP BY sp.product_id ';
+		
+		if ($str_show == 'ZERO') {
+			$str_group_clause .= 'HAVING (SUM(ssp.stock_current) <= 0)';
+		}
+		elseif ($str_show == 'NONZERO') {
+			$str_group_clause .= 'HAVING (SUM(ssp.stock_current) > 0)';
+		}
 	}
 	else {
 		$str_select_global = 'ssp.stock_current AS current_stock ';
@@ -74,6 +76,7 @@
 			$str_group_clause = "AND (ssp.storeroom_id = ".$_SESSION['int_current_storeroom'].")
 				AND (ssp.stock_current > 0)";
 		}
+		$str_group_clause .= " AND (sp.is_available = 'Y')";
 	}
     
 	if ($int_type == 'ALL') {
@@ -87,6 +90,7 @@
 				INNER JOIN stock_category sc ON (sc.category_id = sp.category_id)
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
+				WHERE (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 		}
@@ -100,7 +104,7 @@
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_storeroom_product')." ssp ON (sp.product_id = ssp.product_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
-				WHERE (sc.category_id = $int_category_id)
+				WHERE (sc.category_id = $int_category_id) AND (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 		}
@@ -116,7 +120,7 @@
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_storeroom_product')." ssp ON (sp.product_id = ssp.product_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
-				WHERE (sp.is_perishable = 'Y')
+				WHERE (sp.is_perishable = 'Y') AND (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 		}
@@ -130,7 +134,7 @@
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_storeroom_product')." ssp ON (sp.product_id = ssp.product_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
-				WHERE (sc.category_id = $int_category_id) AND (sp.is_perishable = 'Y')
+				WHERE (sc.category_id = $int_category_id) AND (sp.is_perishable = 'Y') AND (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 		}
@@ -146,7 +150,7 @@
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_storeroom_product')." ssp ON (sp.product_id = ssp.product_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
-				WHERE (sp.is_perishable = 'N')
+				WHERE (sp.is_perishable = 'N') AND (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 		else
@@ -159,11 +163,11 @@
 				INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 				INNER JOIN ".Monthalize('stock_storeroom_product')." ssp ON (sp.product_id = ssp.product_id)
 				INNER JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sp.tax_id)
-				WHERE (sc.category_id = $int_category_id) AND (sp.is_perishable = 'N')
+				WHERE (sc.category_id = $int_category_id) AND (sp.is_perishable = 'N') AND (sp.is_available = 'Y')
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 	}
-//echo $str_query;
+echo $str_query;
 	$qry = new Query($str_query);
 	
 	$qry_batch = new Query("SELECT * FROM stock_product LIMIT 1");
