@@ -167,7 +167,7 @@
 				".$str_group_clause."
 				ORDER BY ".$str_order;
 	}
-echo $str_query;
+//echo $str_query;
 	$qry = new Query($str_query);
 	
 	$qry_batch = new Query("SELECT * FROM stock_product LIMIT 1");
