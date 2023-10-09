@@ -213,14 +213,20 @@ function create_an_order_bill($anOrderId, $anOrderDate) {
 		$qry_order_items->Query($str_query);
 
 		if (getModuleByID(9) === null) {
-			if ($qry_order->FieldByName('is_billable') == 'Y') {
+			/**
+			 * October 2023
+			 * bills marked as is_billable = N were previously marked as completed without deducting stock
+			 * This update resolves this issue: stock gets deducted, but the FS transfer is not done
+			 * see also order_bill_deliver.php line 107
+			 */
+			//if ($qry_order->FieldByName('is_billable') == 'Y') {
 				$int_status = BILL_STATUS_UNRESOLVED;
 				$str_pending = 'Y';
-			}
-			else {
-				$int_status = BILL_STATUS_RESOLVED;
-				$str_pending = 'N';
-			}
+			//}
+			//else {
+			//	$int_status = BILL_STATUS_RESOLVED;
+			//	$str_pending = 'N';
+			//}
 		}
 		else {
 			$int_status = BILL_STATUS_PROCESSING;

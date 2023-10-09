@@ -104,9 +104,17 @@
 		//====================================================
 		// load the details of each ordered item into an array
 		//----------------------------------------------------
+		/**
+		 * October 2023
+		 * bills marked as is_billable = N were previously marked as completed without deducting stock
+		 * This update resolves this issue: stock gets deducted, but the FS transfer is not done
+		 * see also order_functions.inc.php line 216
+		 * this file: search for createTransfer
+		 */ 
 		$qry_bill = new Query("
-			SELECT *
-			FROM ".Monthalize('bill')."
+			SELECT o.is_billable, b.*
+			FROM ".Monthalize('bill')." b
+			LEFT JOIN ".Monthalize("orders")." o ON (o.order_id = b.module_record_id)
 			WHERE (bill_id = ".$anId.")
 		");
 		if (($qry_bill->FieldByName('is_pending') == 'N') || 
@@ -542,13 +550,15 @@
 					$bill_description = str_replace("%s", $qry_bill->FieldByName('bill_number'), $qry_transaction->FieldByName('bill_order_description'));
 					$bill_description = str_replace("%d", substr(get_bill_date(date('d')),0,10), $bill_description);
 					
-					$int_result = createTransfer(
-						$qry_bill->FieldByName('account_number'),
-						$credit_acount,
-						$bill_description,
-						$flt_bill_total,
-						7,
-						$anId);
+					if ($qry_bill->FieldByName('is_billable')=='Y') {
+						$int_result = createTransfer(
+							$qry_bill->FieldByName('account_number'),
+							$credit_acount,
+							$bill_description,
+							$flt_bill_total,
+							7,
+							$anId);
+					}
 					
 					if (($int_result > 0) || ($int_result == -1)) {
 						$can_save = 1;
