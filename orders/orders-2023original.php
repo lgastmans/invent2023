@@ -16,7 +16,7 @@
 	require_once("../include/const.inc.php");
 	require_once("../include/session.inc.php");
 	require_once("../include/db.inc.php");
-	require_once "../include/grid.inc.php";
+	require_once   "../include/grid.inc.php";
 
 	$int_access_level = (getModuleAccessLevel('Orders'));
 
@@ -34,7 +34,7 @@
 	//====================================
 	// get the file names for the printing
         //------------------------------------
-        $qry = new Query("SELECT print_to_filename FROM templates WHERE template_type = ".TEMPLATE_ORDER_INVOICE." AND is_default = 'Y'");
+    $qry = new Query("SELECT print_to_filename FROM templates WHERE template_type = ".TEMPLATE_ORDER_INVOICE." AND is_default = 'Y'");
 	$str_invoice_filename = $qry->FieldByName('print_to_filename');
 	$qry->Query("SELECT print_to_filename FROM templates WHERE template_type = ".TEMPLATE_ORDER_PROFORMA." AND is_default = 'Y'");
 	$str_proforma_filename = $qry->FieldByName('print_to_filename');
@@ -234,10 +234,10 @@
 	}
 
 $grid = new DBGrid('orders_main');
-$grid->str_web_root = "/svn_invent/";
+
 $grid->addColumn("Customer", "company", "string", true, 250);
-$grid->addColumn("FS Account", "o.account_number", "custom", true, 70, 'drawFSAccount');
-$grid->addColumn("FS Name", "o.account_name", "custom", true, 200, 'drawFSAccount');
+$grid->addColumn("FS Account", "ac.account_number", "custom", true, 70, 'drawFSAccount');
+$grid->addColumn("FS Name", "ac.account_name", "custom", true, 200, 'drawFSAccount');
 $grid->addColumn("PT Account", "pt.account_number", "custom", true, 70, 'drawPTAccount');
 $grid->addColumn("PT Name", "pt.account_name", "custom", true, 200, 'drawPTAccount');
 $grid->addColumn("Community", "community_name", "string", true, 200);
@@ -269,14 +269,15 @@ $grid->setQuery("SELECT
 	o.date_cancel_till,
 	com.community_name,
 	user.username,
-	o.account_number AS `o.account_number`,
+	ac.account_number AS `ac.account_number`,
 	pt.account_number AS `pt.account_number`,
-	o.account_name AS `o.account_name`,
+	ac.account_name  AS `ac.account_name`,
 	pt.account_name AS `pt.account_name`,
 	c.company
 FROM
 	".Monthalize('orders')." o
 INNER JOIN user ON (user.user_id = o.user_id)
+LEFT JOIN account_cc ac ON (ac.cc_id = o.CC_id)
 LEFT JOIN account_pt pt ON (pt.account_id = o.CC_id)
 LEFT JOIN customer c ON (c.id = o.CC_id)
 LEFT JOIN communities com ON (com.community_id = o.community_id)
@@ -472,8 +473,12 @@ if (!empty($_GET["action"]))
 				alert('Select an order to print');
 		}
 		
+		function importMantra() {
+			myWin = window.open("import_mantra_po.php", 'importmantra', 'width=800,height=500,resizable=yes,menubar=yes'); 
+		}
+
 		function importOrder() {
-			myWin = window.open("order_import_tab_delimited.php",'order_import','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=500,height=300,top=0,left=0');
+			myWin = window.open("order_import.php",'order_import','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=500,height=300,top=0,left=0');
 			myWin.moveTo((screen.availWidth/2 - 500/2), (screen.availHeight/2 - 300/2));
 			myWin.focus();
 		}
@@ -498,6 +503,16 @@ if (!empty($_GET["action"]))
 			else
 				alert('Select an order to print');
 		}
+
+		function exportProforma() {
+			aFilename = '<?echo $str_invoice_filename;?>';
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open("export_invoice.php?id="+sNo+"&proforma=Y", 'printwin', 'width=800,height=500,resizable=yes,menubar=yes'); 
+			}
+			else
+				alert('Select a bill to print');
+		}
 		
 	</script>
 
@@ -505,9 +520,6 @@ if (!empty($_GET["action"]))
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 
 <?
-	$qry_clients = new Query("SELECT * FROM module WHERE module_id = 9 AND active='Y'");
-	$clients_active = ($qry_clients->RowCount() > 0);
-	
 	$grid_form = new GridForm();
 	$grid->prepareQuery();
 	$grid_form->setGrid($grid);
@@ -518,13 +530,13 @@ if (!empty($_GET["action"]))
 		$grid_form->addHTML('&nbsp;', 'left');
 		$grid_form->addButton('Edit Order','../images/page_edit.png','modifyOrder','left');
 		$grid_form->addHTML('&nbsp;', 'left');
-		if (!$clients_active) {
+		if (getModuleByID(9) === null) { // ORDER_CLIENT_ENABLED == 0) {
 			$grid_form->addButton('Cancel Order','../images/page_delete.png','cancelOrder','left');
 			$grid_form->addHTML('&nbsp;', 'left');
 		}
 		$grid_form->addButton('Delete Order','../images/cross.png','deleteOrder','left');
 		$grid_form->addHTML('&nbsp;', 'left');
-		if (!$clients_active) {
+		if (getModuleByID(9) === null) {
 			$grid_form->addButton('Create Order Bills for a given date', '../images/table_multiple.png', 'createOrderBills', 'left');
 			$grid_form->addHTML('&nbsp;', 'left');
 			$grid_form->addButton('Print delivery note', '../images/printer.png', 'printDeliveryNote', 'left');
@@ -532,9 +544,13 @@ if (!empty($_GET["action"]))
 		else {
 			$grid_form->addButton('Create Order Bill for selected order', '../images/table_multiple.png', 'createOrderBill', 'left');
 			$grid_form->addHTML('&nbsp;', 'left');
+			$grid_form->addButton('Import Mantra Purchase Order', '../images/icon_download.gif', 'importMantra', 'left');
+			$grid_form->addHTML('&nbsp;', 'left');
 			$grid_form->addButton('Import an order from a tab delimited text file', '../images/application_get.png', 'importOrder', 'left');
 			$grid_form->addHTML('&nbsp;', 'left');
 			$grid_form->addButton('Print proforma invoice for the selected order', '../images/printer.png', 'printProformaInvoice', 'left');
+			$grid_form->addHTML('&nbsp;', 'left');
+			$grid_form->addButton('Export Proforma to PDF', '../images/pdf-icon.png', 'exportProforma', 'left');
 		}
 	}
 //	$grid_form->addButton('Print Order', '../images/print.gif', 'printOrder', 'left');
@@ -558,7 +574,7 @@ if (!empty($_GET["action"]))
 		$qry_communities->Next();
 	}
 	
-	if (!$clients_active) {
+	if (getModuleByID(9) === null) {
 		$grid->addUniqueFilter('order_type', 'equals', '', 'string');
 		$grid->addUniqueFilter('day_of_week', 'equals', '', 'string');
 		$grid->addUniqueFilter('community_id', 'equals', '', 'string');
