@@ -59,7 +59,7 @@
 				AND (b.module_record_id = o.order_id)
 				AND (c.is_individual = 'Y')
 				AND (b.bill_status <> ".BILL_STATUS_CANCELLED.")
-			ORDER BY account_name";
+			ORDER BY b.account_name";
 	else
 		$str_query = "
 			SELECT
@@ -74,7 +74,7 @@
 				AND ((b.bill_status = ".BILL_STATUS_UNRESOLVED.") || (b.bill_status <> ".BILL_STATUS_CANCELLED."))
 				AND (b.module_record_id = o.order_id)
 				AND (c.is_individual = 'Y')
-			ORDER BY account_name";
+			ORDER BY b.account_name";
 
 	$qry_bills = new Query($str_query);
 
@@ -150,9 +150,9 @@
 				SUM(bi.quantity + bi.adjusted_quantity) AS quantity,
 				SUM(bi.quantity_ordered) AS quantity_ordered
 			FROM ".Monthalize('orders')." o
-			INNER JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
-			INNER JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
-			INNER JOIN stock_product sp ON (bi.product_id = sp.product_id)
+			LEFT JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
+			LEFT JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
+			LEFT JOIN stock_product sp ON (bi.product_id = sp.product_id)
 			LEFT JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 			LEFT JOIN communities c ON (c.community_id = o.community_id)
 			WHERE (DATE(b.date_created) BETWEEN '".getMySQLDate($str_sheet_date)."' AND '".getMySQLDate($str_sheet_date_to)."')
@@ -170,9 +170,9 @@
 				SUM(bi.quantity + bi.adjusted_quantity) AS quantity,
 				SUM(bi.quantity_ordered) AS quantity_ordered
 			FROM ".Monthalize('orders')." o
-			INNER JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
-			INNER JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
-			INNER JOIN stock_product sp ON (bi.product_id = sp.product_id)
+			LEFT JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
+			LEFT JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
+			LEFT JOIN stock_product sp ON (bi.product_id = sp.product_id)
 			LEFT JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 			LEFT JOIN communities c ON (c.community_id = o.community_id)
 			WHERE (DATE(b.date_created) BETWEEN '".getMySQLDate($str_sheet_date)."' AND '".getMySQLDate($str_sheet_date_to)."')

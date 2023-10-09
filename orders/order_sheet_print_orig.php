@@ -1,4 +1,4 @@
-<?php 
+<?
 	require_once("../include/const.inc.php");
 	require_once("../include/session.inc.php");
 	require_once("../include/db.inc.php");
@@ -139,8 +139,7 @@
 				)
 				AND (b.module_record_id = o.order_id)
 				AND (c.is_individual = 'Y')
-				AND (b.bill_status <> ".BILL_STATUS_CANCELLED.")
-			ORDER BY b.account_name";
+			ORDER BY account_name";
 	else
 		$str_query = "
 			SELECT
@@ -152,10 +151,10 @@
 					DATE(b.date_created) BETWEEN '".getMySQLDate($str_sheet_date)."' AND '".getMySQLDate($str_sheet_date_to)."'
 				)
 				AND (b.is_pending = 'Y')
-				AND ((b.bill_status = ".BILL_STATUS_UNRESOLVED.") || (b.bill_status <> ".BILL_STATUS_CANCELLED."))
+				AND (b.bill_status = ".BILL_STATUS_UNRESOLVED.")
 				AND (b.module_record_id = o.order_id)
 				AND (c.is_individual = 'Y')
-			ORDER BY b.account_name";
+			ORDER BY account_name";
 
 	$qry_bills = new Query($str_query);
 
@@ -170,8 +169,8 @@
 		if ($qry_bills->FieldByName('payment_type') == BILL_CASH)
 			$arr_data[$i][1] = substr($qry_bills->FieldByName('note'), 0, 15);
 		else
-			$arr_data[$i][1] = $qry_bills->FieldByName('account_number')."-".$qry_bills->FieldByName('account_name');
-			
+			$arr_data[$i][1] = $qry_bills->FieldByName('account_name');
+
 		$str_products = "
 			SELECT *
 			FROM ".Monthalize('bill_items')." bi
@@ -231,14 +230,13 @@
 				SUM(bi.quantity + bi.adjusted_quantity) AS quantity,
 				SUM(bi.quantity_ordered) AS quantity_ordered
 			FROM ".Monthalize('orders')." o
-			INNER JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
-			INNER JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
-			INNER JOIN stock_product sp ON (bi.product_id = sp.product_id)
+			LEFT JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
+			LEFT JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
+			LEFT JOIN stock_product sp ON (bi.product_id = sp.product_id)
 			LEFT JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 			LEFT JOIN communities c ON (c.community_id = o.community_id)
 			WHERE (DATE(b.date_created) BETWEEN '".getMySQLDate($str_sheet_date)."' AND '".getMySQLDate($str_sheet_date_to)."')
 				AND (b.module_record_id = o.order_id)
-				AND (b.bill_status <> ".BILL_STATUS_CANCELLED.")
 				AND (c.is_individual = 'N')
 			GROUP BY bi.product_id, c.community_id
 			ORDER BY c.community_name, sp.product_code";
@@ -251,14 +249,14 @@
 				SUM(bi.quantity + bi.adjusted_quantity) AS quantity,
 				SUM(bi.quantity_ordered) AS quantity_ordered
 			FROM ".Monthalize('orders')." o
-			INNER JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
-			INNER JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
-			INNER JOIN stock_product sp ON (bi.product_id = sp.product_id)
+			LEFT JOIN ".Monthalize('bill')." b ON (b.module_id = 7)
+			LEFT JOIN ".Monthalize('bill_items')." bi ON (bi.bill_id = b.bill_id)
+			LEFT JOIN stock_product sp ON (bi.product_id = sp.product_id)
 			LEFT JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
 			LEFT JOIN communities c ON (c.community_id = o.community_id)
 			WHERE (DATE(b.date_created) BETWEEN '".getMySQLDate($str_sheet_date)."' AND '".getMySQLDate($str_sheet_date_to)."')
 				AND (b.is_pending = 'Y') 
-				AND ((b.bill_status = 1) || (b.bill_status <> ".BILL_STATUS_CANCELLED."))
+				AND (b.bill_status = 1)
 				AND (b.module_record_id = o.order_id)
 				AND (c.is_individual = 'N')
 			GROUP BY bi.product_id, c.community_id
@@ -310,9 +308,13 @@
 <link href="../include/styles.css" rel="stylesheet" type="text/css">
 </head>
 
+<? if (browser_detection( 'os' ) === 'lin') { ?>
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0">
+<? } else { ?>
+<body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0" onload="CheckTC()">
+<? } ?>
 
-<?php 
+<?
 $str_double = "";
 $str_double = PadWithCharacter($str_double, '=', 120);
 
@@ -430,13 +432,17 @@ $str_statement = replaceSpecialCharacters($str_statement);
 ?>
 
 <PRE>
-<?php 
+<?
 	echo $str_statement;
 ?>
 </PRE>
 
 
+<? if (browser_detection("os") === "lin") { ?>
 <form name="printerForm" method="POST" action="http://localhost/print.php">
+<? } else { ?>
+<form name="printerForm" onsubmit="return false;">
+<? } ?>
 
 
 <table width="100%" bgcolor="#E0E0E0">
@@ -448,7 +454,11 @@ $str_statement = replaceSpecialCharacters($str_statement);
   <tr>
     <td>
       <br>
+      <? if (browser_detection("os") === "lin") { ?>
       <input type="hidden" name="data" value="<? echo ($str_statement); ?>"><br>
+      <? } else { ?>
+      <input type="hidden" name="output" value="<? echo htmlentities($str_statement); ?>">
+      <? } ?>
     </td>
   </tr>
   <tr>
@@ -466,11 +476,19 @@ $str_statement = replaceSpecialCharacters($str_statement);
 
 </form>
 
+<? if (browser_detection( 'os' ) === 'lin') { ?>
 
 <script language="JavaScript">
 	printerForm.submit();
 </script>
 
+<? } else { ?>
+
+<script language="JavaScript">
+	writedata();
+</script>
+
+<? } ?>
 
 </body>
 </html>
