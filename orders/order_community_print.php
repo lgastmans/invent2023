@@ -238,11 +238,7 @@
 <link href="../include/styles.css" rel="stylesheet" type="text/css">
 </head>
 
-<? if (browser_detection( 'os' ) === 'lin') { ?>
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0">
-<? } else { ?>
-<body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0" onload="CheckTC()">
-<? } ?>
 
 <?
 $str_double = "";
@@ -427,11 +423,7 @@ $str_statement = replaceSpecialCharacters($str_statement);
 </PRE>
 
 
-<? if (browser_detection("os") === "lin") { ?>
 <form name="printerForm" method="POST" action="http://localhost/print.php">
-<? } else { ?>
-<form name="printerForm" onsubmit="return false;">
-<? } ?>
 
 
 <table width="100%" bgcolor="#E0E0E0">
@@ -443,11 +435,7 @@ $str_statement = replaceSpecialCharacters($str_statement);
   <tr>
     <td>
       <br>
-      <? if (browser_detection("os") === "lin") { ?>
       <input type="hidden" name="data" value="<? echo ($str_statement); ?>"><br>
-      <? } else { ?>
-      <input type="hidden" name="output" value="<? echo htmlentities($str_statement); ?>">
-      <? } ?>
     </td>
   </tr>
   <tr>
@@ -465,19 +453,11 @@ $str_statement = replaceSpecialCharacters($str_statement);
 
 </form>
 
-<? if (browser_detection( 'os' ) === 'lin') { ?>
 
 <script language="JavaScript">
 	printerForm.submit();
 </script>
 
-<? } else { ?>
-
-<script language="JavaScript">
-	writedata();
-</script>
-
-<? } ?>
 
 </body>
 </html>
