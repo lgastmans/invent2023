@@ -137,6 +137,8 @@
                         <? } ?>
                         <td width='100px'>Selling Value</td>
                     <? } ?>
+                    <td width='100px'>Stock Sold</td>
+                    <td width='100px'>Stock Received</td>
                 </tr>
             </table>
 

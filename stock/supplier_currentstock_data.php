@@ -83,7 +83,9 @@
 
 			smu.measurement_unit, smu.is_decimal,
 
-			sc.category_description
+			sc.category_description,
+
+			sbl.stock_sold, sbl.stock_received
 
 		FROM stock_product sp
 
@@ -105,6 +107,11 @@
 		LEFT JOIN ".Monthalize('stock_tax')." st ON (st.tax_id = sb.tax_id)
 
 		LEFT JOIN stock_category sc ON (sc.category_id = sp.category_id)
+
+		LEFT JOIN ".Yearalize('stock_balance')." sbl ON (sbl.product_id = sp.product_id)
+			AND (sbl.storeroom_id = ".$_SESSION['int_current_storeroom'].")
+			AND (sbl.balance_month = ".$_SESSION['int_month_loaded'].")
+			AND (sbl.balance_year = ".$_SESSION['int_year_loaded'].")
 
 		WHERE (sp.supplier_id = ".$int_supplier_id.") AND (sp.deleted = 'N') AND (sp.is_available = 'Y')
 
@@ -194,6 +201,9 @@
 			$data['data'][$i]["measurement_unit"] = $obj->measurement_unit;
 
 			$data['data'][$i]["category_description"] = $obj->category_description;
+
+			$data['data'][$i]['stock_sold'] = $obj->stock_sold;
+			$data['data'][$i]['stock_received'] = $obj->stock_received;
 
 			$i++;
 

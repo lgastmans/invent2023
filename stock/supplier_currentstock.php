@@ -121,6 +121,9 @@
 						echo "<td width='100px' align=right>".sprintf("%01.2f",$row['selling_value'],3)."</td>";
 					}
 
+					echo "<td width='100px' align=right>".number_format($row['stock_sold'],$int_decimal_places,'.',',')."</td>";
+					echo "<td width='100px' align=right>".number_format($row['stock_received'],$int_decimal_places,'.',',')."</td>";
+
 					echo "</tr>\n";
 
 					$int_counter++;
