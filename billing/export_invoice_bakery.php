@@ -282,7 +282,7 @@ class PDF extends FPDF
 
     $pageWidth 	= $pdf->GetPageWidth();
     $halfWidth  = $pageWidth/2;
-    $border 	= 0;
+    $border 	= 1;
 
 	/*
 		OUR DETAILS
@@ -318,8 +318,8 @@ class PDF extends FPDF
 	*/
 	$pdf->Ln(4);
 
-	$pdf->Cell(40);
 	/*
+	$pdf->Cell(40);
 	$pdf->Cell(30,10,'Place of Supply:',0,0,'R');
 	$pdf->Cell(20,10,$qry_bill->FieldByName('supply_place'));
 	*/
@@ -332,12 +332,15 @@ class PDF extends FPDF
 	$filename_customer = $company->FieldByName('legal_name');
 	if ($qry_customer->RowCount() > 0) {
 		$filename_customer = $customer;
+    
+	    $y=$pdf->GetY();
+	    $x=$pdf->GetX();
+		$pdf->SetXY($x+3,$y);
 
-		$col2 = 70;
-
+		$col2 = $halfWidth-20; //70;
 		$pdf->SetFont('Arial','B',10);
-	    $pdf->Cell(100,10,'Billing Details',0,0,'L');
-	    $pdf->Cell(60,10,'Shipping Details',0,0,'L');
+	    $pdf->Cell($halfWidth,10,'Billing Details',$border,0,'L');
+	    $pdf->Cell(($halfWidth-20),10,'Shipping Details',$border,0,'L');
 	    $pdf->Ln(4);
 
 	    $pdf->SetFont('Arial','',10);
