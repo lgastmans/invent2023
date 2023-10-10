@@ -32,6 +32,7 @@
 						trust 		= '".$_POST['companyTrust']."',
 						gstin 		= '".$_POST['companyGSTIN']."',
 						address 	= '".addslashes($_POST['companyAddress'])."',
+						address2 	= '".addslashes($_POST['companyAddress2'])."',
 						phone 		= '".$_POST['companyPhone']."',
 						email 		= '".$_POST['companyEmail']."',
 						footer 		= '".addslashes($_POST['companyFooter'])."'
@@ -294,6 +295,12 @@ $qry_company = new Query($sql);
 								<label for="companyAddress" class="col-sm-3 control-label">Address</label>
 								<div class="col-sm-9">
 									<input type="text" name="companyAddress" class="form-control" id="companyAddress" value="<?php echo $qry_company->FieldByName('address');?>" placeholder="Address">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="companyAddress2" class="col-sm-3 control-label"></label>
+								<div class="col-sm-9">
+									<input type="text" name="companyAddress2" class="form-control" id="companyAddress2" value="<?php echo $qry_company->FieldByName('address2');?>" placeholder="Address2">
 								</div>
 							</div>
 							<div class="form-group">

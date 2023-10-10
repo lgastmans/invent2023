@@ -2581,6 +2581,7 @@
 	echo execute_update(20230707, "ALTER TABLE `".Monthalize('bill')."` ADD `upi_transaction_id` VARCHAR(64) NOT NULL DEFAULT '' AFTER `aurocard_transaction_id`; ");
 	echo execute_update(20230708, "ALTER TABLE `".Monthalize('bill')."` ADD `upi_utr_number` VARCHAR(64) NOT NULL DEFAULT '' AFTER `aurocard_transaction_id`;");
 
+	echo execute_update(20231010, "ALTER TABLE `company` ADD `address2` VARCHAR(128) NOT NULL AFTER `address`; ");
 
 	// echo execute_update();
 
