@@ -282,7 +282,7 @@ class PDF extends FPDF
 
     $pageWidth 	= $pdf->GetPageWidth();
     $halfWidth  = $pageWidth/2;
-    $border 	= 1;
+    $border 	= 0;
 
 	/*
 		OUR DETAILS
@@ -493,7 +493,7 @@ class PDF extends FPDF
         
        	$flt_price = $qry_items->FieldByName('price') * $flt_price_increase;
 
-		$flt_discount_price = $flt_price * (1 - ($qry_customer->FieldByName('discount')/100));
+		$flt_discount_price = $flt_price * (1 - ($qry_items->FieldByName('discount')/100));
 		
         if ($calculate_tax == 'Y') {
 			if ($qry_items->FieldByName('tax_id')==NULL)
@@ -542,7 +542,7 @@ class PDF extends FPDF
 	    $pdf->Cell(LEN_HSN,$h,$qry_items->FieldByName('hsn'),1,0,'C');
 	    $pdf->Cell(LEN_QTY,$h,number_format($total_quantity, 0, '.', ''),1,0,'C');
 	    $pdf->Cell(LEN_PRICE,$h,number_format($flt_price, 2, '.', ''),1,0,'C');
-	    $pdf->Cell(LEN_DISCOUNT,$h,$qry_customer->FieldByName('discount'),1,0,'C');
+	    $pdf->Cell(LEN_DISCOUNT,$h,$qry_items->FieldByName('discount'),1,0,'C');
 
 	    $y=$pdf->GetY();
 	    $x=$pdf->GetX();
@@ -673,13 +673,14 @@ class PDF extends FPDF
 	else
 		$start = L_MARGIN + LEN_SN + LEN_CODE + LEN_DESCRIPTION + LEN_HSN + LEN_QTY + LEN_PRICE + LEN_DISCOUNT + LEN_VALUE;
 
+	/*
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetX($start);
 	$pdf->Cell(30,5,"Subtotal",1,0,'R');
 	$pdf->SetFont('Arial','',8);
 	$pdf->Cell(30,5,number_format(($flt_total-$tax_total),2),1,0,'R');
 	$pdf->Ln(5);
-
+	*/
 
 	for ($i=0;$i<count($arr_taxes);$i++) {
 		if ($arr_taxes[$i][2] > 0) {
@@ -691,8 +692,6 @@ class PDF extends FPDF
 			$pdf->Ln(5);
 		}
 	}
-
-
 
     $pdf->SetFont('Arial','B',8);
 	$pdf->SetX($start);
