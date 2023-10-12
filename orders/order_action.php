@@ -1,4 +1,4 @@
-<?
+<?php 
 	require_once("../include/const.inc.php");
 	require_once("../include/session.inc.php");
 	require_once("../include/db.inc.php");
@@ -14,9 +14,10 @@
 //===================== EDIT ORDER
 //================================
 			if ($_SESSION['order_id'] > -1) {
+				
 				// edit an existing order
 				// IF ACCOUNT ORDER, CHECK THE ACCOUNT NUMBER
-                                $err_status = 1;
+            $err_status = 1;
 				$int_current_CCID = -1;
 				
 				if ($_SESSION['order_bill_type'] == 2) {
@@ -38,12 +39,16 @@
 					}
 					else {
 						$qry_account = new Query("
-							SELECT cc_id
+							SELECT cc_id, account_number, account_name
 							FROM account_cc
 							WHERE account_number = '".$_SESSION['order_account_number']."'
+								AND account_active = 'Y'
 						");
-						if ($qry_account->RowCount() > 0)
+						if ($qry_account->RowCount() > 0) {
 							$int_current_CCID = $qry_account->FieldByName('cc_id');
+							$current_account_name = $qry_account->FieldByName('account_name');
+							$current_account_number = $qry_account->FieldByName('account_number');
+						}
 						else {
 							$str_message = 'Cannot retrieve the account id offline';
 							$err_status = 0;
@@ -63,10 +68,14 @@
 					$result_set = new Query("BEGIN");
 					$bool_success = true;
 					
+					/*
+					 *		CC_id = ".$int_current_CCID.",
+					 * 		account_name = '".$current_account_name."',
+					 *		account_number = '".$current_account_number."',
+					*/
 					$str_order = "
 						UPDATE ".Monthalize('orders')."
-						SET	CC_id = ".$int_current_CCID.",
-							community_id = '".$_SESSION['order_community_id']."',
+						SET	community_id = '".$_SESSION['order_community_id']."',
 							note = '".addslashes($_SESSION['order_note'])."',
 							order_type = ".$_SESSION['order_type'].",
 							day_of_week = ".$_SESSION['order_day'].",
@@ -176,12 +185,16 @@
 					}
 					else {
 						$qry_account = new Query("
-							SELECT cc_id
+							SELECT cc_id, account_name, account_number
 							FROM account_cc
 							WHERE account_number = '".$_SESSION['order_account_number']."'
+								AND account_active = 'Y'
 						");
-						if ($qry_account->RowCount() > 0)
+						if ($qry_account->RowCount() > 0) {
 							$int_current_CCID = $qry_account->FieldByName('cc_id');
+							$current_account_name = $qry_account->FieldByName('account_name');
+							$current_account_number = $qry_account->FieldByName('account_number');
+						}
 						else {
 							$str_message = 'Cannot retrieve the account id offline';
 							$err_status = 0;
@@ -206,6 +219,8 @@
 						INSERT INTO ".Monthalize('orders')."
 						(
 							CC_id,
+							account_name,
+							account_number,
 							community_id,
 							note,
 							order_type,
@@ -221,6 +236,8 @@
 						)
 						VALUES (".
 							$int_current_CCID.", '".
+							$current_account_name."', '".
+							$current_account_number."', '".
 							$_SESSION['order_community_id']."', '".
 							addslashes($_SESSION['order_note'])."', ".
 							$_SESSION['order_type'].", ".
