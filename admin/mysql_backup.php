@@ -24,6 +24,7 @@
 		$db_login = $arr_invent_config['database']['invent_login'];
 		$db_password = $arr_invent_config['database']['invent_password'];
 		$db_folder = $arr_invent_config['database']['backup_folder'];
+		$mysql_folder = $arr_invent_config['database']['mysql_folder'];
 
 		$os = php_uname('s');
 
@@ -86,7 +87,7 @@
 		}
 		else {
 
-			$strExportCommand = "mysqldump -a -u ".$db_login." --password=".$db_password." ".$db_db." > \"".$db_folder."/".$temp_filename."\"";
+			$strExportCommand = $mysql_folder."mysqldump.exe -a -u ".$db_login." --password=".$db_password." ".$db_db." > \"".$db_folder."/".$temp_filename."\"";
 			exec($strExportCommand);
 			
 			$data = implode("", file($db_folder."/".$temp_filename));
