@@ -220,7 +220,27 @@ require_once($str_application_path."include/db.inc.php");
 			}
 
 			$result_set->Query("UPDATE user_settings SET bill_upi_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}		
+		}
+		else if ($bill_type == BILL_BANK_TRANSFER) {
+			$str_query = "SELECT bill_bank_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+			$result_set->Query($str_query);
+
+			if ($increment == 'Y') {
+				if ($result_set->RowCount() > 0)
+					$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') +1;
+				else
+					$int_bill_number = 1;
+			}
+			else {
+				$int_bill_number = 0;
+				if ($result_set->RowCount() > 0)
+					if ($result_set->FieldByName('bill_bank_transfer_bill_number') > 0)
+						$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') -1;
+			}
+
+			$result_set->Query("UPDATE user_settings SET bill_bank_transfer_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
+		}
+
 		return $int_bill_number;
 	}
 	
@@ -322,6 +342,15 @@ require_once($str_application_path."include/db.inc.php");
 
 				if ($result_set->RowCount() > 0)
 					$int_bill_number = $result_set->FieldByName('bill_upi_bill_number') +1;
+				else
+					$int_bill_number = 1;
+			}
+			else if ($bill_type == BILL_BANK_TRANSFER) {
+				$str_query = "SELECT bill_bank_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
+
+				if ($result_set->RowCount() > 0)
+					$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') +1;
 				else
 					$int_bill_number = 1;
 			}

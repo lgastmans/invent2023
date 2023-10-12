@@ -2583,6 +2583,8 @@
 
 	echo execute_update(20231010, "ALTER TABLE `company` ADD `address2` VARCHAR(128) NOT NULL AFTER `address`; ");
 
+	echo execute_update(20231012, "ALTER TABLE `user_settings` ADD `bill_bank_transfer_bill_number` INT NOT NULL DEFAULT '0' AFTER `bill_upi_bill_number`;");
+
 	// echo execute_update();
 
 	echo "done.";

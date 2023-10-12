@@ -27,6 +27,7 @@
 	if ($qry->FieldByName('can_bill_aurocard') == 'Y')
 	    $bool_aurocard = true;
 	$bool_upi = true;
+	$bool_bank_transfer = true;
 
 	// check whether the orders module is enabled
 	// and include in list if it is
@@ -130,6 +131,7 @@
 			<option value="<? echo BILL_AUROCARD?>">Aurocard</option>
 		<? } ?>
 			<option value="<?php echo BILL_UPI;?>">UPI</option>
+			<option value="<?php echo BILL_BANK_TRANSFER;?>">Bank Transfer</option>
 	</select>
 	&nbsp;
 	View :

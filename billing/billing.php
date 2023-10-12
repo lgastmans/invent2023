@@ -193,6 +193,9 @@
 	$bill_type[8]['description'] = 'UPI';
 	$bill_type[8]['active'] = ($_SESSION['current_bill_type'] == 8 ? true : false);
 
+	$bill_type[9]['enabled'] = 'Y';
+	$bill_type[9]['description'] = 'Bank Transfer';
+	$bill_type[9]['active'] = ($_SESSION['current_bill_type'] == 9 ? true : false);
 
 	if ((isset($_GET['action'])) && ($_GET['action']=='edit_draft')) {
 		set_bill_type($bill_type, $draft_details['data']['bill_type']);
@@ -689,25 +692,44 @@
   		BILLING UPI
   	-->
   	<div id="billing_upi" class="row-bg" style="display:<?php echo ($_SESSION['current_bill_type'] == BILL_UPI) ? "block" : "none"; ?>">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-group">
-					<label for="upi_transaction_id">Transaction ID</label>
-					<input type="text" value="<?echo $_SESSION['upi_transaction_id']?>" class="form-control" name="upi_transaction_id" id="upi_transaction_id">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="upi_transaction_id">Transaction ID</label>
+						<input type="text" value="<?echo $_SESSION['upi_transaction_id']?>" class="form-control" name="upi_transaction_id" id="upi_transaction_id">
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
- 				<div class="form-group">
-					<label for="upi_utr_number">UTR Number</label>
-					<input type="text" value="<?echo $_SESSION['upi_utr_number']?>" class="form-control" name="upi_utr_number" id="upi_utr_number" >
+				<div class="col-md-4">
+	 				<div class="form-group">
+						<label for="upi_utr_number">UTR Number</label>
+						<input type="text" value="<?echo $_SESSION['upi_utr_number']?>" class="form-control" name="upi_utr_number" id="upi_utr_number" >
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				
-			</div>
-		</div> 
-		
+				<div class="col-md-4">
+					
+				</div>
+			</div> 
   	</div> <!-- billing UPI -->
+
+
+  	<!--
+  		BILLING BANK TRANSFER
+  	-->
+  	<div id="billing_bank_transfer" class="row-bg" style="display:<?php echo ($_SESSION['current_bill_type'] == BILL_BANK_TRANSFER) ? "block" : "none"; ?>">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+					</div>
+				</div>
+				<div class="col-md-4">
+	 				<div class="form-group">
+					</div>
+				</div>
+				<div class="col-md-4">
+					
+				</div>
+			</div> 
+  	</div> <!-- billing BANK TRANSFER -->
 
 
   	<!--
@@ -1056,6 +1078,7 @@
 				$('#billing_creditcard').css({'display':'none'});
 				$('#billing_aurocard').css({'display':'none'});
 				$('#billing_upi').css({'display':'none'});
+				$('#billing_bank_transfer').css({'display':'none'});
 				$('#dropdown-online').css({'display':'none'});
 
 				if (sel == 2) { // FS Account
@@ -1068,6 +1091,8 @@
 					$('#billing_aurocard').css({'display':'block'});
 				else if (sel == 8) // UPI
 					$('#billing_upi').css({'display':'block'});
+				else if (sel == 9) // UPI
+					$('#billing_bank_transfer').css({'display':'block'});
 
 
 				/*

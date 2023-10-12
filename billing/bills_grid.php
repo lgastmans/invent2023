@@ -316,6 +316,7 @@
 	$bool_aurocard = false;
 	$bool_creditcard = false;
 	$bool_upi = true;
+	$bool_bank_transfer = true;
 
 	if ($obj->can_bill_cash == 'Y') {
 		$bool_cash = true;
@@ -347,6 +348,7 @@
 	if ($bool_creditcard == true)
 		$arr_filter_type['Credit Card'] = 4;
 	$arr_filter_type['UPI'] = 8;
+	$arr_filter_type['Bank Transfer'] = 9;
 
 		
 	$bill_type = '_ALL';
@@ -893,6 +895,7 @@
 					case '<?php echo BILL_TRANSFER_GOOD?>': return 'Transfer of Goods';break;
 					case '<?php echo BILL_AUROCARD?>': return 'Aurocard';break;
 					case '<?php echo BILL_UPI?>': return 'UPI';break;
+					case '<?php echo BILL_BANK_TRANSFER?>': return 'Bank Transfer';break;
 					default: return "unknown";
 				}
 			}
