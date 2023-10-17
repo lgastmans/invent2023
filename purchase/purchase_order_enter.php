@@ -461,9 +461,9 @@
 					<td bgcolor='#e7e7e7'><span id="description">&nbsp;</span></td>
 
 					<!-- B PRICE -->
-					<!--<td><input type="text" name="bprice" value="0.0" class="input_50" autocomplete="OFF" onblur="getSPrice(this);" onkeypress="return focusNext(this, 'sprice', event)"></td>-->
-					<td><input type="text" name="bprice" value="0.0" class="input_50" autocomplete="OFF" onkeypress="return focusNext(this, 'sprice', event)"></td>
-
+					<td><input type="text" name="bprice" value="0.0" class="input_50" autocomplete="OFF" onblur="getSPrice(this);" onkeypress="return focusNext(this, 'sprice', event)"></td>
+<!-- 					<td><input type="text" name="bprice" value="0.0" class="input_50" autocomplete="OFF" onkeypress="return focusNext(this, 'sprice', event)"></td>
+ -->
 					<!-- S PRICE -->
 					<td><input type="text" name="sprice" value="0.0" class="input_50" autocomplete="OFF" onkeypress="return focusNext(this, 'qty', event)"></td>
 

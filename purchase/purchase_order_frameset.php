@@ -9,7 +9,7 @@
 	// this array holds the total quantities of items billed, as one item can be billed across multiple batches
 	// it serves the purpose of checking whether the total quantity bought is equal to, or greater than, the
 	// discount_qty in the stock_storeroom_product table, in which case the discount_percent should be suggested
-//	('purchase_order_arr_items');
+//	session_register('purchase_order_arr_items');
 
 
 	if (IsSet($_GET['action'])) {
