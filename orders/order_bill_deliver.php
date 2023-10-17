@@ -2,6 +2,7 @@
 	require_once("../include/const.inc.php");
 	require_once("../include/session.inc.php");
 	require_once("../include/db.inc.php");
+	require_once("../include/db_mysqli.php");
 	require_once("../common/account.php");
 	require_once("../common/tax.php");
 	require_once("../common/product_debit.php");
@@ -15,6 +16,22 @@
 		require_once("../../billing/get_bill_number.php");
 		
 	require_once("Config.php");
+
+	/*
+		Configuration Settings from 
+		user_settings table
+	*/	
+	$result = $conn->query("
+		SELECT *
+		FROM user_settings
+		WHERE storeroom_id = ".$_SESSION['int_current_storeroom']."
+	");
+	$bill_fs_discount = 0;
+	if ($result->num_rows > 0) {
+
+		$obj = $result->fetch_object();
+		$bill_fs_discount = $obj->bill_fs_discount;
+	}	
 	
 	$config = new Config();
 	$arrConfig =& $config->parseConfig($str_root."include/config.ini", "IniFile");
@@ -60,6 +77,7 @@
 
 	function deliver_order_bill($anId, $delivery_date='') {
 		global $update_prices;
+		global $bill_fs_discount;
 		
 		$str_retval = 'OK|OK';
 		
@@ -396,6 +414,11 @@
 						$flt_temp_qty = round($arr_retval[$j][3] + $arr_retval[$j][4], 3);
 						$int_temp_tax_id = $arr_retval[$j][6];
 						
+						if ($qry_bill->FieldByName('payment_type') == BILL_ACCOUNT)
+						{
+							$flt_temp_price = $flt_temp_price * ((100 - $bill_fs_discount)/100);
+						}
+
 						if ($calculate_tax == 'Y') {
 							$tax_amount = calculateTax($flt_temp_price * $flt_temp_qty, $int_temp_tax_id);
 							$flt_price_total = number_format(($flt_temp_qty * $flt_temp_price + $tax_amount), 3, '.', '');
@@ -431,7 +454,7 @@
 								)
 								VALUES (
 									".$arr_retval[$j][3].",
-									0,
+									".$bill_fs_discount.",
 									".$cur_price.", 
 									".$arr_retval[$j][6].",
 									".$tax_amount.",
@@ -452,6 +475,7 @@
 								UPDATE ".Monthalize('bill_items')."
 								SET 
 									quantity = ".$arr_retval[$j][3].",
+									discount = ".$bill_fs_discount.",
 									adjusted_quantity = ".$arr_retval[$j][4].",
 									tax_id = ".$arr_retval[$j][6].",
 									price = ".$cur_price.",
