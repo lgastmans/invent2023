@@ -144,8 +144,6 @@
 			return "ERROR|ERROR<br>Operation cannot be completed for ".$qry_bill->FieldByName('bill_number');
 		}
 		if (getModuleByID(9) !== null) {
-
-
 			/*
 				MANTRA HACK
 				use the BILL_TRANSFER_GOOD for the bill number
@@ -562,9 +560,10 @@
 			//----------------------------------------
 			if ($qry_bill->FieldByName('payment_type') == BILL_ACCOUNT) {
 				
-				$qry_transaction->Query("SELECT * FROM module WHERE module_id = 9");
-				
-				if ($qry_transaction->RowCount() == 0) {
+				//$qry_transaction->Query("SELECT * FROM module WHERE module_id = 9 AND active = 'Y'");
+				//if ($qry_transaction->RowCount() == 0) {
+
+				if (getModuleByID(9) === null) {
 					$qry_transaction->Query("
 						SELECT bill_credit_account, bill_order_description
 						FROM stock_storeroom
