@@ -165,7 +165,7 @@
 							'$credit_acount',
 							'".$qry_bill->FieldByName('total_amount')."',
 							\"".addslashes($bill_description)."\",
-							2,
+							7,
 							'".$qry_bill->FieldByName('bill_id')."',
 							'".date('Y-m-d H:i:s',time())."',
 							".$_SESSION['int_user_id'].",
@@ -258,8 +258,6 @@ $(document).ready(function () {
 		 		alert('FS transactions created');
 		 		document.location = '../index_verification_tools.php';
 		 	});
-				
-		console.log('checked ', IDs);
 	})
 
 
