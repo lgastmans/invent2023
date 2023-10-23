@@ -19,7 +19,7 @@
 			AND (bill_status = ".BILL_STATUS_RESOLVED.")
 			AND (b.cc_id = ac.cc_id)
 			AND (b.module_id = m.module_id)
-			AND (b.module_id=2)
+			AND (b.module_id=7)
 			AND NOT EXISTS (
 				SELECT *
 				FROM ".Monthalize('account_transfers')." at
@@ -117,59 +117,66 @@
 */
 	if (IsSet($_POST['action'])) {
 
-		if ($_POST['action'] == 'Create Transfers') {
+		if ($_POST['action'] == 'createTransfers') {
 
 			$qry_account = new Query("
-				SELECT bill_credit_account, bill_description
+				SELECT bill_credit_account, bill_description, bill_order_description
 				FROM stock_storeroom
 				WHERE (storeroom_id = ".$_SESSION['int_current_storeroom'].")
 			");
 			$credit_acount = $qry_account->FieldByName('bill_credit_account');
 			
-			
-			for ($i=0; $i<$qry_bills->RowCount(); $i++) {
+			$arr_bill_ids = $_POST['billIDs'];
 
-				$bill_description = str_replace("%s", $qry_bills->FieldByName('bill_number'), $qry_account->FieldByName('bill_description'));
-				$bill_description = str_replace("%d", $qry_bills->FieldByName('date_created'), $bill_description);
-				
-				$cc_id1 = getAccountCCID($qry_bills->FieldByName('account_number'));
-				$cc_id2 = getAccountCCID($credit_acount);
-				
-				$str_insert = "
-					INSERT INTO ".Monthalize('account_transfers')." 
-					(
-						cc_id_from,
-						cc_id_to,
-						account_from,
-						account_to,
-						amount,
-						description,
-						module_id,
-						module_record_id,
-						date_created,
-						user_id,
-						transfer_status,
-						date_completed
-					)
-					VALUES (
-						$cc_id1,
-						$cc_id2,
-						'".$qry_bills->FieldByName('account_number')."',
-						'$credit_acount',
-						".$qry_bills->FieldByName('total_amount').",
-						\"".addslashes($bill_description)."\",
-						2,
-						".$qry_bills->FieldByName('bill_id').",
-						'".date('Y-m-d H:i:s',time())."',
-						".$_SESSION['int_user_id'].",
-						".ACCOUNT_TRANSFER_PENDING.",
-						'".Date("Y-m-d h:i:s",time())."'
-					)
-				";
-				$qry = new Query($str_insert);
+			foreach ($arr_bill_ids as $bill_id) {
 
-				$qry_bills->Next();
+				$bill_id = explode('-',$bill_id);
 
+				if (is_numeric($bill_id[1])) {
+					$bill_description = str_replace("%s", $qry_bills->FieldByName('bill_number'), $qry_account->FieldByName('bill_order_description'));
+					$bill_description = str_replace("%d", substr($qry_bills->FieldByName('date_created'),0,10), $bill_description);
+					
+					$sql_bill = "SELECT bill_id, account_number, total_amount FROM ".Monthalize('bill')." WHERE (bill_id = $bill_id[1])";
+					$qry_bill = new Query($sql_bill);
+
+					$cc_id1 = getAccountCCID($qry_bill->FieldByName('account_number'));
+					$cc_id2 = getAccountCCID($credit_acount);
+
+					$str_insert = "
+						INSERT INTO ".Monthalize('account_transfers')." 
+						(
+							cc_id_from,
+							cc_id_to,
+							account_from,
+							account_to,
+							amount,
+							description,
+							module_id,
+							module_record_id,
+							date_created,
+							user_id,
+							transfer_status,
+							date_completed
+						)
+						VALUES (
+							$cc_id1,
+							$cc_id2,
+							'".$qry_bill->FieldByName('account_number')."',
+							'$credit_acount',
+							'".$qry_bill->FieldByName('total_amount')."',
+							\"".addslashes($bill_description)."\",
+							2,
+							'".$qry_bill->FieldByName('bill_id')."',
+							'".date('Y-m-d H:i:s',time())."',
+							".$_SESSION['int_user_id'].",
+							".ACCOUNT_TRANSFER_PENDING.",
+							'".Date("Y-m-d h:i:s",time())."'
+						)
+					";
+
+					$qry = new Query($str_insert);
+					//echo $str_insert."<br>";
+				}
 			}
 			
 			$int_discrepancies = 0;
@@ -198,28 +205,29 @@
 	<br>
 	<form name='verify_transactions' method='POST'>
 		<input type='button' name='action' value='Back' class='settings_button' onclick='javascript:goBack()'>
-		<input type='submit' name='action' value='Create Transfers' class='settings_button'>
+		<input type='button' name='action' id="btn-create-transfers" value='Create Transfers' class='settings_button'>
 	</form>
 	<br>
-	<table border='0' cellspacing='0' cellpadding='2'>
+	<table border='0' cellspacing='0' cellpadding='5'>
 		<tr valign='bottom'>
-		<td width='50px' align='right' class='normaltext'><b>Account<br>Number</b></td>
-		<td width='200px' class='normaltext'><b>Account<br>Name</b></td>
-		<td width='150px' align='right' class='normaltext'><b>Bill<br>Number</b></td>
-		<td width='150px' class='normaltext'><b>Date</b></td>
-		<td width='160px' class='normaltext'><b>Amount</b></td>
-		<td width='100px' class='normaltext'><b>Donation</b></td>
+			<td><input type="checkbox" id="btn-check-toggle"></td>
+			<td width='50px' align='right' class='normaltext'><b>Account<br>Number</b></td>
+			<td width='200px' class='normaltext'><b>Account<br>Name</b></td>
+			<td width='150px' align='right' class='normaltext'><b>Bill<br>Number</b></td>
+			<td width='150px' class='normaltext'><b>Date</b></td>
+			<td width='100px' class='normaltext' align="right"><b>Amount</b></td>
+			<td width='100px' class='normaltext'><b>Donation</b></td>
 		</tr>
 <?
 	//for ($i=0;$i<count($arr_found);$i++) {
 	for ($i=0;$i<$qry_bills->RowCount();$i++) {
 		echo "<tr>";
-//		echo "<td><input type='checkbox'></td>";
+		echo "<td><input type='checkbox' id='transfer-".$qry_bills->FieldByName('bill_id')."'></td>";
 		echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('account_number')."</td>";
 		echo "<td class='normaltext'>".$qry_bills->FieldByName('account_name')."</td>";
 		echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('bill_number')."</td>";
-		echo "<td class='normaltext'>".$qry_bills->FieldByName('date_created')."</td>";
-		echo "<td class='normaltext'>".$qry_bills->FieldByName('total_amount')."</td>";
+		echo "<td class='normaltext'>".set_formatted_date($qry_bills->FieldByName('date_created'),'-')."</td>";
+		echo "<td class='normaltext' align='right'>".number_format($qry_bills->FieldByName('total_amount'),2,'.',',')."</td>";
 		echo "<td class='normaltext'>".($qry_bills->FieldByName('is_billable')=='N'?'Yes':'No')."</td>";
 		echo "</tr>";
 
@@ -235,3 +243,30 @@
 
 </body>
 </html>
+<script src="../../include/js/jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function () {
+
+	$("#btn-create-transfers").on('click', function() {
+		let IDs = new Array();
+		IDs = $("table input[type=checkbox]:checked").map(function () {
+		    return $(this).attr("id");
+		}).get();
+
+		$.post( "fs_verify_transactions.php", { billIDs: IDs, action: 'createTransfers' })
+		 	.done(function( data ) {
+		 		alert('FS transactions created');
+		 		document.location = '../index_verification_tools.php';
+		 	});
+				
+		console.log('checked ', IDs);
+	})
+
+
+	$("#btn-check-toggle").on('click', function() {
+		let IDs = new Array();
+		IDs = $("table input[type=checkbox]");
+        IDs.attr("checked", !IDs.attr("checked"));
+	})
+});
+</script>
