@@ -23,7 +23,7 @@
 			AND NOT EXISTS (
 				SELECT *
 				FROM ".Monthalize('account_transfers')." at
-				WHERE (at.module_record_id = b.bill_id)
+				WHERE (at.module_record_id = b.bill_id) AND (at.module_id = 7)
 			)
 		ORDER BY b.module_id
 	";
