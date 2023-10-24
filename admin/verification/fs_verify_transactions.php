@@ -9,7 +9,8 @@
 		return $str_date;
 	}
 	
-	
+	$module_id = 7;
+
 	$sql = "
 		SELECT b.bill_id, b.bill_number, b.date_created, b.total_amount,
 			m.description,
@@ -19,11 +20,11 @@
 			AND (bill_status = ".BILL_STATUS_RESOLVED.")
 			AND (b.cc_id = ac.cc_id)
 			AND (b.module_id = m.module_id)
-			AND (b.module_id=7)
+			AND (b.module_id = $module_id)
 			AND NOT EXISTS (
 				SELECT *
 				FROM ".Monthalize('account_transfers')." at
-				WHERE (at.module_record_id = b.bill_id) AND (at.module_id = 7)
+				WHERE (at.module_record_id = b.bill_id) AND (at.module_id = $module_id)
 			)
 		ORDER BY b.module_id
 	";
@@ -133,11 +134,11 @@
 				$bill_id = explode('-',$bill_id);
 
 				if (is_numeric($bill_id[1])) {
-					$bill_description = str_replace("%s", $qry_bills->FieldByName('bill_number'), $qry_account->FieldByName('bill_order_description'));
-					$bill_description = str_replace("%d", substr($qry_bills->FieldByName('date_created'),0,10), $bill_description);
-					
-					$sql_bill = "SELECT bill_id, account_number, total_amount FROM ".Monthalize('bill')." WHERE (bill_id = $bill_id[1])";
+					$sql_bill = "SELECT bill_id, bill_number, date_created, account_number, total_amount FROM ".Monthalize('bill')." WHERE (bill_id = $bill_id[1])";
 					$qry_bill = new Query($sql_bill);
+
+					$bill_description = str_replace("%s", $qry_bill->FieldByName('bill_number'), $qry_account->FieldByName('bill_order_description'));
+					$bill_description = str_replace("%d", substr($qry_bill->FieldByName('date_created'),0,10), $bill_description);
 
 					$cc_id1 = getAccountCCID($qry_bill->FieldByName('account_number'));
 					$cc_id2 = getAccountCCID($credit_acount);
@@ -165,7 +166,7 @@
 							'$credit_acount',
 							'".$qry_bill->FieldByName('total_amount')."',
 							\"".addslashes($bill_description)."\",
-							7,
+							$module_id,
 							'".$qry_bill->FieldByName('bill_id')."',
 							'".date('Y-m-d H:i:s',time())."',
 							".$_SESSION['int_user_id'].",
