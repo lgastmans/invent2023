@@ -222,15 +222,26 @@
 <?
 	//for ($i=0;$i<count($arr_found);$i++) {
 	for ($i=0;$i<$qry_bills->RowCount();$i++) {
-		echo "<tr>";
-		echo "<td><input type='checkbox' id='transfer-".$qry_bills->FieldByName('bill_id')."'></td>";
-		echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('account_number')."</td>";
-		echo "<td class='normaltext'>".$qry_bills->FieldByName('account_name')."</td>";
-		echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('bill_number')."</td>";
-		echo "<td class='normaltext'>".set_formatted_date($qry_bills->FieldByName('date_created'),'-')."</td>";
-		echo "<td class='normaltext' align='right'>".number_format($qry_bills->FieldByName('total_amount'),2,'.',',')."</td>";
-		echo "<td class='normaltext'>".($qry_bills->FieldByName('is_billable')=='N'?'Yes':'No')."</td>";
-		echo "</tr>";
+
+		$sql = "
+			SELECT o.is_billable
+			FROM ".Monthalize('bill')." b
+			INNER JOIN ".Monthalize('orders')." o ON (o.order_id = b.module_record_id)
+			WHERE (b.bill_id = ".$qry_bills->FieldByName('bill_id').")
+		";
+		$qry_order = new Query($sql);
+
+		if ($qry_order->FieldByName('is_billable')=='Y') {
+			echo "<tr>";
+			echo "<td><input type='checkbox' id='transfer-".$qry_bills->FieldByName('bill_id')."'></td>";
+			echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('account_number')."</td>";
+			echo "<td class='normaltext'>".$qry_bills->FieldByName('account_name')."</td>";
+			echo "<td class='normaltext' align='right'>".$qry_bills->FieldByName('bill_number')."</td>";
+			echo "<td class='normaltext'>".set_formatted_date($qry_bills->FieldByName('date_created'),'-')."</td>";
+			echo "<td class='normaltext' align='right'>".number_format($qry_bills->FieldByName('total_amount'),2,'.',',')."</td>";
+			echo "<td class='normaltext'>".($qry_order->FieldByName('is_billable')=='N'?'Yes':'No')."</td>";
+			echo "</tr>";
+		}
 
 		$qry_bills->Next();
 	}
