@@ -23,3 +23,5 @@ if local changes are temporary, and the repository has been updated then:
 1. git stash push
 2. git stash drop
 3. and then git pull
+
+or simply: git reset --hard and then git pull
