@@ -87,7 +87,7 @@
 		}
 		else {
 
-			$strExportCommand = $mysql_folder."mysqldump.exe -a -u ".$db_login." --password=".$db_password." ".$db_db." > \"".$db_folder."/".$temp_filename."\"";
+			$strExportCommand = "\"".$mysql_folder."mysqldump.exe\" -a -u ".$db_login." --password=".$db_password." ".$db_db." > \"".$db_folder."/".$temp_filename."\"";
 			exec($strExportCommand);
 			
 			$data = implode("", file($db_folder."/".$temp_filename));
