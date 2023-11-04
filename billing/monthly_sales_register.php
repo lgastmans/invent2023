@@ -310,6 +310,8 @@
 				
 				if ($qry_bills->FieldByName('is_debit_bill') == 'Y')
 					$tmp_amount = ($calc_price * $flt_quantity) * -1;
+				elseif ($order_is_billable=='N')
+					$tmp_amount = 0;
 				else
 					$tmp_amount = ($calc_price * $flt_quantity);
 				
