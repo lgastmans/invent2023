@@ -324,6 +324,7 @@
 						if (($qry_bills->FieldByName('payment_type') == BILL_CASH) 
 							|| ($qry_bills->FieldByName('payment_type') == BILL_CREDIT_CARD)
 							|| ($qry_bills->FieldByName('payment_type') == BILL_UPI)
+							|| ($qry_bills->FieldByName('payment_type') == BILL_BANK_TRANSFER)
 						) {
 								if ($qry_storeroom->FieldByName('is_cash_taxed') == 'Y')
 								    if ($array_header[$int_col_num][2] == 2)
@@ -334,7 +335,8 @@
 									$flt_temp = 0;
 							}
 							else if (($qry_bills->FieldByName('payment_type') == BILL_ACCOUNT) 
-								|| ($qry_bills->FieldByName('payment_type') == BILL_PT_ACCOUNT) || ($qry_bills->FieldByName('payment_type') == BILL_AUROCARD)
+								|| ($qry_bills->FieldByName('payment_type') == BILL_PT_ACCOUNT) 
+								|| ($qry_bills->FieldByName('payment_type') == BILL_AUROCARD)
 								|| ($qry_bills->FieldByName('payment_type') == BILL_TRANSFER_GOOD)
 							) {
 								if ($qry_storeroom->FieldByName('is_account_taxed') == 'Y')
@@ -360,7 +362,13 @@
 							}
 							
 							if ($array_header[$int_col_num][2] <> 2) {
-								if ((($qry_bills->FieldByName('payment_type') == BILL_CASH) || ($qry_bills->FieldByName('payment_type') == BILL_CREDIT_CARD) || ($qry_bills->FieldByName('payment_type') == BILL_UPI)) && ($is_cash_taxed == 'Y'))
+								if ((($qry_bills->FieldByName('payment_type') == BILL_CASH) || 
+									($qry_bills->FieldByName('payment_type') == BILL_CREDIT_CARD) || 
+									($qry_bills->FieldByName('payment_type') == BILL_UPI) ||
+									($qry_bills->FieldByName('payment_type') == BILL_BANK_TRANSFER)
+									) 
+									&& ($is_cash_taxed == 'Y')
+								)
 									$tax_total += round($tmp_taxes[$k+1], 2);
 								else if (($qry_bills->FieldByName('payment_type') == BILL_ACCOUNT) && ($is_account_taxed == 'Y'))
 									$tax_total += round($tmp_taxes[$k+1], 2);

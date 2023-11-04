@@ -253,12 +253,18 @@
 			echo "<tr bgcolor='#FF7474'><td class='normaltext' colspan='5'>";
 		else
 			echo "<tr bgcolor='$str_color'><td class='normaltext' colspan='5'>";
+
 		if ($qry_bills->FieldByName('payment_type') == BILL_CASH)
 			echo "CASH";
 		else if ($qry_bills->FieldByName('payment_type') == BILL_ACCOUNT)
 			echo "FS Account: ".$qry_bills->FieldByName('account_number')." - ".$qry_bills->FieldByName('account_name');
 		else if ($qry_bills->FieldByName('payment_type') == BILL_PT_ACCOUNT)
 			echo "PT Account: ".$qry_bills->FieldByName('account_number')." - ".$qry_bills->FieldByName('account_name');
+		else if ($qry_bills->FieldByName('payment_type') == BILL_UPI)
+			echo "UPI";
+		else if ($qry_bills->FieldByName('payment_type') == BILL_BANK_TRANSFER)
+			echo "Bank Transfer";
+
 		if ($qry_bills->FieldByName('bill_status') == BILL_STATUS_CANCELLED) {
 			$str_username = $qry_bills->FieldByName('cancelled_username');
 			$str_reason = '';
