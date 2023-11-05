@@ -120,7 +120,7 @@ if (!empty($_POST["username"])) {
 			database backup
 		*/
 		require_once('admin/mysql_backup.php');
-		backup_db('Y', 'db_backup_');
+		backup_db('N', 'db_backup_');
 		backup_db('N', '', date('Y')."_".date('m').".sql.gz");
 
 
