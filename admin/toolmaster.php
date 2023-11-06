@@ -340,7 +340,7 @@
 							            data : { RName: data["R"+value+"_Name"], RNumber: data["R"+value+"_Number"], RType: data["R"+value+"_Type"], RDisable: data["R"+value+"_Disable"], RCCID: data["R"+value+"_CCID"]},
 							        })
 							        .done(function( msg ){
-							        	console.log('done '+ value)    
+							        	console.log('Updated ' + msg)    
 							        })
 									
 

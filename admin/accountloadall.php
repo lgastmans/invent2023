@@ -32,7 +32,7 @@
 
 	if ($res['Result'] == 'OK') {
 
-		$qry = new Query("TRUNCATE TABLE account_cc");
+//		$qry = new Query("TRUNCATE TABLE account_cc");
 
 		$arr = $client->call(
 			"getAccountRange", 
