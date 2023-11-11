@@ -4,8 +4,8 @@
 	require_once("../include/session.inc.php");
 	require_once("../common/product_funcs.inc.php");	
 
-	$period = "2021_1";
-	$filename = "ptdc_movement".$period.".csv";
+	$period = "2022_3";
+	$filename = "ptps_movement".$period.".csv";
 
 
 	header("Content-Type: application/text; name=".$filename);
@@ -55,8 +55,8 @@
 
 		while( $obj = $qry->fetch_object() ) {
 
-			$buying_price = getBuyingPrice($obj->product_id);
-			$selling_price = getSellingPrice($obj->product_id);
+			$buying_price = 0; //getBuyingPrice($obj->product_id);
+			$selling_price = 0; //getSellingPrice($obj->product_id);
 
 			$str_current .= 
 				"\"".$obj->transfer_type."\";".

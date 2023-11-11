@@ -4,7 +4,7 @@
 	require_once("../include/session.inc.php");
 	require_once("../common/product_funcs.inc.php");	
 
-	$period = "2021_1";
+	$period = "2021_4";
 	$filename = "ptdc_frequency_".$period.".csv";
 
 

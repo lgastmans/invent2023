@@ -14,3 +14,7 @@ orders/export_proforma.php
 
 backup/
 export/prosperity_movement.php
+export/prosperity_frequency.php
+export/prosperity_movement.php
+export/prosperity_products.php
+export/prosperity_sales.php

@@ -4,8 +4,8 @@
 	require_once("../include/session.inc.php");
 	require_once("../common/product_funcs.inc.php");	
 
-	$period = "2021_1";
-	$filename = "ptdc_sales_".$period.".csv";
+	$period = "2022_4";
+	$filename = "ptps_sales_".$period.".csv";
 
 
 	header("Content-Type: application/text; name=".$filename);
@@ -26,7 +26,7 @@
 		    WHEN payment_type = 7 THEN "Aurocard"
 		    ELSE "Unknown"
 		   END AS payment, b.account_number,
-		bi.product_id,
+		bi.product_id, bi.product_description,
 		ROUND(SUM(bi.quantity + bi.adjusted_quantity),3) AS quantity, bi.price, b.storeroom_id, payment_type
 		FROM bill_items_'.$period.' bi
 		INNER JOIN bill_'.$period.' b ON (b.bill_id = bi.bill_id)
@@ -46,13 +46,14 @@
 
 		echo "\"Sales\"\n";
 
-		echo "\"payment\",\"product_id\",\"Quantity\",\"Price\",\"Storeroom\"\n";
+		echo "\"payment\",\"product_id\",\"description\",\"Quantity\",\"Price\",\"Storeroom\"\n";
 
 		while( $obj = $qry->fetch_object() ) {
 
 			$str_current .= 
 				"\"".$obj->payment_type."\";".
 				"\"".$obj->product_id."\";".
+				"\"".$obj->product_description."\";".
 				"\"".$obj->quantity."\";".
 				"\"".$obj->price."\";".
 				"\"".$obj->storeroom_id."\";".
