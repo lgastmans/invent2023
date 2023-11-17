@@ -90,7 +90,8 @@
 			SELECT DAYOFMONTH(b.date_created) AS date_created, b.bill_number, b.is_debit_bill,
 				sp.product_code, sp.product_id,
 				bi.product_description,
-				bi.price,
+				bi.price, bi.bprice,
+				bi.batch_id,
 				bi.tax_id,
 				st.tax_description,
 				IF(b.is_debit_bill='Y',
@@ -135,7 +136,9 @@
 		$str_query = "
 			SELECT sp.product_code, sp.product_id,
 				bi.product_description,
-				bi.price,
+				bi.price, bi.bprice,
+				GROUP_CONCAT(bi.batch_id) AS `batches`,
+				bi.batch_id,
 				bi.tax_id,
 				b.is_debit_bill,
 				SUM(
@@ -252,10 +255,18 @@
 			
 			$row = array();
 
-			if ($calc_price == "BP")
-				$flt_price = number_format(getBuyingPrice($qry->FieldByName('product_id')), 2,'.','');
-			else
+			if ($calc_price == "BP") {
+//				$flt_price = number_format(getBuyingPrice($qry->FieldByName('product_id')), 2,'.','');
+				$flt_price = number_format($qry->FieldByName('bprice'), 2,'.','');
+				if ($flt_price == 0)
+					$flt_price = getBuyingPrice($qry->FieldByName('product_id'), $qry->FieldByName('batch_id'));				
+			}
+			else {
+//				$flt_price = number_format($qry->FieldByName('price'), 2, '.', '');
 				$flt_price = number_format($qry->FieldByName('price'), 2, '.', '');
+				if ($flt_price == 0)
+					$flt_price = getSellingPrice($qry->FieldByName('product_id'), $qry->FieldByName('batch_id'));				
+			}
 
 
 			$discount = $qry->FieldByName('discount');
@@ -389,10 +400,18 @@
 			
 			$row = array();
 
-			if ($calc_price == "BP")
-				$flt_price = number_format(getBuyingPrice($qry->FieldByName('product_id')), 2,'.','');
-			else
+			if ($calc_price == "BP") {
+//				$flt_price = number_format(getBuyingPrice($qry->FieldByName('product_id')), 2,'.','');
+				$flt_price = number_format($qry->FieldByName('bprice'), 2,'.','');
+				if ($flt_price == 0)
+					$flt_price = getBuyingPrice($qry->FieldByName('product_id'), $qry->FieldByName('batch_id'));				
+			}
+			else {
+//				$flt_price = number_format($qry->FieldByName('price'), 2, '.', '');
 				$flt_price = number_format($qry->FieldByName('price'), 2, '.', '');
+				if ($flt_price == 0)
+					$flt_price = getSellingPrice($qry->FieldByName('product_id'), $qry->FieldByName('batch_id'));				
+			}
 
 			$discount = $qry->FieldByName('discount');
 
@@ -543,7 +562,6 @@
 	}
 	$subject = "Sales Statement ".$_SESSION['int_year_loaded']."-".$_SESSION['int_month_loaded'];
 	$body = "Dear People,<br><p>Please find attached a CSV file of your sales statement for ".$_SESSION['int_year_loaded']."-".$_SESSION['int_month_loaded'].".</p><p> This file can be imported into Excel.</p><p>The fields are separated by a <strong>comma</strong> and the <strong>delimiter is a double quote</strong>.</p>";
-
 
 	/*
 
