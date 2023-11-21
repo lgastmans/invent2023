@@ -106,7 +106,7 @@
 
 	    fwrite($fp, $gzdata);
 	    fclose($fp);
-
+	    chmod($db_folder."/".$filename, 0777);
 
 	    unlink($db_folder."/".$temp_filename);
 
