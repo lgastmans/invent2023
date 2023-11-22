@@ -18,7 +18,7 @@
 
 	$sql = '
 		SELECT
-			sp.product_id, sp.product_description, sp.is_av_product,
+			sp.product_id, sp.product_code, sp.product_description, sp.is_av_product,
 			smu.measurement_unit_id,
 			sc.category_id, sc.category_description,
 			ss.supplier_id, ss.supplier_name
@@ -46,7 +46,7 @@
 
 		while( $obj = $qry->fetch_object() ) {
 
-			$str_current .= "\"".$obj->product_id."\";".
+			$str_current .= "\"".$obj->product_code."\";".
 				"\"".$obj->product_description."\";".
 				"\"".$obj->is_av_product."\";".
 				"\"".$obj->measurement_unit_id."\";".
