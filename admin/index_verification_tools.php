@@ -269,8 +269,8 @@
 			});
 
 			$("#closing_balance").click(function() {
-				alert('temporarily not available');
-				//parent.window.frames["content"].location.href = 'verification/stock_closing_balance.php';
+				//alert('temporarily not available');
+				parent.window.frames["content"].location.href = 'verification/stock_closing_balance.php';
 			});
 
 			$("#reset_sprice").click(function() {
