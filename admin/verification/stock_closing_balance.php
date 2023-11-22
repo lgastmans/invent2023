@@ -66,7 +66,7 @@
 	<div id="jumbotron" class="jumbotron" style="display:none;">
 		<p class="text-center">
 			<button class="btn btn-lg btn-warning">
-				<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing...
+				<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Updating stock ...
 			</button>
 		</p>
 	</div>
@@ -357,9 +357,14 @@
 				})
 				.done ( function( msg ) {
 
-					$(" #jumbotron ").hide();
-
-					billTable.ajax.reload();
+					//setTimeout('$(" #jumbotron ").hide();', 3000);
+					setTimeout(function() {
+							$(" #jumbotron ").hide();
+							billTable.ajax.reload();
+						}, 3000
+					);
+					
+					//billTable.ajax.reload();
 
 					console.log(msg);
 
