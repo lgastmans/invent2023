@@ -14,7 +14,7 @@ The software will eventually be replaced, using the Laravel framework.
 - copy config files from older version
 - replace 'v7' with '2023' in the paths
 - add 'mysql_folder' to config.ini
-- add BILL_UPI and BILL_BANK_TRANSFER to const.inc.php
+- add define('BILL_UPI',8) and define('BILL_BANK_TRANSFER',9) to const.inc.php
 - run updatemanager/mysql_update.php
 - copy print_bill.php / export_invoice.php / export_proforma.php
 - check backups
