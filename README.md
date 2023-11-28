@@ -18,6 +18,7 @@ The software will eventually be replaced, using the Laravel framework.
 - run updatemanager/mysql_update.php
 - copy print_bill.php / export_invoice.php / export_proforma.php
 - check backups
+- open httpd.conf, and set LogLevel to crit
 
 # git
 if local changes are temporary, and the repository has been updated then:
