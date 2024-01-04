@@ -463,7 +463,7 @@ class PDF extends FPDF
         
        	$flt_price = $qry_items->FieldByName('price') * $flt_price_increase;
 
-		$flt_discount_price = $flt_price * (1 - ($qry_customer->FieldByName('discount')/100));
+		$flt_discount_price = $flt_price * (1 - ($qry_items->FieldByName('discount')/100));
 		
         if ($calculate_tax == 'Y') {
 			if ($qry_items->FieldByName('tax_id')==NULL)
@@ -512,7 +512,7 @@ class PDF extends FPDF
 	    $pdf->Cell(LEN_HSN,$h,$qry_items->FieldByName('hsn'),1,0,'C');
 	    $pdf->Cell(LEN_QTY,$h,number_format($total_quantity, 0, '.', ''),1,0,'C');
 	    $pdf->Cell(LEN_PRICE,$h,number_format($flt_price, 2, '.', ''),1,0,'C');
-	    $pdf->Cell(LEN_DISCOUNT,$h,$qry_customer->FieldByName('discount'),1,0,'C');
+	    $pdf->Cell(LEN_DISCOUNT,$h,$qry_items->FieldByName('discount'),1,0,'C');
 
 	    $y=$pdf->GetY();
 	    $x=$pdf->GetX();
