@@ -75,7 +75,7 @@
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
 
-	$delimiter = "\t";	
+	$delimiter = "|"; //"\t";	
 
 
 
@@ -186,6 +186,7 @@ else
 	$str_value_totals = "";
 
 $str_statement = 
+	"sep=|"."\n".
 	$str_application_title."\n".
 	$str_print_address."\n".
 	$str_print_phone."\n\n".
