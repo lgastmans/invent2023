@@ -61,7 +61,7 @@
 	else if ($str_show == "NON_ZERO")
 		$str_having = "HAVING (to_buy > 0.0)";
 	else if ($str_show == "BELOW_MINIMUM")
-		$str_having = "HAVING (to_buy < sp.minimum_qty)";
+		$str_having = "HAVING (to_buy < ssp.stock_minimum)";
 
 	$int_method = '';
 	if (IsSet($_GET['method']))
@@ -158,44 +158,9 @@
 	*/
 	
 	
-	if ($int_method == PO_PREDICT_NONE) {
+	if ($int_method == PO_PREDICT_PREVIOUS) {
 		$str_query = "
-			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round, sp.minimum_qty,
-				sb_sold.stock_sold AS prev_stock_sold,
-				$str_select_stock, ssp.stock_ordered, ssp.stock_minimum,
-				@qty_value := (sp.minimum_qty - ssp.stock_current) AS to_buy,
-				IF (smu.is_decimal='Y',
-						(ROUND(@qty_value, 2) * sp.purchase_round),
-						IF (ROUND(@qty_value) * sp.purchase_round > 0,
-								(ROUND(@qty_value) * sp.purchase_round)
-								, 0
-						)
-				)
-				AS rounded_value,
-				smu.is_decimal,
-				sc.category_description,
-				ss.supplier_name
-			FROM stock_product sp
-			LEFT JOIN $str_prev_stock_balance_table sb_sold ON
-				(sb_sold.product_id = sp.product_id)
-				AND (sb_sold.storeroom_id = ".$int_sold_storeroom.")
-				AND (sb_sold.balance_month = ".$arr_prev_month[1].")
-				AND (sb_sold.balance_year = ".$arr_prev_month[2].")
-			$str_join_stock
-			INNER JOIN stock_measurement_unit smu ON (smu.measurement_unit_id = sp.measurement_unit_id)
-			INNER JOIN stock_supplier ss ON (ss.supplier_id = sp.supplier_id)
-			INNER JOIN stock_category sc ON (sc.category_id = sp.category_id) $str_filter_category
-			WHERE (sp.list_in_purchase = 'Y')
-				AND (sp.deleted = 'N')
-				$str_filter
-			$str_having
-			$str_group_stock
-			$str_order
-		";
-	}
-	else if ($int_method == PO_PREDICT_PREVIOUS) {
-		$str_query = "
-			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round, sp.minimum_qty,
+			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round,
 				sb_sold.stock_sold AS prev_stock_sold,
 				$str_select_stock, ssp.stock_ordered, ssp.stock_minimum,
 				@qty_value := (
@@ -233,7 +198,7 @@
 	else if ($int_method == PO_PREDICT_PREVIOUS_CURRENT) {
 		$int_days = 26 + $int_days;
 		$str_query = "
-			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round, sp.minimum_qty,
+			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round,
 				sb_sold.stock_sold,
 				sb_prev.stock_sold AS prev_stock_sold,
 				$str_select_stock, ssp.stock_ordered, ssp.stock_minimum,
@@ -288,25 +253,20 @@
 	}
 	else if ($int_method == PO_PREDICT_CURRENT) {
 		$str_query = "
-			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round, sp.minimum_qty,
+			SELECT sp.product_id, sp.product_code, sp.product_description, sp.purchase_round,
 				sb_sold.stock_sold,
 				$str_select_stock, ssp.stock_ordered, ssp.stock_minimum,
-
 				@qty_value := (
 					(sb_sold.stock_sold/$int_days * $int_num_days) - ssp.stock_current - ssp.stock_ordered
 				) AS to_buy,
-
 				IF (smu.is_decimal='Y',
-
 						(ROUND(@qty_value, 2) * sp.purchase_round),
-
 						IF (ROUND(@qty_value) * sp.purchase_round > 0,
 								(ROUND(@qty_value) * sp.purchase_round)
 								, 0
 						)
 				)
 				AS rounded_value,
-
 				smu.is_decimal,
 				sc.category_description,
 				ss.supplier_name
@@ -335,7 +295,6 @@
 		echo mysql_error();
 	
 	if (!empty($_POST["action"])) {
-
 		if ($_POST["action"] == "new") {
 		
 			// get all checked rows
@@ -364,22 +323,19 @@
 					$bool_insert = false;
 				}
 			}
-
-
+			
 			// query object initialization
 			$qry_item = new Query("SELECT * FROM stock_product");
 			
 			// create purchase order
 			$int_purchase_order_id = new_purchase_order($int_supplier_id);
-
-
+			
 			for ($i=1;$i<=count($arr_items);$i++) {
 			
 				$flt_buying_price = getBuyingPrice($arr_items[$i][0]);
 				$flt_selling_price = getSellingPrice($arr_items[$i][0]);
 				
-
-				$sql = "
+				$qry_item->Query("
 					INSERT INTO ".Yearalize('purchase_items')."
 						(purchase_order_id,
 						product_id,
@@ -393,10 +349,7 @@
 						$arr_items[$i][1].", ".
 						$flt_buying_price.", ".
 						$flt_selling_price.")
-				";
-				
-				$qry_item->Query($sql);
-
+				");
 			}
 			
 			echo "<script language='javascript'>";
@@ -467,11 +420,7 @@
 				<td>B. Price</td>
 				<td>S. Price</td>
 				<td>Min.</td>
-
-				<?php if ($int_method != PO_PREDICT_NONE) { ?>
-					<td>Ordered</td>
-				<?php } ?>
-
+				<td>Ordered</td>
 				<td>Current</td>
 				<? if (($int_method == PO_PREDICT_PREVIOUS_CURRENT) || ($int_method == PO_PREDICT_PREVIOUS)) { ?>
 					<td>Sold Last Month</td>
@@ -501,32 +450,22 @@
 						echo "<td class='normaltext'>".$qry->FieldByName('supplier_name')."</td>";
 					echo "<td align='right' class='normaltext'>".$flt_buying_price."</td>";
 					echo "<td align='right' class='normaltext'>".$flt_selling_price."</td>";
-					echo "<td align='right' class='normaltext'>".$qry->FieldByName('minimum_qty')."</td>";
-
-					if ($int_method != PO_PREDICT_NONE)
-						echo "<td align='right' class='normaltext'>".$qry->FieldByName('stock_ordered')."</td>";
-
+					echo "<td align='right' class='normaltext'>".$qry->FieldByName('stock_minimum')."</td>";
+					echo "<td align='right' class='normaltext'>".$qry->FieldByName('stock_ordered')."</td>";
 					echo "<td align='right' class='normaltext'>".$qry->FieldByName('stock_current')."</td>";
-
 					if (($int_method == PO_PREDICT_PREVIOUS_CURRENT) || ($int_method == PO_PREDICT_PREVIOUS)) {
 						echo "<td align='right' class='normaltext'>".$qry->FieldByName('prev_stock_sold')."</td>";
 					}
-
 					if (($int_method == PO_PREDICT_PREVIOUS_CURRENT) || ($int_method == PO_PREDICT_CURRENT)) {
 						echo "<td align='right' class='normaltext'>".$qry->FieldByName('stock_sold')."</td>";
 					}
-
 					$flt_to_buy = $qry->FieldByName('rounded_value');
-
 					if ($flt_to_buy < 0)
 						$flt_to_buy = 0;
-
 					//if ($flt_to_buy < $qry->FieldByName('stock_minimum'))
 					//	$flt_to_buy = $qry->FieldByName('stock_minimum');
-
 					if ($qry->FieldByName('is_decimal') == 'N')
 						$flt_to_buy = number_format($flt_to_buy, 0);
-
 					echo "<td><input type='text' name='input_".$qry->FieldByName('product_id')."' id='input_".$qry->FieldByName('product_id')."' value='".$flt_to_buy."' class='input_100' autocomplete='off'></td>\n";
 /*
 					if ($qry->FieldByName('to_buy') < $qry->FieldByName('stock_minimum'))

@@ -248,7 +248,6 @@
 					</td>
 					<td class='normaltext'>
 						<select name='select_method' class='select_200'>
-							<option value='<? echo PO_PREDICT_NONE;?>'>None</option>
 							<option value='<?echo PO_PREDICT_PREVIOUS?>' <?if (date('n') == 4) echo "disabled";?> <?if ($_SESSION["int_user_prediction_method"] == PO_PREDICT_PREVIOUS) echo "selected"?>>Previous month</option>
 							<option value='<?echo PO_PREDICT_PREVIOUS_CURRENT?>' <?if (date('n') == 4) echo "disabled";?> <?if ($_SESSION["int_user_prediction_method"] == PO_PREDICT_PREVIOUS_CURRENT) echo "selected"?>>Previous & Current month</option>
 							<option value='<?echo PO_PREDICT_CURRENT?>' <?if ($_SESSION["int_user_prediction_method"] == PO_PREDICT_CURRENT) echo "selected"?>>Current month</option>
@@ -289,7 +288,7 @@
 					<td>
 						<select name='select_show' class='select_100'>
 							<option value='ALL'>All</option>
-							<option value='NON_ZERO' selected>Non-zero</option>
+							<option value='NON_ZERO'>Non-zero</option>
 							<option value="BELOW_MINIMUM">Below minimum</option>
 						</select>
 					</td>

@@ -7,6 +7,9 @@
 	require_once("../common/print_funcs.inc.php");
 
 	$code_sorting = $arr_invent_config['settings']['code_sorting'];
+	$print_name = $arr_invent_config['billing']['print_name'];
+	$print_mode = $arr_invent_config['billing']['print_mode'];
+	$print_os = browser_detection("os");
 	
 	$sql_settings = new Query("
 		SELECT *
@@ -200,11 +203,7 @@
 <link href="../include/styles.css" rel="stylesheet" type="text/css">
 </head>
 
-<? if (browser_detection( 'os' ) === 'lin') { ?>
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0">
-<? } else { ?>
-<body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 bgcolor="#E0E0E0" onload="CheckTC()">
-<? } ?>
 
 <?
 //$str_info .= "%n";
@@ -295,7 +294,7 @@ $str_header = $str_double."\n".
 if ($int_method == PO_PREDICT_PREVIOUS)
 	$str_header = $str_double."\n".
 		StuffWithCharacter('Code', ' ', 6)." ".
-		PadWithCharacter('Description', ' ', 25)." ".
+		PadWithCharacter('Description', ' ', 35)." ".
 		StuffWithCharacter('Stock', ' ', 8)." ".
 		StuffWithCharacter('Sold LM', ' ', 8)." ".
 		StuffWithCharacter('To Buy', ' ', 8)." ".
@@ -305,7 +304,7 @@ if ($int_method == PO_PREDICT_PREVIOUS)
 elseif ($int_method == PO_PREDICT_PREVIOUS_CURRENT)
 	$str_header = $str_double."\n".
 		StuffWithCharacter('Code', ' ', 6)." ".
-		PadWithCharacter('Description', ' ', 25)." ".
+		PadWithCharacter('Description', ' ', 35)." ".
 		StuffWithCharacter('Stock', ' ', 8)." ".
 		StuffWithCharacter('Sold LM', ' ', 8)." ".
 		StuffWithCharacter('Sold TM', ' ', 8)." ".
@@ -316,7 +315,7 @@ elseif ($int_method == PO_PREDICT_PREVIOUS_CURRENT)
 elseif ($int_method == PO_PREDICT_CURRENT)
 	$str_header = $str_double."\n".
 		StuffWithCharacter('Code', ' ', 6)." ".
-		PadWithCharacter('Description', ' ', 25)." ".
+		PadWithCharacter('Description', ' ', 35)." ".
 		StuffWithCharacter('Stock', ' ', 8)." ".
 		StuffWithCharacter('Sold', ' ', 8)." ".
 		StuffWithCharacter('To Buy', ' ', 8)." ".
@@ -351,7 +350,7 @@ for ($i=0;$i<$qry->RowCount();$i++) {
 	if ($int_method == PO_PREDICT_PREVIOUS)
 		$str_data .=
 			StuffWithCharacter($qry->FieldByName('product_code'), ' ', 6)." ".
-			PadWithCharacter($qry->FieldByName('product_description'), ' ', 25)." ".
+			PadWithCharacter($qry->FieldByName('product_description'), ' ', 35)." ".
 			StuffWithCharacter($qry->FieldByName('stock_current'), ' ', 8)." ".
 			StuffWithCharacter($qry->FieldByName('prev_stock_sold'), ' ', 8)." ".
 			StuffWithCharacter($flt_quantity, ' ', 8)." ".
@@ -360,7 +359,7 @@ for ($i=0;$i<$qry->RowCount();$i++) {
 	elseif ($int_method == PO_PREDICT_PREVIOUS_CURRENT)
 		$str_data .=
 			StuffWithCharacter($qry->FieldByName('product_code'), ' ', 6)." ".
-			PadWithCharacter($qry->FieldByName('product_description'), ' ', 25)." ".
+			PadWithCharacter($qry->FieldByName('product_description'), ' ', 35)." ".
 			StuffWithCharacter($qry->FieldByName('stock_current'), ' ', 8)." ".
 			StuffWithCharacter($qry->FieldByName('stock_sold'), ' ', 8)." ".
 			StuffWithCharacter($qry->FieldByName('prev_stock_sold'), ' ', 8)." ".
@@ -370,7 +369,7 @@ for ($i=0;$i<$qry->RowCount();$i++) {
 	elseif ($int_method == PO_PREDICT_CURRENT)
 		$str_data .=
 			StuffWithCharacter($qry->FieldByName('product_code'), ' ', 6)." ".
-			PadWithCharacter($qry->FieldByName('product_description'), ' ', 25)." ".
+			PadWithCharacter($qry->FieldByName('product_description'), ' ', 35)." ".
 			StuffWithCharacter($qry->FieldByName('stock_current'), ' ', 8)." ".
 			StuffWithCharacter($qry->FieldByName('stock_sold'), ' ', 8)." ".
 			StuffWithCharacter($flt_quantity, ' ', 8)." ".
@@ -407,11 +406,7 @@ $str_statement = replaceSpecialCharacters($str_statement);
 </PRE>
 
 
-<? if (browser_detection("os") === "lin") { ?>
 <form name="printerForm" method="POST" action="http://localhost/print.php">
-<? } else { ?>
-<form name="printerForm" onsubmit="return false;">
-<? } ?>
 
 
 <table width="100%" bgcolor="#E0E0E0">
@@ -423,11 +418,11 @@ $str_statement = replaceSpecialCharacters($str_statement);
   <tr>
     <td>
       <br>
-      <? if (browser_detection("os") === "lin") { ?>
-      <input type="hidden" name="data" value="<? echo htmlentities($str_statement); ?>"><br>
-      <? } else { ?>
-      <input type="hidden" name="output" value="<? echo htmlentities($str_statement); ?>">
-      <? } ?>
+      <input type="hidden" name="data" value="<? echo htmlentities($str_statement); ?>">
+	  <input type="hidden" name="os" value="<? echo $print_os;?>"><br>
+	  <input type="hidden" name="print_name" value="<? echo $print_name?>"><br>
+	  <input type="hidden" name="print_mode" value="<? echo $print_mode?>"><br>
+	<br>
     </td>
   </tr>
   <tr>
@@ -445,19 +440,11 @@ $str_statement = replaceSpecialCharacters($str_statement);
 
 </form>
 
-<? if (browser_detection( 'os' ) === 'lin') { ?>
 
 <script language="JavaScript">
 	 printerForm.submit();
 </script>
 
-<? } else { ?>
-
-<script language="JavaScript">
-	writedata();
-</script>
-
-<? } ?>
 
 </body>
 </html>
