@@ -2585,6 +2585,9 @@
 
 	echo execute_update(20231012, "ALTER TABLE `user_settings` ADD `bill_bank_transfer_bill_number` INT NOT NULL DEFAULT '0' AFTER `bill_upi_bill_number`;");
 
+	echo execute_update(20240209, "ALTER TABLE `user_settings` ADD `bill_scroll_billed_items` CHAR(1) NOT NULL DEFAULT 'Y' AFTER `bill_invoice_suffix`; ");
+
+
 	// echo execute_update();
 
 	echo "done.";

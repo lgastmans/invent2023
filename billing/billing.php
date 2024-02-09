@@ -111,6 +111,7 @@
 	$bill_fs_discount = 0;
 	$str_calc_tax_first = 'N'; 
 	$low_balance = 0;
+	$scroll_items = 'N';
 
 	if ($result->num_rows > 0) {
 
@@ -124,6 +125,7 @@
 		$str_adjusted_enabled = $obj->bill_adjusted_enabled;
 		$bill_fs_discount = $obj->bill_fs_discount;
 		$low_balance = $obj->bill_fs_low_balance;
+		$scroll_items = $obj->bill_scroll_billed_items;
 
 		//$str_calc_tax_first = $obj->calculate_tax_before_discount;
 
@@ -1057,6 +1059,7 @@
 
 			var save_clicked = false;
 			var can_view_status = <?php echo DOWNLOAD_ALL; ?>;
+			var scroll_items = '<?php echo $scroll_items; ?>';
 			var selected_bill_type = <?php echo $_SESSION['current_bill_type']; ?>;
 			var low_balance = <?php echo $low_balance; ?>;
 			var company_gstin = '<?php echo $company_gstin; ?>';
@@ -2401,7 +2404,7 @@
 				https://www.datatables.net/examples/basic_init/scroll_y_dynamic.html
 			*/
 			var billTable = $('#grid-products').DataTable({
-		        scrollY 		: '40vh',
+		        scrollY 		: (scroll_items == 'N') ? false : '40vh',
 		        scrollCollapse	: true,
 		        paging			: false,
 		        searching		: false,

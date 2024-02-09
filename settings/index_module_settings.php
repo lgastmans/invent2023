@@ -126,6 +126,11 @@
 				$str_print_tax_totals = 'Y';
 			else
 				$str_print_tax_totals = 'N';
+
+			if (IsSet($_POST['bill_scroll_billed_items']))
+				$bill_scroll_billed_items = 'Y';
+			else
+				$bill_scroll_billed_items = 'N';
 					
 			$int_default_discount = intval($_POST['default_discount']);
 
@@ -165,7 +170,8 @@
 					bill_edit_price = '".$str_edit_price."',
 					bill_adjusted_enabled = '".$str_adjusted_enabled."',
 					bill_print_tax_totals = '".$str_print_tax_totals."',
-					bill_fs_discount = '".$_POST['fs_default_discount']."'
+					bill_fs_discount = '".$_POST['fs_default_discount']."',
+					bill_scroll_billed_items = '".$bill_scroll_billed_items."'
 				WHERE storeroom_id = ".$_SESSION['int_current_storeroom']
 				);
 			}
@@ -485,14 +491,19 @@
 	    </td>
         </tr>
         <tr>
-	    <td colspan='2' class='normaltext'>
-		<input type="checkbox" name="bill_print_tax_totals" <? if ($qry_settings->FieldByName('bill_print_tax_totals') == 'Y') echo "checked";?> autocomplete="OFF"><font class="normaltext"> Print the tax totals on the bill</font>
-	    </td>
+		    <td colspan='2' class='normaltext'>
+				<input type="checkbox" name="bill_print_tax_totals" <? if ($qry_settings->FieldByName('bill_print_tax_totals') == 'Y') echo "checked";?> autocomplete="OFF"><font class="normaltext"> Print the tax totals on the bill</font>
+		    </td>
         </tr>
         <tr>
-	    <td colspan='2' class='normaltext'>
-		<input type="checkbox" name="display_abbreviation" <? if ($str_display_abbreviation == 'Y') echo "checked";?> autocomplete="OFF"><font class="normaltext"> Display the abbreviation of the supplier when billing</font>
-	    </td>
+	    	<td colspan='2' class='normaltext'>
+				<input type="checkbox" name="display_abbreviation" <? if ($str_display_abbreviation == 'Y') echo "checked";?> autocomplete="OFF"><font class="normaltext"> Display the abbreviation of the supplier when billing</font>
+	    	</td>
+        </tr>
+        <tr>
+		    <td colspan='2' class='normaltext'>
+				<input type="checkbox" name="bill_scroll_billed_items" <? if ($qry_settings->FieldByName('bill_scroll_billed_items') == 'Y') echo "checked";?> autocomplete="OFF"><font class="normaltext"> Enable vertical scroll when billing many items</font>
+	    	</td>
         </tr>
 
         <tr>
