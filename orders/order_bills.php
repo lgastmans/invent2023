@@ -69,7 +69,9 @@
 	
 	$arr_pending['Pending'] = 'Y';
 	$arr_pending['Delivered'] = 'N';
-	
+
+	$arr_payments['Zero'] = '0';
+
 	function get_mysql_date($int_day, $int_month, $int_year) {
 		$str_retval = $int_year."-".sprintf("%02d", $int_month)."-".sprintf("%02d", $int_day);
 		return $str_retval;
@@ -131,6 +133,12 @@
 		echo sprintf("%01.2f", $f_qry->FieldByName($f_field));
 	}
 	
+	function drawPayments($f_field, $f_qry) {
+		$qry = new Query("SELECT COUNT(id) AS total_payments FROM ".Yearalize('bill_payments')." WHERE bill_id = ".$f_qry->FieldByName($f_field));
+
+		echo $qry->FieldByName('total_payments');
+	}
+
 	function drawFSAccount($f_field, $f_qry) {
 		if ($f_qry->FieldByName('payment_type') == 2) {
 			echo $f_qry->FieldByName($f_field);
@@ -177,10 +185,10 @@
 	}
 
 	$grid = new DBGrid('order_bills');
-	$grid->str_web_root = "/svn_invent/";
 	$grid->addColumn("", "bill_id", "custom", false, 30, "drawCheck"); 
 	$grid->addColumn("Bill", "bill_number", "custom", true, 50, "drawBillNumber");
 	$grid->addColumn("Date", "date_created", "custom", false, 100, 'drawDate');
+	$grid->addColumn("Payments", "bill_id", "custom", false, 100, 'drawPayments');
 	$grid->addColumn("FS Account", "b.account_number", "custom", true, 70, 'drawFSAccount');
 	$grid->addColumn("FS Name", "b.account_name", "custom", true, 200, 'drawFSAccount');
 	$grid->addColumn("PT Account", "pt.account_number", "custom", true, 70, 'drawPTAccount');
@@ -220,6 +228,7 @@
 	FROM
 		".Monthalize('bill')." b
 	INNER JOIN user ON (user.user_id = b.user_id)
+		LEFT JOIN account_cc ac ON (ac.cc_id = b.CC_id)
 		LEFT JOIN account_pt pt ON (pt.account_id = b.CC_id)
 		LEFT JOIN customer c ON (c.id = b.CC_id)
 	");
@@ -243,7 +252,7 @@
 				$str_force = $_GET['force'];
 			
 			$str_retval = cancelOrderBill($_GET["delid"], $str_force);
-			//die($str_retval);
+			
 			$arr_retval = explode('|', $str_retval);
 			
 			$_SESSION['str_order_cancel_message'] = $arr_retval[1];
@@ -368,9 +377,9 @@
 			if (sNo>0) {
 				if (confirm("Are you sure you want to cancel this order bill?")) {
 					if (document.location.href.indexOf("?")<0) {
-						document.location = document.location.href+"?action=del&force=Y&delid="+sNo;
+						document.location = document.location.href+"?action=del&delid="+sNo;
 					} else {
-						document.location = document.location.href+"&action=del&force=Y&delid="+sNo;
+						document.location = document.location.href+"&action=del&delid="+sNo;
 					}
 				}
 			}
@@ -404,6 +413,15 @@
 			if (sNo > 0) {
 				myWin = window.open('order_mark_delivered_date.php?id='+sNo,'order_mark_delivered','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=400,height=150,top=0,left=0');
 				myWin.moveTo((screen.availWidth/2 - 400/2), (screen.availHeight/2 - 150/2));
+				myWin.focus();
+			}
+		}
+
+		function invoicePayments() {
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open('invoice_payment.php?id='+sNo, 'invoice_payment','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=800,height=450,top=0,left=0');
+				myWin.moveTo((screen.availWidth/2 - 800/2), (screen.availHeight/2 - 450/2));
 				myWin.focus();
 			}
 		}
@@ -504,6 +522,35 @@
 				alert('Select a bill to print');
 		}
 
+		function exportInvoice() {
+			aFilename = '<?echo $str_invoice_filename;?>';
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open("export_invoice.php?id="+sNo, 'printwin', 'width=800,height=500,resizable=yes,menubar=yes'); 
+			}
+			else
+				alert('Select a bill to print');
+		}
+
+		function exportCSV() {
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open("export_csv.php?id="+sNo, 'export_csv', 'width=800,height=500,resizable=yes,menubar=yes'); 
+			}
+			else
+				alert('Select a purchase order');
+		}
+
+		function exportMantra() {
+			aFilename = '<?echo $str_invoice_filename;?>';
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open("export_invoice_mantra.php?id="+sNo, 'printmantra', 'width=800,height=500,resizable=yes,menubar=yes'); 
+			}
+			else
+				alert('Select a bill to print');
+		}
+
 		function printInternalOrder() {
 			sNo = getSelectedSerialNumber();
 			if (sNo > 0) {
@@ -522,6 +569,17 @@
 			else
 				alert('Select an order to print');
 		}
+
+		function exportProforma() {
+			aFilename = '<?echo $str_invoice_filename;?>';
+			sNo = getSelectedSerialNumber();
+			if (sNo > 0) {
+				myWin = window.open("export_proforma.php?id="+sNo, 'printwin', 'width=800,height=500,resizable=yes,menubar=yes'); 
+			}
+			else
+				alert('Select a bill to print');
+		}
+
 	</script>
 
 </head>
@@ -530,7 +588,7 @@
 <?
 	$qry_clients = new Query("SELECT * FROM module WHERE module_id = 9 AND active='Y'");
 	$clients_active = ($qry_clients->RowCount() > 0);
-	
+
 	$grid_form = new GridForm();
 	$grid->prepareQuery();
 	$grid_form->setGrid($grid);
@@ -578,15 +636,29 @@
 		$grid_form->addControl('filter5','center');
 	}
 	else {
+		$grid_form->addButton('Invoice Payments', '../images/money_add.png', 'invoicePayments', 'left');
+		$grid_form->addHTML('&nbsp;', 'left');
 		$grid_form->addButton('Print Invoice', '../images/printer.png', 'printInvoice', 'left');
 		$grid_form->addHTML('&nbsp;', 'left');
+		$grid_form->addButton('Export Invoice to PDF', '../images/pdf-icon.png', 'exportInvoice', 'left');
+		$grid_form->addHTML('&nbsp;', 'left');
+		$grid_form->addButton('Export Mantra Invoice to PDF', '../images/pdf-icon.png', 'exportMantra', 'left');
+		$grid_form->addHTML('&nbsp;', 'left');
 		$grid_form->addButton('Print proforma invoice for the selected order', '../images/printer.png', "printProformaInvoice()", 'left');
+		$grid_form->addHTML('&nbsp;', 'left');
+		$grid_form->addButton('Export Proforma to PDF', '../images/pdf-icon.png', 'exportProforma', 'left');
+		$grid_form->addHTML('&nbsp;', 'left');
+		$grid_form->addButton('CSV', "../images/csv_export.png", 'exportCSV()', 'left');
 		$grid_form->addHTML('&nbsp;', 'left');
 		$grid_form->addButton('Print Internal Order', '../images/printer.png', 'printInternalOrder', 'left');
 		$grid->addUniqueFilter('is_pending', 'equals', '', 'string');
 		
 		$grid_form->addHTML('&nbsp;<font style=\"font-size:12px\">Status:&nbsp;</font>', 'center');
 		$grid_form->addSelectionControl('filter2','is_pending', $arr_pending, 'center');
+
+		//$grid_form->addHTML('&nbsp;<font style=\"font-size:12px\">Payments:&nbsp;</font>', 'center');
+		//$grid_form->addSelectionControl('filter3','total_payments', $arr_payments, 'center');
+
 		$grid_form->addHTML('&nbsp;', 'center');
 		$grid_form->addControl('filter3','center');
 	}
