@@ -297,11 +297,25 @@
 	//$fmt = new NumberFormatter( 'en_IN', NumberFormatter::CURRENCY );
 	//$flt_total = $fmt->formatCurrency($flt_total, "Rs");
 
+	$warn_insufficient_balance = "_NONE";
+	if (DOWNLOAD_ALL == 1) {
+		if ($flt_total > $_SESSION['fs_account_balance']) {
+			$warn_insufficient_balance = "_WARN";
+		}
+	}
+
+
 	$_SESSION['bill_total'] = number_format($flt_total,2,'.','');
 
 	//$flt_total = money_format('%i', $flt_total);
 
-	$ret = array("data"=>$billdata, "billtotal" => number_format($flt_total,2,'.',''), "num_rows" => count($billdata), "total_qty" => $total_qty);
+	$ret = array(
+		"data"=>$billdata, 
+		"billtotal" => number_format($flt_total,2,'.',''), 
+		"num_rows" => count($billdata), 
+		"total_qty" => $total_qty,
+		"warn_insufficient_balance" => $warn_insufficient_balance
+	);
 
 	echo json_encode($ret);
 

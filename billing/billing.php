@@ -1147,7 +1147,7 @@
 
 					billTable.ajax.reload();
 
-					updateFooter( msg.billtotal, msg.num_rows, msg.total_qty);
+					updateFooter( msg.billtotal, msg.num_rows, msg.total_qty, msg.warn_insufficient_balance);
 
 				});
 
@@ -1465,8 +1465,8 @@
 									$("#result-container-account-status").text('Balance available');
 									$("#result-container-account-status").css("color", "green");
 									if (can_view_status > 0) {
-										$("#result-container-account-balance").text(accounting.formatMoney(amt, "Rs ", 2, ",", "."));
-										$("#result-container-account-balance").css("color", "black");
+										//$("#result-container-account-balance").text(accounting.formatMoney(amt, "Rs ", 2, ",", "."));
+										//$("#result-container-account-balance").css("color", "black");
 									}
 									else {
 										if ((amt <= low_balance) && (amt != -1)) {
@@ -1877,7 +1877,7 @@
 
 								billTable.ajax.reload();
 
-								updateFooter( msg.billtotal, msg.num_rows, msg.total_qty );
+								updateFooter( msg.billtotal, msg.num_rows, msg.total_qty, msg.warn_insufficient_balance );
 
 							});
 						}
@@ -2085,7 +2085,7 @@
 
 											billTable.ajax.reload();
 
-											updateFooter( msg2.billtotal, msg2.num_rows, msg2.total_qty );
+											updateFooter( msg2.billtotal, msg2.num_rows, msg2.total_qty, msg2.warn_insufficient_balance );
 
 										});
 									}
@@ -2115,7 +2115,7 @@
 			}
 
 			
-			updateFooter = function( data='', rows='', total_qty='' ) {
+			updateFooter = function( data='', rows='', total_qty='', warn_insufficient_balance='' ) {
 
 				$("#bill_total").html(accounting.formatMoney(data, "", 2, ",", "."));
 
@@ -2130,6 +2130,15 @@
 				promotion = accounting.unformat(promotion, ".");
 
 				balance = total - promotion;
+
+				if (warn_insufficient_balance == '_WARN') {
+					$("#result-container-account-status").text('Insufficient Balance');
+					$("#result-container-account-status").css("color", "red");
+				}
+				else {
+					$("#result-container-account-status").text('Balance available');
+					$("#result-container-account-status").css("color", "green");					
+				}
 
 				if (promotion > 0) {
 					$(" #row1_promotion ").css("display","block");
@@ -2870,7 +2879,7 @@
 
 						billTable.ajax.reload();
 
-						updateFooter( msg3.billtotal, msg3.num_rows, msg3.total_qty);
+						updateFooter( msg3.billtotal, msg3.num_rows, msg3.total_qty, msg3.warn_insufficient_balance);
 
 					})
 					.always( function() {
