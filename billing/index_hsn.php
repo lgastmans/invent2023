@@ -51,8 +51,9 @@
 
 	<div class="container">
 
-
-		<div id="info-board" class="jumbotron">
+		<button type="button" class="btn btn-primary" id="btn-load">Load</button>
+		
+		<div id="info-board" class="jumbotron" style="display:none;">
 			<p class="text-center">
 				<button class="btn btn-lg btn-warning">
 					<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing...
@@ -94,6 +95,10 @@
                 columns,
                 str;
 
+            $("#btn-load").on("click", function() {
+            	
+            	$(" #info-board ").show();
+
 				$.ajax({
 					method 	: "POST",
 					url 	: "get_data_hsn.php",
@@ -101,26 +106,17 @@
 				})
 				.done ( function( msg ) {
 
-					$(" #info-board ").hide();
+					setTimeout('$(" #info-board ").hide();', 2000);
 
 					data = JSON.parse(msg);
 
+					
 	                // Iterate each column and print table headers for Datatables
 	                $.each(data.columns, function (k, colObj) {
 	                    str = '<th>' + colObj.name + '</th>';
 	                    $(str).appendTo(tableName+'>thead>tr');
 	                    $(str).appendTo(tableName+'>tfoot>tr');
 	                });
-
-	                // Add some Render transformations to Columns
-	                // Not a good practice to add any of this in API/ Json side
-	                /*
-	                data.columns[3].render = function (data, type, row) {
-	                	return '<h4>' + data + '</h4>';
-	                    //return accounting.formatMoney(data, "", 2, ",", ".");
-	                }
-	                */
-	                
 
 					$(tableName).dataTable({
 	                    "data"			: data.data,
@@ -151,9 +147,10 @@
 							"sEmptyTable": "Zero discrepancies",
 						}
 	                });
+	                
 
 				});
-
+			})
 		});
 
 	</script>
