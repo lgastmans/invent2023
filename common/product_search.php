@@ -98,7 +98,12 @@
 		function selectItem(aFormname, aFieldname) {
 			oSelectItem = document.product_search.productList;
 			if (oSelectItem.selectedIndex != -1) {
-				if (window.opener && !window.opener.closed) {
+				
+				var el = window.opener.document.getElementById('product_code')
+				if (el) {				
+					el.value = oSelectItem.options[oSelectItem.selectedIndex].value;
+				}
+				else if (window.opener && !window.opener.closed) {
 					oTextBoxField = eval('window.opener.document.'+aFormname+'.'+aFieldname);
 					oTextBoxField.value = oSelectItem.options[oSelectItem.selectedIndex].value;
 					oTextBoxField.select();

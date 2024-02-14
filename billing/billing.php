@@ -1080,7 +1080,7 @@
 
 			
 			$(" #btn-product-search ").on("click", function(evt) {
-				myWin = window.open("../common/product_search.php?formname=billing_enter&fieldname=code",'searchProduct','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=600,top=0');
+				myWin = window.open("../common/product_search.php?formname=billing&fieldname=code",'searchProduct','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=600,top=0');
 				myWin.moveTo((screen.availWidth/2 - 400/2), (screen.availHeight/2 - 600/2));
 				myWin.focus();
 			})
