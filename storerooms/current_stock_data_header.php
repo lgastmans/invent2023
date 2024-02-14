@@ -15,7 +15,7 @@
         <tr bgcolor='lightgrey'>
             <td width='60px' align='right' class='normaltext'><b>Code</b></td>
             <td width='250px' class='normaltext'><b>Description</b></td>
-            <td width='100px' class='normaltext'><b>Category</b></td>
+            <td width='275px' class='normaltext'><b>Category</b></td>
             <td width='100px' align='center' class='normaltext'><b>Stock</b></td>
             <td width='35px'>&nbsp;</td>
             <td width='100px' align='center' class='normaltext'><b>Buying Price</b></td>

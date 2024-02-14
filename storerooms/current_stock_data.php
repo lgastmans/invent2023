@@ -234,7 +234,7 @@
 				echo "<tr bgcolor='$str_color'>";
 				echo "<td width='60px' align='right' class='normaltext'>".$qry->FieldByName('product_code')."</td>";
 				echo "<td width='250px' class='normaltext'>".$qry->FieldByName('product_description')."</td>";
-				echo "<td width='100px' class='normaltext'>".$qry->FieldByName('category_description')."</td>";
+				echo "<td width='275px' class='normaltext'>".$qry->FieldByName('category_description')."</td>";
 				echo "<td width='100px' align='right' class='normaltext'>".number_format($qry->FieldByName('current_stock'), 2, '.', '')."</td>";
 				echo "<td width='35px' class='normaltext'>".$qry->FieldByName('measurement_unit')."</td>";
 				echo "<td width='100px' align='right' class='normaltext'>".$flt_buying_price."</td>";
