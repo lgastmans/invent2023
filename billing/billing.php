@@ -388,6 +388,7 @@
 		var can_view_status = <? echo DOWNLOAD_ALL; ?>;
 
 
+
 	</script>
 
 </head>
@@ -759,14 +760,15 @@
 				<div class="col-md-2">
 
  					<div class="typeahead__container">
-						<label>Product</label>
+						<label>Product&nbsp;<a href="#" id="btn-product-search"><img src="../images/find.png" border="0" title="Search" alt="Search"></a></label>
 						<div class="typeahead__field">
 							<span class="typeahead__query">
 								<input class="typeahead-product" id="product_code" name="product[query]" type="search" placeholder="Search" autocomplete="off">
+
 							</span>
 						</div>
 					</div>
-
+					
 				</div>
 
 
@@ -1075,6 +1077,13 @@
 			var low_balance = <?php echo $low_balance; ?>;
 			var company_gstin = '<?php echo $company_gstin; ?>';
 			var gstin_is_same = '<?php echo $same_gstin; ?>';
+
+			
+			$(" #btn-product-search ").on("click", function(evt) {
+				myWin = window.open("../common/product_search.php?formname=billing_enter&fieldname=code",'searchProduct','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=600,top=0');
+				myWin.moveTo((screen.availWidth/2 - 400/2), (screen.availHeight/2 - 600/2));
+				myWin.focus();
+			})
 
 			/*
 				Bill Type dropdown
