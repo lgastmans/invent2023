@@ -124,6 +124,28 @@
 	}
 
 
+	// clear the session variables related to the billing
+	function clear_bill_variables() {
+		$_SESSION["bill_id"] = -1;
+		$_SESSION['bill_number'] = '';
+		unset($_SESSION["arr_total_qty"]);
+		unset($_SESSION["arr_item_batches"]);
+		/*
+		if (IsSet($_POST["bill_type"]))
+			$_SESSION['current_bill_type'] = $_POST["bill_type"];
+		else
+			$_SESSION['current_bill_type'] = 1;
+		*/
+		$_SESSION['current_bill_day'] = date('j');
+		$_SESSION['current_account_number'] = "";
+		$_SESSION['current_account_name'] = "";
+		$_SESSION['bill_total'] = 0;
+		$_SESSION['sales_promotion'] = 0;
+		$_SESSION['fs_account_balance'] = 0;
+		$_SESSION['bill_table_ref'] = '';
+
+		$_SESSION['save_counter'] = 0;
+	}
 
 
 $err_status = 1;
@@ -426,9 +448,18 @@ if (IsSet($_POST['action'])) {
 	//				echo $str_query;
 				$result_set->Query($str_query);
 				if ($result_set->b_error == true) {
+					/**
+					 * Feb 2024, this version (2023) of the software was installed at PTPS
+					 * They started getting duplicate bills, and therefore a Unique index
+					 * on the columns `storeroom_id`, `payment_type`, `bill_number` was created
+					 * if an error occurs saving the bill, reset/refresh the bill session variables
+					 * This refresh is done in billing.php
+					 */
+					clear_bill_variables();
+
 					$bill_saved = 0;
-					$str_message = 'An error occurred trying to save the bill. '.$_SESSION['int_user_id'];
-					$sql_string = $str_query;
+					$str_message = 'An error occurred trying to save the bill.';
+					$sql_string = $result_set->err; //$str_query;
 				}
 				$int_bill_id = $result_set->getInsertedID();
 			}
@@ -1087,27 +1118,8 @@ if ($can_save == 1) {
 
 		echo json_encode( array("bill_id"=>0, "message"=>$str_message, "sql"=>$sql_string ));
 	}
-	
-	// clear the session variables related to the billing
-	$_SESSION["bill_id"] = -1;
-	$_SESSION['bill_number'] = '';
-	unset($_SESSION["arr_total_qty"]);
-	unset($_SESSION["arr_item_batches"]);
-	/*
-	if (IsSet($_POST["bill_type"]))
-		$_SESSION['current_bill_type'] = $_POST["bill_type"];
-	else
-		$_SESSION['current_bill_type'] = 1;
-	*/
-	$_SESSION['current_bill_day'] = date('j');
-	$_SESSION['current_account_number'] = "";
-	$_SESSION['current_account_name'] = "";
-	$_SESSION['bill_total'] = 0;
-	$_SESSION['sales_promotion'] = 0;
-	$_SESSION['fs_account_balance'] = 0;
-	$_SESSION['bill_table_ref'] = '';
 
-	$_SESSION['save_counter'] = 0;
+	clear_bill_variables();
 
 } // end of can_save
 

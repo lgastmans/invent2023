@@ -90,6 +90,7 @@
 		  <li role="presentation" <?php echo ($action=='prices' ? 'class="active"' : ''); ?>><a id="prices" href="#">Prices</a></li>
 		  <li role="presentation" <?php echo ($action=='batches' ? 'class="active"' : ''); ?>><a id="batches" href="#">Batches</a></li>
 		  <li role="presentation" <?php echo ($action=='stock' ? 'class="active"' : ''); ?>><a id="stock" href="#">Stock</a></li>
+		  <li role="presentation" <?php echo ($action=='billing' ? 'class="active"' : ''); ?>><a id="billing" href="#">Billing</a></li>
 		</ul>
 
 <!-- 		    <div class="col-md-12 text-center">
@@ -219,6 +220,17 @@
 	<?php } ?>
 
 
+    <!--  billing  -->
+
+	<?php if ($action=='billing') { ?>
+		
+		<ul>
+			<li>
+				<a class='settings_link' id="billing_duplicates" href='#'>Check and download list of duplicate bills</a>
+			</li>
+		</ul>
+
+	<?php } ?>
 
 
 
@@ -232,28 +244,36 @@
 
 		$(document).ready(function(){
 
-			$("#batches").click(function() {
-				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=batches';
+			$("#fs").click(function() {
+				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=fs';
 			});
 
 			$("#prices").click(function() {
 				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=prices';
 			});
 
-			$("#prices_global").click(function() {
-				if (confirm('Are you sure?'))
-					parent.window.frames["content"].location.href = 'verification/stock_setall_global_price.php';
+			$("#batches").click(function() {
+				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=batches';
 			});
 
 			$("#stock").click(function() {
 				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=stock';
 			});
 
-
-			$("#fs").click(function() {
-				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=fs';
+			$("#billing").click(function() {
+				parent.window.frames["content"].location.href = 'index_verification_tools.php?action=billing';
 			});
+
+
 			
+			$("#billing_duplicates").click(function() {
+				parent.window.frames["content"].location.href = 'verification/billing_check_duplicates.php';
+			});
+
+			$("#prices_global").click(function() {
+				if (confirm('Are you sure?'))
+					parent.window.frames["content"].location.href = 'verification/stock_setall_global_price.php';
+			});
 
 			$("#fs_duplicate").click(function() {
 				parent.window.frames["content"].location.href = 'verification/fs_duplicate_transfers.php';

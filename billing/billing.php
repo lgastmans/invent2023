@@ -205,10 +205,21 @@
 
 
 	function current_bill_type($arr) {
+
 		foreach ($arr as $value) {
-			if ($value['active'])
+			if (($value['active']) && ($value['enabled']))
 				return $value['description'];
 		}
+		/*
+			if none found, initialize on the first enabled entry
+		*/
+		foreach ($arr as $key=>$value) {
+			if ($value['enabled']) {
+				$_SESSION['current_bill_type'] = $key;
+				return $value['description'];
+			}
+		}
+
 	}
 
 
@@ -2483,6 +2494,8 @@
 
 							var obj = JSON.parse( msg );
 
+console.log(msg);
+
 							if (obj.bill_id > 0) {
 
 								$.ajax({
@@ -2531,6 +2544,17 @@
 								$(" #bill_alert ").removeClass( "alert-warning" ).addClass( "alert-danger" );
 								$(" #bill_alert ").show();
 
+								/**
+								 * if duplicate bill then reset/refresh
+								 * see bill_save.php
+								 */
+								if (obj.sql.includes('Duplicate')) {
+									var url = window.location.href.split("?")[0];
+									setTimeout(function() {
+											window.location = url + '?action=clear_bill';
+										}, 2000);
+								}
+								
 								/*
 									if the bill saved is type FS, and if it was insufficient funds
 									then enable save button again so that it can be saved
@@ -2545,7 +2569,6 @@
 									setTimeout(function() {
 								        $(" #bill_alert ").fadeTo(2000, 500).hide();
 								    }, 2000);
-
 								}
 							}
 						});
