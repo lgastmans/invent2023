@@ -102,6 +102,7 @@
 				var el = window.opener.document.getElementById('product_code')
 				if (el) {				
 					el.value = oSelectItem.options[oSelectItem.selectedIndex].value;
+					el.focus();
 				}
 				else if (window.opener && !window.opener.closed) {
 					oTextBoxField = eval('window.opener.document.'+aFormname+'.'+aFieldname);
