@@ -272,8 +272,44 @@
 				}
 		    });
 
+			// Handle onblur of input field
+			$('#grid-products tbody').on('blur', 'input[type="text"]', function(e) {
+				var row = $(this).closest('tr');
+
+				let isSelected = row.attr('class').indexOf('selected');
+
+				// Get row data
+				var data = billTable.row(row).data();
+
+				var rowId = data[0];
+				var rowStock = $(this).val();
+
+				// Determine whether row ID is in the list of selected row IDs 
+				//var index = $.inArray(rowId, rows_selected);
+				var index=-1;
+				for( var i = 0, len = rows_selected.length; i < len; i++ ) {
+				    if( rows_selected[i][0] === rowId) {
+				        index = i; //rows_selected[i];
+				        break;
+				    }
+				}
+
+				/**
+				 * If checkbox is checked and row ID is in list of selected row IDs
+				 * then update the stock entry of the array
+				 */
+				if((isSelected>=0) && index !== -1){
+					//rows_selected.push(rowId);  
+					rows_selected[index][1] = rowStock;
+				}
+
+				// Prevent click event from propagating to parent
+				e.stopPropagation();				
+			})
+
 			// Handle click on checkbox
 			$('#grid-products tbody').on('click', 'input[type="checkbox"]', function(e){
+				
 				var $row = $(this).closest('tr');
 
 				// Get row data
@@ -357,19 +393,15 @@
 				})
 				.done ( function( msg ) {
 
-					//setTimeout('$(" #jumbotron ").hide();', 3000);
+					console.log('update stock ', msg)
+
 					setTimeout(function() {
 							$(" #jumbotron ").hide();
 							billTable.ajax.reload();
 						}, 3000
 					);
 					
-					//billTable.ajax.reload();
-
-					console.log(msg);
-
 				});
-
 			});
 
 
