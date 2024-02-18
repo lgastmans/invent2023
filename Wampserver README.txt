@@ -78,7 +78,7 @@ REG_DWORD	0000001e (hex)
 MaxUserPort
 REG_DWORD	0000fffe (hex)
 
-TxpNumConnections
+TcpNumConnections
 REG_DWORD	00fffffe (hex)
 
 TcpMaxDataRetransmissions
