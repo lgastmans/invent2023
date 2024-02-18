@@ -2587,8 +2587,10 @@
 
 	echo execute_update(20240209, "ALTER TABLE `user_settings` ADD `bill_scroll_billed_items` CHAR(1) NOT NULL DEFAULT 'Y' AFTER `bill_invoice_suffix`; ");
 
+	echo execute_update(20240218, "ALTER TABLE `ptps`.`bill_2024_2` ADD UNIQUE  (`storeroom_id`, `payment_type`, `bill_number`);");
 
 	// echo execute_update();
+
 
 	echo "done.";
 
