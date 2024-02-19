@@ -38,24 +38,32 @@
 
 	<div class="container">
 
-
-		Supplier : 
-
 		<div class="btn-group" id="supplier" data-toggle="buttons">
 			
-			<label class="btn btn-primary btn-xs active">
-				<input type="radio" name="direct" value="N" id="btn-direct" autocomplete="off" checked> Direct
+			<label class="btn btn-primary btn-md active">
+				<input type="radio" name="direct" value="N" id="btn-direct" autocomplete="off" checked> Direct Supplier
 			</label>
 
-			<label class="btn btn-primary btn-xs">
-				<input type="radio" name="consignment" value="Y" id="btn-consignment" autocomplete="off"> Consignment
+			<label class="btn btn-primary btn-md">
+				<input type="radio" name="consignment" value="Y" id="btn-consignment" autocomplete="off"> Consignment Supplier
 			</label>
 
 		</div>
 
+		&nbsp;&nbsp;
+		<button type="button" class="btn btn-warning" id="btn-load">Load</button>
 
 		&nbsp;
-		<a href="#" id="btn-print"><img src="../images/printer.png" border="0" onmouseover="javascript:mouseGoesOver(this, '../images/printer_active.png')" onmouseout="javascript:mouseGoesOut(this, '../images/printer.png')"></a>
+		<button type="button" class="btn btn-success" id="btn-print"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>
+
+		&nbsp;
+		<button type="button" class="btn btn-success" id="btn-export"><span class="glyphicon glyphicon-save-file"></span>&nbsp;Export</button>
+
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="display_gstin" id="display_gstin"> Display GSTIN
+			</label>
+		</div>		
 
 	</div>
 
@@ -78,10 +86,24 @@
 				parent.frames["content"].document.location = "statement_totals.php?supplier_type=Y";
 			});
 
+			$('#btn-load').on('click', function() {
+				if ($("#display_gstin").is(":checked"))
+					parent.frames['content'].document.location = "statement_totals.php?load=Y&display_gstin=Y";
+				else
+					parent.frames['content'].document.location = "statement_totals.php?load=Y&display_gstin=N";
+			})
+
 			$('#btn-print').on('click', function () {
 				var sel =  $('#supplier label.active input ').val();
 				window.open("statement_totals_print.php?supplier_type="+sel, "print_window");
 			});
+
+			$('#btn-export').on('click', function() {
+				if ($("#display_gstin").is(":checked"))
+					parent.frames['content'].document.location = "statement_totals_export.php?load=Y&display_gstin=Y";
+				else
+					parent.frames['content'].document.location = "statement_totals_export.php?load=Y&display_gstin=N";
+			})
 		});
 
 	</script>
