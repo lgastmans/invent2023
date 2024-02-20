@@ -20,6 +20,9 @@ require_once($str_application_path."include/session.inc.php");
 require_once($str_application_path."include/db.inc.php");
 
 	function get_bill_number($bill_type, $increment='Y') {
+
+		$is_recycled_number = false;
+
 		if ($increment == 'Y') {
 			//=================================================
 			// check whether there are bills in the recycle bin
@@ -33,6 +36,9 @@ require_once($str_application_path."include/db.inc.php");
 			if ($result_set->RowCount() > 0) {
 				$int_bill_number = $result_set->FieldByName('bill_number');
 				
+				$is_recycled_number = check_recycled_number($int_bill_number, $bt);
+				
+				/*
 				$result_set->Query("
 					DELETE FROM recycled_bill_numbers
 					WHERE bill_number = ".$int_bill_number."
@@ -41,6 +47,7 @@ require_once($str_application_path."include/db.inc.php");
 				");
 				
 				return $int_bill_number;
+				*/
 			}
 		}
 		else
@@ -49,196 +56,198 @@ require_once($str_application_path."include/db.inc.php");
 		//=========================
 		// get the last bill number
 		//-------------------------
-		if (BILL_USE_GLOBAL == 'Y') {
+		if (!$is_recycled_number) {
+			if (BILL_USE_GLOBAL == 'Y') {
 
-			$str_query = "SELECT bill_global_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
-			
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_global_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$str_query = "SELECT bill_global_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
+				
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_global_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_global_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_global_bill_number') -1;
+				}
+				
+				$result_set->Query("UPDATE user_settings SET bill_global_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_global_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_global_bill_number') -1;
+			elseif ($bill_type == BILL_CASH) {
+				$str_query = "SELECT bill_cash_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
+				
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_cash_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_cash_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_cash_bill_number') -1;
+				}
+				
+				$result_set->Query("UPDATE user_settings SET bill_cash_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			
-			$result_set->Query("UPDATE user_settings SET bill_global_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		elseif ($bill_type == BILL_CASH) {
-			$str_query = "SELECT bill_cash_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
-			
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_cash_bill_number') +1;
-				else
-					$int_bill_number = 1;
-			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_cash_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_cash_bill_number') -1;
-			}
-			
-			$result_set->Query("UPDATE user_settings SET bill_cash_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_ACCOUNT) {
-			$str_query = "SELECT bill_fs_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+			else if ($bill_type == BILL_ACCOUNT) {
+				$str_query = "SELECT bill_fs_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_fs_bill_number') +1;
-				else
-					$int_bill_number = 1;
-			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_fs_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_fs_bill_number') -1;
-			}
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_fs_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_fs_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_fs_bill_number') -1;
+				}
 
-			$result_set->Query("UPDATE user_settings SET bill_fs_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_PT_ACCOUNT) {
-			$str_query = "SELECT bill_pt_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
-
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_pt_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_fs_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_pt_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_pt_bill_number') -1;
-			}
+			else if ($bill_type == BILL_PT_ACCOUNT) {
+				$str_query = "SELECT bill_pt_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_pt_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_CREDIT_CARD) {
-			$str_query = "SELECT bill_creditcard_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_pt_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_pt_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_pt_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_creditcard_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_pt_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_creditcard_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_creditcard_bill_number') -1;
-			}
+			else if ($bill_type == BILL_CREDIT_CARD) {
+				$str_query = "SELECT bill_creditcard_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_creditcard_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_CHEQUE) {
-			$str_query = "SELECT bill_cheque_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_creditcard_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_creditcard_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_creditcard_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_cheque_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_creditcard_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_cheque_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_cheque_bill_number') -1;
-			}
+			else if ($bill_type == BILL_CHEQUE) {
+				$str_query = "SELECT bill_cheque_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_cheque_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_TRANSFER_GOOD) {
-			$str_query = "SELECT bill_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_cheque_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_cheque_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_cheque_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_transfer_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_cheque_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_transfer_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_transfer_bill_number') -1;
-			}
+			else if ($bill_type == BILL_TRANSFER_GOOD) {
+				$str_query = "SELECT bill_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_transfer_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_AUROCARD) {
-			$str_query = "SELECT bill_aurocard_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_transfer_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_transfer_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_transfer_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_aurocard_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_transfer_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_aurocard_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_aurocard_bill_number') -1;
-			}
+			else if ($bill_type == BILL_AUROCARD) {
+				$str_query = "SELECT bill_aurocard_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_aurocard_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_UPI) {
-			$str_query = "SELECT bill_upi_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_aurocard_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_aurocard_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_aurocard_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_upi_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_aurocard_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_upi_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_upi_bill_number') -1;
-			}
+			else if ($bill_type == BILL_UPI) {
+				$str_query = "SELECT bill_upi_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_upi_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
-		}
-		else if ($bill_type == BILL_BANK_TRANSFER) {
-			$str_query = "SELECT bill_bank_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
-			$result_set->Query($str_query);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_upi_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_upi_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_upi_bill_number') -1;
+				}
 
-			if ($increment == 'Y') {
-				if ($result_set->RowCount() > 0)
-					$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') +1;
-				else
-					$int_bill_number = 1;
+				$result_set->Query("UPDATE user_settings SET bill_upi_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
 			}
-			else {
-				$int_bill_number = 0;
-				if ($result_set->RowCount() > 0)
-					if ($result_set->FieldByName('bill_bank_transfer_bill_number') > 0)
-						$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') -1;
-			}
+			else if ($bill_type == BILL_BANK_TRANSFER) {
+				$str_query = "SELECT bill_bank_transfer_bill_number FROM user_settings WHERE storeroom_id = ".$_SESSION['int_current_storeroom'];
+				$result_set->Query($str_query);
 
-			$result_set->Query("UPDATE user_settings SET bill_bank_transfer_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
+				if ($increment == 'Y') {
+					if ($result_set->RowCount() > 0)
+						$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') +1;
+					else
+						$int_bill_number = 1;
+				}
+				else {
+					$int_bill_number = 0;
+					if ($result_set->RowCount() > 0)
+						if ($result_set->FieldByName('bill_bank_transfer_bill_number') > 0)
+							$int_bill_number = $result_set->FieldByName('bill_bank_transfer_bill_number') -1;
+				}
+
+				$result_set->Query("UPDATE user_settings SET bill_bank_transfer_bill_number = ".$int_bill_number." WHERE storeroom_id = ".$_SESSION['int_current_storeroom']);
+			}
 		}
 
 		return $int_bill_number;
@@ -251,16 +260,25 @@ require_once($str_application_path."include/db.inc.php");
 
 		$bt = $bill_type;
 
-		$result_set = new Query("
+		$str = "
 			SELECT *
 			FROM recycled_bill_numbers
 			WHERE bill_type = $bt
-			ORDER BY bill_number
-		");
+			ORDER BY bill_number";
+		$result_set = new Query($str);
+
+		$is_recycled_number = false;
+
 		if ($result_set->RowCount() > 0) {
 			$int_bill_number = $result_set->FieldByName('bill_number');
+
+			/**
+			 * ensure the bill number does not already exist
+			 */
+			$is_recycled_number = check_recycled_number($int_bill_number, $bt);
 		}
-		else {
+
+		if ($is_recycled_number === false) {
 			//=========================
 			// get the last bill number
             //-------------------------
@@ -360,6 +378,7 @@ require_once($str_application_path."include/db.inc.php");
 	}
 
 	function recycle_bill_number($int_bill_number, $bill_type) {
+		
 		$qry = new Query("
 			INSERT INTO recycled_bill_numbers
 			(
@@ -385,4 +404,27 @@ require_once($str_application_path."include/db.inc.php");
 			die("nil");
 		}
 	}
+
+
+	function check_recycled_number($bill_number, $bill_type) {
+
+        /**
+         * if the bill number is found, remove it and return false
+         * else return true
+         */
+		$str_query = "
+			SELECT bill_number 
+			FROM ".Monthalize('bill')."  
+			WHERE (bill_number = $bill_number)
+				AND (storeroom_id = ".$_SESSION['int_current_storeroom'].")
+				AND (payment_type = $bill_type)";
+		$result_set = new Query($str_query);
+
+		if ($result_set->RowCount() > 0) {
+			$result_set->Query("DELETE FROM recycled_bill_numbers WHERE bill_number = ".$bill_number." AND bill_type = ".$bill_type." LIMIT 1");
+			return false;
+		}
+		else return true;
+	}
+
 ?>
