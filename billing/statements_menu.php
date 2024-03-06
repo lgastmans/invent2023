@@ -150,6 +150,7 @@
 <font class='normaltext'>
 	Supplier :
 	<select name='select_supplier' class='select_400'>
+		<option value="__ALL">All</option>
 		<?
 			for ($i=1; $i<=$qry_supplier->RowCount(); $i++) {
 				if ($qry_supplier->FieldByName('supplier_id') == $_SESSION['global_current_supplier_id'])

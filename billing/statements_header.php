@@ -21,6 +21,9 @@
 	?>
 
 		<tr class='normaltext_bold' bgcolor='lightgrey'>
+			<?php if ($_GET['supplier_id']=='__ALL') { ?>
+				<td width='150px'>Supplier</td>
+			<?php } ?>
 			<td width='50px'>Date</td>
 			<td width='60px'>Bill</td>
 			<td width='60px'>Batch</td>

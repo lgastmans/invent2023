@@ -13,6 +13,7 @@
 	if (IsSet($_GET['filter_day']) && ($_GET['filter_day']!='ALL'))
 		$where_filter_day = "AND (DAYOFMONTH(b.date_created)=".$_GET['filter_day'].") ";
 
+
 	$_SESSION["int_bills_menu_selected"] = 8;
 
 	$sql_settings = new Query("
@@ -90,9 +91,22 @@
 		$flt_percent_3 = $qry_supplier->FieldByName('commission_percent_3');
 	}
 	
-	if ($str_format == 'DATE_BILL')
+	if ($str_format == 'DATE_BILL') {
+
+		$select_clause = '';
+		$from_clause = '';
+		$where_clause = 'AND (sp.product_id = bi.product_id)';
+		$where_clause2 = "AND (sb.supplier_id = ".$int_supplier_id.")";
+		if ($_GET['supplier_id']=='__ALL') {
+			$select_clause = 'ss.supplier_name, ';
+			$from_clause = ', stock_supplier ss';
+			$where_clause = 'AND ((sp.product_id = bi.product_id) AND (sp.supplier_id = ss.supplier_id))';
+			$where_clause2 = '';
+			$str_order_by = "ss.supplier_name, ".$str_order_by;
+		}
+
 		$str_query = "
-			SELECT DAYOFMONTH(b.date_created) AS date_created, b.bill_number, b.is_debit_bill,
+			SELECT $select_clause DAYOFMONTH(b.date_created) AS date_created, b.bill_number, b.is_debit_bill,
 				sp.product_code, sp.product_id,
 				bi.product_description,
 				bi.price, bi.bprice,
@@ -123,21 +137,23 @@
 				stock_measurement_unit smu,
 				".Monthalize('stock_tax')." st,
 				stock_category sc
+				$from_clause
 			WHERE (bi.bill_id = b.bill_id)
 				AND (
 						(b.bill_status = ".BILL_STATUS_RESOLVED.")
 						OR (b.bill_status = ".BILL_STATUS_DELIVERED.")
 					)
-				AND (sp.product_id = bi.product_id)
+				$where_clause
 				AND (sb.product_id = bi.product_id)
-				AND (sb.supplier_id = ".$int_supplier_id.")
+				$where_clause2
 				AND (sb.batch_id = bi.batch_id)
 				AND (sp.measurement_unit_id = smu.measurement_unit_id)
 				AND (sp.category_id = sc.category_id)
 				AND (bi.tax_id = st.tax_id)
 				$where_filter_day
 			ORDER BY $str_order_by";
-	else
+	}
+	else {
 		$str_query = "
 			SELECT sp.product_code, sp.product_id,
 				bi.product_description,
@@ -203,6 +219,7 @@
 			GROUP BY bi.product_id, bi.price, b.is_debit_bill, bi.discount
 			ORDER BY sc.category_description, sp.product_code
 		";
+	}
 
 	//echo $str_query;
 	$qry = new Query($str_query);
@@ -210,9 +227,26 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../include/styles.css" />
+        <link type="text/css" href="../include/styles.css" rel="stylesheet"/>
+		<?php if (($_GET['supplier_id']=='__ALL') && ($where_filter_day == "")) { ?>
+	    	<link href="../include/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet"/>
+	        <style>
+				body {
+					margin:25px;
+				}
+			</style>
+		<?php } ?>
     </head>
-<body id='body_bgcolor' leftmargin=15 topmargin=5 marginwidth=5 marginheight=5>
+
+	<body id='body_bgcolor' leftmargin=15 topmargin=5 marginwidth=5 marginheight=5>
+
+
+	<?php
+		if (($_GET['supplier_id']=='__ALL') && ($where_filter_day == "")) {
+			echo "<div class='container'><div class='alert alert-danger' role='alert'>Day cannot be \"ALL\" when supplier is set to \"ALL\"</div></div>";
+			die();
+		}
+	?>
 
 	<font class='normaltext'>
 	<table border=1 cellpadding=7 cellspacing=0>
@@ -226,6 +260,7 @@
 			$total_amount = 0;
 
 			$tax_totals = array();
+			$current_supplier = '';
 			
 			for ($i=0;$i<$qry->RowCount();$i++) {
 				if ($i % 2 == 0)
@@ -321,6 +356,15 @@
 					$flt_amount = $flt_amount * -1;
 
 				
+				if ($_GET['supplier_id']=='__ALL') {
+					if ($qry->FieldByName('supplier_name') != $current_supplier) {
+						echo "<td width='150px'>".$qry->FieldByName('supplier_name')."</td>";
+						$current_supplier = $qry->FieldByName('supplier_name');
+					}
+					else
+						echo "<td width='150px'>&nbsp;</td>";
+				}
+
 				if ($str_order_by == 'b.date_created, sp.product_code') {
 
 					if ($date_current < $qry->FieldByName('date_created')) {
@@ -547,7 +591,7 @@
 	</font>
 	<script language='javascript'>
 
-		str_header = "statements_header.php?include_tax=<?echo $str_include_tax;?>&format=<?php echo $str_format?>";
+		str_header = "statements_header.php?include_tax=<?echo $str_include_tax;?>&format=<?php echo $str_format?>&supplier_id=<? echo $_GET['supplier_id']?>";
 
 		parent.frames["header"].document.location = str_header;
 
