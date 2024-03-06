@@ -228,7 +228,7 @@
 <html>
     <head>
         <link type="text/css" href="../include/styles.css" rel="stylesheet"/>
-		<?php if (($_GET['supplier_id']=='__ALL') && ($where_filter_day == "")) { ?>
+		<?php if ((($_GET['supplier_id']=='__ALL') && ($where_filter_day == "")) || (($_GET['supplier_id']=='__ALL') && ($str_format == "PRODUCT_CATEGORY"))) { ?>
 	    	<link href="../include/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet"/>
 	        <style>
 				body {
@@ -244,6 +244,10 @@
 	<?php
 		if (($_GET['supplier_id']=='__ALL') && ($where_filter_day == "")) {
 			echo "<div class='container'><div class='alert alert-danger' role='alert'>Day cannot be \"ALL\" when supplier is set to \"ALL\"</div></div>";
+			die();
+		}
+		elseif (($_GET['supplier_id']=='__ALL') && ($str_format == "PRODUCT_CATEGORY")) {
+			echo "<div class='container'><div class='alert alert-danger' role='alert'>Format must be by <b>date - bill number</b> when supplier is set to \"ALL\"</div></div>";
 			die();
 		}
 	?>

@@ -89,9 +89,22 @@
 		$flt_percent_3 = $qry_supplier->FieldByName('commission_percent_3');
 	}
 	
-	if ($str_format == 'DATE_BILL')
+	if ($str_format == 'DATE_BILL') {
+
+		$select_clause = '';
+		$from_clause = '';
+		$where_clause = 'AND (sp.product_id = bi.product_id)';
+		$where_clause2 = "AND (sb.supplier_id = ".$int_supplier_id.")";
+		if ($_GET['supplier_id']=='__ALL') {
+			$select_clause = 'ss.supplier_name, ';
+			$from_clause = ', stock_supplier ss';
+			$where_clause = 'AND ((sp.product_id = bi.product_id) AND (sp.supplier_id = ss.supplier_id))';
+			$where_clause2 = '';
+			$str_order_by = "ss.supplier_name, ".$str_order_by;
+		}
+
 		$str_query = "
-			SELECT DAYOFMONTH(b.date_created) AS date_created, b.bill_number, b.is_debit_bill,
+			SELECT $select_clause DAYOFMONTH(b.date_created) AS date_created, b.bill_number, b.is_debit_bill,
 				sp.product_code, sp.product_id,
 				bi.product_description,
 				bi.price,
@@ -121,20 +134,22 @@
 				stock_measurement_unit smu,
 				".Monthalize('stock_tax')." st,
 				stock_category sc
+				$from_clause
 			WHERE (bi.bill_id = b.bill_id)
 				AND (
 						(b.bill_status = ".BILL_STATUS_RESOLVED.")
 						OR (b.bill_status = ".BILL_STATUS_DELIVERED.")
 					)
-				AND (sp.product_id = bi.product_id)
+				$where_clause
 				AND (sb.product_id = bi.product_id)
-				AND (sb.supplier_id = ".$int_supplier_id.")
+				$where_clause2
 				AND (sb.batch_id = bi.batch_id)
 				AND (sp.measurement_unit_id = smu.measurement_unit_id)
 				AND (sp.category_id = sc.category_id)
 				AND (bi.tax_id = st.tax_id)
 				$where_filter_day
 			ORDER BY $str_order_by";
+	}
 	else
 		$str_query = "
 			SELECT sp.product_code, sp.product_id,
@@ -218,6 +233,8 @@
 			$total_taxable_value = 0;
 			$total_tax_amount = 0;
 			$total_amount = 0;
+
+			$current_supplier = '';
 			
 			for ($i=0;$i<$qry->RowCount();$i++) {
 				
@@ -270,6 +287,15 @@
 					$flt_amount = $flt_amount * -1;
 
 				
+				if ($_GET['supplier_id']=='__ALL') {
+					if ($qry->FieldByName('supplier_name') != $current_supplier) {
+						echo '"'.$qry->FieldByName('supplier_name').'", ';
+						$current_supplier = $qry->FieldByName('supplier_name');
+					}
+					else
+						echo '" ",';
+				}
+
 				if ($str_order_by == 'b.date_created, sp.product_code') {
 
 					if ($date_current < $qry->FieldByName('date_created')) {
@@ -454,17 +480,17 @@
 		if ($calc_price == 'SP') {
 
 			echo '"Total","'.number_format($flt_total, 2, '.', ',').'"\n\r';
-			echo '"Commission'.$flt_percent.'%",'.number_format($flt_commission, 2, '.', ',').'"\n\r';
+			echo '"Commission'.$flt_percent.'%",'.number_format($commission, 2, '.', ',').'"\n\r';
 
 			if ($flt_percent_2 > 0) { 
-				echo '"Commission'.$flt_percent_2.'%",'.number_format($flt_commission_2, 2, '.', ',').'"\n\r';
+				echo '"Commission'.$flt_percent_2.'%",'.number_format($commission_2, 2, '.', ',').'"\n\r';
 			} 
 			
 			if ($flt_percent_3 > 0) {
-				echo '"Commission'.$flt_percent_3.'%:",'.number_format($flt_commission_3, 2, '.', ',').'"\n\r';
+				echo '"Commission'.$flt_percent_3.'%:",'.number_format($commission_3, 2, '.', ',').'"\n\r';
 			}
 
-			echo '"Given :",'.number_format($given, 2, '.', ',').'"\n\r';
+			//echo '"Given :",'.number_format($given, 2, '.', ',').'"\n\r';
 
 		}
 
