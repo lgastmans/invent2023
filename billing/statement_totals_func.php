@@ -15,6 +15,12 @@
 		global $display_gstin;
 
 		/*
+			company details
+		*/
+		$qry_company = $conn->Query("SELECT * FROM company WHERE 1");	
+		$company = $qry_company->fetch_object();
+
+		/*
 			fetch all suppliers
 		*/
 		$sql = "
@@ -56,7 +62,10 @@
 			if ($is_export=='N')
 				echo "<tr class='".$bgcolor."'>";
 
-			
+			$str_include_tax = 'Y';
+			if ($company->gstin === $supplier->gstin)
+			 	$str_include_tax = 'N';
+
 			if ($is_export=='N') {
 				if ($supplier->is_active == 'Y')
 					echo "<td>".$supplier->supplier_name."</td>";
@@ -112,10 +121,6 @@
 			$commission1_total = 0;
 			$commission2_total = 0;
 			$commission3_total = 0;
-
-			$str_include_tax = 'Y';
-			if ($company->gstin == $supplier->gstin)
-			 	$str_include_tax = 'N';
 
 
 			while ($item = $qry_items->fetch_object()) {
