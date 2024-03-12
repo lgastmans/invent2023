@@ -2,13 +2,14 @@
 	require_once('../include/const.inc.php');
 	require_once("db_mysqli.php");
 	
+	$force = 'N';
+	if (isset($_GET['force']))
+		$force = $_GET['force'];
 
 	if (IsSet($_GET['id']))
-		delete_row($_GET['id']);
-
-
+		delete_row($_GET['id'], $force);
 		
-	function delete_row($int_id) {
+	function delete_row($int_id, $force='N') {
 	
 		global $conn;
 		
@@ -31,24 +32,27 @@
 		$str_code = $obj->product_code;
 		
 
-		/*
-			check to see if there is a balance of stock
+		/**
+		 *	if $force is N
+		 * 		check to see if there is a balance of stock
 		*/
-		$qry =& $conn->query("
-			SELECT *
-			FROM ".Yearalize("stock_balance")."
-			WHERE balance_month=".$_SESSION['int_month_loaded']."
-			AND balance_year=".$_SESSION['int_year_loaded']."
-			AND stock_closing_balance<>0
-			AND product_id=$int_id");
+		if ($force == 'N') {
+			$qry =& $conn->query("
+				SELECT *
+				FROM ".Yearalize("stock_balance")."
+				WHERE balance_month=".$_SESSION['int_month_loaded']."
+					AND balance_year=".$_SESSION['int_year_loaded']."
+					AND stock_closing_balance<>0
+					AND product_id=$int_id");
 
-		if ($qry->num_rows > 0) {
+			if ($qry->num_rows > 0) {
 
-			$arr_retval['replyCode'] = 501;
-			$arr_retval['replyStatus'] = "Error";
-			$arr_retval['replyText'] = "This product has stock";
+				$arr_retval['replyCode'] = 501;
+				$arr_retval['replyStatus'] = "Error";
+				$arr_retval['replyText'] = "This product has stock";
 
-			die(json_encode($arr_retval));
+				die(json_encode($arr_retval));
+			}
 		}
 
 		
@@ -74,14 +78,14 @@
 		$cur_year = $_SESSION['int_year_loaded'];
 		$bool_continue = true;
 		while ($bool_continue) {
-			$qry =& $conn->query("SELECT * FROM stock_batch_".$cur_year);
+			$qry = $conn->query("SELECT * FROM stock_batch_".$cur_year);
 			if (!$qry)
 				break;
 			
 			/*
 				STOCK_BATCH
 			*/
-			$qry =& $conn->query("
+			$qry = $conn->query("
 				DELETE FROM stock_batch_".$cur_year."
 				WHERE product_id = ".$int_id
 			);
@@ -94,7 +98,7 @@
 			/*
 				STOCK_BALANCE
 			*/
-			$qry =& $conn->query("
+			$qry = $conn->query("
 				DELETE FROM stock_balance_".$cur_year."
 				WHERE product_id = ".$int_id
 			);
@@ -111,14 +115,14 @@
 		$cur_month = $_SESSION['int_month_loaded'];
 		$bool_continue = true;
 		while ($bool_continue) {
-			$qry =& $conn->Query("SELECT * FROM stock_storeroom_product_".$cur_year."_".$cur_month);
+			$qry = $conn->Query("SELECT * FROM stock_storeroom_product_".$cur_year."_".$cur_month);
 			if (!$qry)
 				break;
 			
 			/*
 				STOCK_STOREROOM_PRODUCT
 			*/
-			$qry =& $conn->query("
+			$qry = $conn->query("
 				DELETE FROM stock_storeroom_product_".$cur_year."_".$cur_month."
 				WHERE product_id = ".$int_id
 			);
@@ -131,7 +135,7 @@
 			/*
 				STOCK_STOREROOM_BATCH
 			*/
-			$qry =& $conn->query("
+			$qry = $conn->query("
 				DELETE FROM stock_storeroom_batch_".$cur_year."_".$cur_month."
 				WHERE product_id = ".$int_id
 			);
@@ -144,7 +148,7 @@
 			/*
 				STOCK_TRANSFER
 			*/
-			$qry =& $conn->query("
+			$qry = $conn->query("
 				DELETE FROM stock_transfer_".$cur_year."_".$cur_month."
 				WHERE product_id = ".$int_id
 			);
@@ -163,14 +167,14 @@
 		}
 		
 		if ($bool_success == true) {
-			$qry =& $conn->query("COMMIT");
+			$qry = $conn->query("COMMIT");
 			$arr_retval['replyCode'] = 200;
 			$arr_retval['replyStatus'] = "Ok";
 			$arr_retval['replyText'] = "Deleted successfully";
 			echo (json_encode($arr_retval));
 		}
 		else {
-			$qry =& $conn->query("ROLLBACK");
+			$qry = $conn->query("ROLLBACK");
 			$arr_retval['replyCode'] = 501;
 			$arr_retval['replyStatus'] = "Error";
 			$arr_retval['replyText'] = $str_message;

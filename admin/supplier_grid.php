@@ -323,6 +323,8 @@
 	<div id="basic"></div>
 </div>
 
+<script src="../include/js/jquery-3.2.1.min.js"></script>
+
 <script type="text/javascript">
 
 	var selectedID;
@@ -465,8 +467,24 @@
 				switch (column.action) {
 					case 'delete':
 						if (canDelete) {
-							if (confirm('Are you sure you want to delete this row?')) {
-								
+							if (confirm('Are you sure you want to delete this supplier ?')) {
+								console.log('supplier_id', selectedID)
+								$.ajax({
+									method 	: "POST",
+									url 	: "supplierdelete.php",
+									data 	: { "supplier_id" : selectedID }
+								})
+								.done ( function( res ) {
+									let obj = JSON.parse(res);
+									console.log('res', obj, obj.msg);
+
+									if (obj.msg!='SUCCESS') {
+										alert(obj.msg);
+									}
+
+								});
+
+								/*
 								YAHOO.util.Connect.asyncRequest(
 									'GET',
 									'supplierdelete.php?action=delete&id='+selectedID ,
@@ -485,6 +503,7 @@
 										scope:this
 									}
 								);
+								*/
 							}
 						}
 						else
