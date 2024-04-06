@@ -2589,8 +2589,20 @@
 
 	echo execute_update(20240218, "ALTER TABLE `".Monthalize('bill')."` ADD UNIQUE  (`storeroom_id`, `payment_type`, `bill_number`);");
 
-	// echo execute_update();
-
+	echo execute_update(20240405, "
+		CREATE TABLE IF NOT EXISTS ".Yearalize("transfers_log")." (
+		  `id` int NOT NULL AUTO_INCREMENT,
+		  `cc_id_from` int NOT NULL,
+		  `cc_id_to` int NOT NULL,
+		  `account_from` varchar(32) NOT NULL,
+		  `account_to` varchar(32) NOT NULL,
+		  `amount` decimal(12,2) NOT NULL,
+		  `description` varchar(64) NOT NULL,
+		  `called_on` datetime NOT NULL,
+		  `result_string` text NOT NULL,
+		  `result` varchar(256) NOT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;");
 
 	echo "done.";
 

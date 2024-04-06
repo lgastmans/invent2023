@@ -63,6 +63,32 @@
 				$res = $client->call('addTransfer',$param);
 				//$res = $client->call('testTransfer', $param);
 
+				$res_str = implode('|', $res);
+
+				$sql_log = "INSERT INTO `".Yearalize('transfers_log')."`
+					(`cc_id_from`,
+					`cc_id_to`,
+					`account_from`,
+					`account_to`,
+					`amount`,
+					`description`,
+					`called_on`,
+					`result_string`,
+					`result`)
+					VALUES (
+						'".$obj->cc_id_from."',
+						'".$obj->cc_id_to."',
+						'".$obj->account_from."',
+						'".$obj->account_to."',
+						'".$obj->amount."',
+						'".$obj->description."',
+						'".Date("Y-m-d h:i:s",time())."',
+						'".$res_str."',
+						'".$res['Result']."'
+					)
+				";
+				$qry = $conn->query($sql_log);
+
 				if ($res['Result']=="OK") {
 
 					echo "Completed tranfer of Rs. ".number_format($obj->amount,2,'.',',').

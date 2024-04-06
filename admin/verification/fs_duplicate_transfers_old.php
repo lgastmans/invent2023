@@ -1,20 +1,29 @@
 <?
     include("../../include/const.inc.php");
     include("../../include/session.inc.php");
-    require_once('db_params.php');
+    include("../../include/db.inc.php");
 
     $str_query = "
-        SELECT * 
-        FROM transfers_log_2024
-        WHERE id NOT IN ( 
-            SELECT id
-            FROM ".Yearalize('transfers_log')."
-            GROUP BY account_to, description
-            HAVING ( COUNT(*) = 1)
-        )
-        ORDER BY called_on;
+        SELECT at.transfer_id, at.cc_id_from AS current_id, at.amount, at.date_created, DAY(at.date_created) AS current_day,
+            ac.account_number, ac.account_name,
+            m.description,
+            b.bill_number
+        FROM ".Monthalize('account_transfers')." at
+        LEFT JOIN account_cc ac ON (ac.cc_id = at.cc_id_from)
+        LEFT JOIN module m ON (m.module_id = at.module_id)
+        LEFT JOIN ".Monthalize('bill')." b ON (b.bill_id = at.module_record_id)
+        WHERE amount
+            IN (
+                SELECT amount
+                FROM ".Monthalize('account_transfers')."
+                WHERE (cc_id_from = current_id) AND (DAY(date_created) = current_day)
+                GROUP BY amount
+                HAVING COUNT(*) > 1
+            )
+        ORDER BY cc_id_from
     ";
-    $qry = $conn->Query($str_query);
+    
+    $qry = new Query($str_query);
     
 ?>
 <html>
@@ -30,20 +39,19 @@
 <body leftmargin='20px' rightmargin='20px' topmargin='20px' bottommargin='20px'>
 
 <?
-    $int_discrepancies = $qry->num_rows;
+    $int_discrepancies = $qry->RowCount();
     $arr_found = array();
     
-    $i=0;
-    while ($obj = $qry->fetch_object()) {
-
-        $arr_found[$i][] = $obj->account_from;
-        $arr_found[$i][] = $obj->amount;
-        $arr_found[$i][] = $obj->description;
-        $arr_found[$i][] = makeHumanTime($obj->called_on);
-        $arr_found[$i][] = $obj->result;
-        $arr_found[$i][] = $obj->result_string;
-
-        $i++;
+    for ($i=0;$i<$qry->RowCount();$i++) {
+        
+        $arr_found[$i][] = $qry->FieldByName('account_number');
+        $arr_found[$i][] = $qry->FieldByName('account_name');
+        $arr_found[$i][] = $qry->FieldByName('bill_number');
+        $arr_found[$i][] = makeHumanTime($qry->FieldByName('date_created'));
+        $arr_found[$i][] = $qry->FieldByName('amount');
+        $arr_found[$i][] = $qry->FieldByName('description');
+            
+        $qry->Next();
     }
     
     boundingBoxStart("800", "../../images/blank.gif");
@@ -57,11 +65,11 @@
         </tr>
         <tr>
             <td class='normaltext' width='120px' align='right'><b>Number</b></td>
-            <td class='normaltext' width='250px'><b>Amount</b></td>
-            <td class='normaltext' width='80px'><b>Description</b></td>
+            <td class='normaltext' width='250px'><b>Name</b></td>
+            <td class='normaltext' width='80px'><b>Bill</b></td>
             <td class='normaltext' width='140px'><b>Date</b></td>
-            <td class='normaltext' width='120px' align='right'><b>Result</b></td>
-            <td class='normaltext' width='120px'><b>Result data</b></td>
+            <td class='normaltext' width='120px' align='right'><b>Amount</b></td>
+            <td class='normaltext' width='120px'><b>Type</b></td>
         </tr>
         <?
             for ($i=0;$i<count($arr_found);$i++) {

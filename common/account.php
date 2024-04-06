@@ -273,6 +273,32 @@ function getMaxTransferAmount($f_cc_id) {
 					);
 					$res = $client->call('addTransfer',$param);
 //					$res = $client->call('testTransfer',$param);
+					
+					$res_str = implode('|', $res);
+					
+					$sql_log = "INSERT INTO `".Yearalize('transfers_log')."`
+						(`cc_id_from`,
+						`cc_id_to`,
+						`account_from`,
+						`account_to`,
+						`amount`,
+						`description`,
+						`called_on`,
+						`result_string`,
+						`result`)
+						VALUES (
+							'".$cc_id1."',
+							'".$cc_id2."',
+							'".$f_account_from."',
+							'".$f_account_to."',
+							'".$f_amount."',
+							'".addslashes($f_description)."',
+							'".date("Y-m-d h:i:s",time())."',
+							'".$res_str."',
+							'".$res['Result']."'
+						)
+					";
+					$qry = new Query($sql_log);
 
 					if ($res['Result']=="OK") {
 						$cc_id1 = getAccountCCID($f_account_from);
