@@ -121,6 +121,8 @@ class Module_Billing extends Module {
 					bill_transfer_bill_number = 0,
 					bill_aurocard_bill_number = 0,
 					bill_global_bill_number = 0,
+					bill_upi_bill_number = 0,
+					bill_bank_transfer_bill_number = 0,
 					stock_dc_number = 0";
 			$qry->Query($str_create);
 			if ($qry->b_error) {
@@ -152,6 +154,8 @@ class Module_Billing extends Module {
 						bill_transfer_bill_number = 0,
 						bill_aurocard_bill_number = 0,
 						bill_global_bill_number = 0,
+						bill_upi_bill_number = 0,
+						bill_bank_transfer_bill_number = 0,
 						stock_dc_number = 0";
 				$qry->Query($str_create);
 				if ($qry->b_error) {
