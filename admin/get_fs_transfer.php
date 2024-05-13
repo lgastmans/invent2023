@@ -83,8 +83,8 @@
 						'".$obj->amount."',
 						'".$obj->description."',
 						'".Date("Y-m-d h:i:s",time())."',
-						'".$res_str."',
-						'".$res['Result']."'
+						'".addslashes($res_str)."',
+						'".addslashes($res['Result'])."'
 					)
 				";
 				$qry = $conn->query($sql_log);

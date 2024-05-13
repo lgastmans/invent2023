@@ -5,14 +5,14 @@
 
     $str_query = "
         SELECT * 
-        FROM transfers_log_2024
+        FROM ".Yearalize('transfers_log_2024')."
         WHERE id NOT IN ( 
             SELECT id
             FROM ".Yearalize('transfers_log')."
             GROUP BY account_to, description
             HAVING ( COUNT(*) = 1)
         )
-        ORDER BY called_on;
+        ORDER BY called_on, account_from;
     ";
     $qry = $conn->Query($str_query);
     

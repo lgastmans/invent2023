@@ -294,8 +294,8 @@ function getMaxTransferAmount($f_cc_id) {
 							'".$f_amount."',
 							'".addslashes($f_description)."',
 							'".date("Y-m-d h:i:s",time())."',
-							'".$res_str."',
-							'".$res['Result']."'
+							'".addslashes($res_str)."',
+							'".addslashes($res['Result'])."'
 						)
 					";
 					$qry = new Query($sql_log);
