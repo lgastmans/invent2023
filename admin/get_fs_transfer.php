@@ -55,7 +55,7 @@
 					'strAccountNumberFrom'=>$obj->account_from,
 					'strAccountNumberTo'=>$obj->account_to,
 					'fAmount'=>$obj->amount,
-					'strDescription'=>$obj->description,
+					'strDescription'=>$obj->description."|".$obj->module_record_id,
 					'check'=>$check,
 					'token'=>$token
 				);
@@ -81,7 +81,7 @@
 						'".$obj->account_from."',
 						'".$obj->account_to."',
 						'".$obj->amount."',
-						'".$obj->description."',
+						'".$obj->description."|".$obj->module_record_id."',
 						'".Date("Y-m-d h:i:s",time())."',
 						'".addslashes($res_str)."',
 						'".addslashes($res['Result'])."'
