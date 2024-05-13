@@ -55,7 +55,7 @@
 					'strAccountNumberFrom'=>$obj->account_from,
 					'strAccountNumberTo'=>$obj->account_to,
 					'fAmount'=>$obj->amount,
-					'strDescription'=>$obj->description."|".$obj->module_record_id,
+					'strDescription'=>addslashes($obj->module_record_id."/".$obj->description),
 					'check'=>$check,
 					'token'=>$token
 				);
