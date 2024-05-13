@@ -30,21 +30,25 @@
 		var oSelectFormat = document.getElementById('select_format');
 		var oSelectPrice = document.getElementById('price');
 		var oDay = document.StatementsMenu.select_days;
-		
-		if (oCheckBoxTax.checked)
-			str_include_tax = 'Y';
-		else
-			str_include_tax = 'N';
-		
-		var str_dest = "statements_print.php?supplier_id="+
-			oListSupplier.options[oListSupplier.options.selectedIndex].value+
-			"&include_tax="+str_include_tax +
-			"&order_by="+oListOrder.value+
-			"&format="+oSelectFormat.value+
-			"&price="+oSelectPrice.value+
-			"&filter_day="+oDay.value;
-			
-		window.open(str_dest, "print_window");
+
+		if ((oDay.value=="ALL") && (oListSupplier.value=="__ALL"))
+			if (confirm("This operation can take a long time.\nAre you sure you want to continue?")) {
+
+				if (oCheckBoxTax.checked)
+					str_include_tax = 'Y';
+				else
+					str_include_tax = 'N';
+				
+				var str_dest = "statements_print.php?supplier_id="+
+					oListSupplier.options[oListSupplier.options.selectedIndex].value+
+					"&include_tax="+str_include_tax +
+					"&order_by="+oListOrder.value+
+					"&format="+oSelectFormat.value+
+					"&price="+oSelectPrice.value+
+					"&filter_day="+oDay.value;
+					
+				window.open(str_dest, "print_window");
+			}
 	}
 
 	function setSupplier() {
@@ -70,19 +74,23 @@
 		var oSelectFormat = document.getElementById('select_format');
 		var oSelectPrice = document.getElementById('price');
 		var oDay = document.StatementsMenu.select_days;
-		
-		if (oCheckBoxTax.checked)
-			str_include_tax = 'Y';
-		else
-			str_include_tax = 'N';
-		
-		parent.frames["content"].frames["content"].document.location = "statements_content.php?supplier_id="+
-			oListSupplier.value+
-			"&include_tax="+str_include_tax+
-			"&order_by="+oListOrder.value+
-			"&format="+oSelectFormat.value+
-			"&price="+oSelectPrice.value+
-			"&filter_day="+oDay.value;
+
+		if ((oDay.value=="ALL") && (oListSupplier.value=="__ALL"))
+			if (confirm("This operation can take a long time.\nAre you sure you want to continue?")) {
+
+				if (oCheckBoxTax.checked)
+					str_include_tax = 'Y';
+				else
+					str_include_tax = 'N';
+				
+				parent.frames["content"].frames["content"].document.location = "statements_content.php?supplier_id="+
+					oListSupplier.value+
+					"&include_tax="+str_include_tax+
+					"&order_by="+oListOrder.value+
+					"&format="+oSelectFormat.value+
+					"&price="+oSelectPrice.value+
+					"&filter_day="+oDay.value;
+			}
 	}
 	
 	function emailStatement() {
@@ -93,18 +101,22 @@
 		var oSelectPrice = document.getElementById('price');
 		var oDay = document.StatementsMenu.select_days;
 		
-		if (oCheckBoxTax.checked)
-			str_include_tax = 'Y';
-		else
-			str_include_tax = 'N';
-		
-		parent.frames["content"].frames["content"].document.location = "statements_email.php?supplier_id="+
-			oListSupplier.value+
-			"&include_tax="+str_include_tax+
-			"&order_by="+oListOrder.value+
-			"&format="+oSelectFormat.value+
-			"&price="+oSelectPrice.value+
-			"&filter_day="+oDay.value;
+		if ((oDay.value=="ALL") && (oListSupplier.value=="__ALL"))
+			if (confirm("This operation can take a long time.\nAre you sure you want to continue?")) {
+
+				if (oCheckBoxTax.checked)
+					str_include_tax = 'Y';
+				else
+					str_include_tax = 'N';
+				
+				parent.frames["content"].frames["content"].document.location = "statements_email.php?supplier_id="+
+					oListSupplier.value+
+					"&include_tax="+str_include_tax+
+					"&order_by="+oListOrder.value+
+					"&format="+oSelectFormat.value+
+					"&price="+oSelectPrice.value+
+					"&filter_day="+oDay.value;
+			}
 	}
 
 	function exportStatement() {
@@ -115,18 +127,22 @@
 		var oSelectPrice = document.getElementById('price');
 		var oDay = document.StatementsMenu.select_days;
 		
-		if (oCheckBoxTax.checked)
-			str_include_tax = 'Y';
-		else
-			str_include_tax = 'N';
-		
-		parent.frames["content"].frames["content"].document.location = "statements_export.php?supplier_id="+
-			oListSupplier.value+
-			"&include_tax="+str_include_tax+
-			"&order_by="+oListOrder.value+
-			"&format="+oSelectFormat.value+
-			"&price="+oSelectPrice.value+
-			"&filter_day="+oDay.value;
+		if ((oDay.value=="ALL") && (oListSupplier.value=="__ALL"))
+			if (confirm("This operation can take a long time.\nAre you sure you want to continue?")) {
+
+				if (oCheckBoxTax.checked)
+					str_include_tax = 'Y';
+				else
+					str_include_tax = 'N';
+				
+				parent.frames["content"].frames["content"].document.location = "statements_export.php?supplier_id="+
+					oListSupplier.value+
+					"&include_tax="+str_include_tax+
+					"&order_by="+oListOrder.value+
+					"&format="+oSelectFormat.value+
+					"&price="+oSelectPrice.value+
+					"&filter_day="+oDay.value;
+			}
 		}
 
 	function toggleEnabled() {
@@ -143,8 +159,11 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../include/styles.css" />
+
+        <link href="../include/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
+
     </head>
-<body id='body_bgcolor' leftmargin=5 topmargin=5 marginwidth=5 marginheight=5>
+<body id='body_bgcolor' style="padding:7px;">
 
 <form name="StatementsMenu">
 <font class='normaltext'>
@@ -186,8 +205,11 @@
 	<a href="javascript:printStatement()"><img src="../images/printer.png" border="0" onmouseover="javascript:mouseGoesOver(this, '../images/printer_active.png')" onmouseout="javascript:mouseGoesOut(this, '../images/printer.png')"></a>
 	&nbsp;
 
-	<input type='button' name='action' value='load' class='settings_button' onclick='javascript:loadStatement()'>
-	<input type='button' name='action' value='email' class='settings_button' onclick='javascript:emailStatement()'>
+		&nbsp;&nbsp;
+		<button type="button" class="btn btn-warning" id="btn-load">Load</button>
+
+		&nbsp;
+		<button type="button" class="btn btn-success" id="btn-email"><span class="glyphicon glyphicon-send"></span>&nbsp;Email</button>	
 	<br>
 
 	&nbsp;&nbsp;Format :
@@ -205,6 +227,31 @@
 	</label>-->
 </font>
 </form>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../include/js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../include/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+		$(document).ready(function(){
+
+			$('#btn-load').on('click', function() {
+
+				loadStatement();
+
+			})
+
+			$('#btn-email').on('click', function() {
+
+				emailStatement();
+
+			})
+		});
+
+	</script>
 
 </body>
 </html>
