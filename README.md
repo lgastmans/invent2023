@@ -30,3 +30,9 @@ if local changes are temporary, and the repository has been updated then:
 3. and then git pull
 
 or simply: git reset --hard and then git pull
+
+# Kalki Aplhion router
+Services > Firewall > Port Forwarding
+Current Port Forwarding Table
+WebServer | 192.168.1.1 | TCP | 80 | 192.168.1.126 | 80
+Services > Service > Dynamic DNS
