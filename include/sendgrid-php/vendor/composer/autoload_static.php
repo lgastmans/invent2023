@@ -4,10 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitba6c4e5c536f3271e2abc8ca033d41f5
+class ComposerStaticInitb8cdbfd36fe8771e1ec1488c63934b81
 {
     public static $files = array (
-        '3f8bdd3b35094c73a26f0106e3c0f8b2' => __DIR__ . '/../..' . '/lib/SendGrid.php',
+        '79f66bc0a1900f77abe4a9a299057a0a' => __DIR__ . '/..' . '/starkbank/ecdsa/src/ellipticcurve.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -15,6 +15,8 @@ class ComposerStaticInitba6c4e5c536f3271e2abc8ca033d41f5
         array (
             'SendGrid\\Stats\\' => 15,
             'SendGrid\\Mail\\' => 14,
+            'SendGrid\\Helper\\' => 16,
+            'SendGrid\\EventWebhook\\' => 22,
             'SendGrid\\Contacts\\' => 18,
             'SendGrid\\' => 9,
         ),
@@ -29,22 +31,37 @@ class ComposerStaticInitba6c4e5c536f3271e2abc8ca033d41f5
         array (
             0 => __DIR__ . '/../..' . '/lib/mail',
         ),
+        'SendGrid\\Helper\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib/helper',
+        ),
+        'SendGrid\\EventWebhook\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib/eventwebhook',
+        ),
         'SendGrid\\Contacts\\' => 
         array (
             0 => __DIR__ . '/../..' . '/lib/contacts',
         ),
         'SendGrid\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/lib',
-            1 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
+            0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
         ),
+    );
+
+    public static $classMap = array (
+        'BaseSendGridClientInterface' => __DIR__ . '/../..' . '/lib/BaseSendGridClientInterface.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'SendGrid' => __DIR__ . '/../..' . '/lib/SendGrid.php',
+        'TwilioEmail' => __DIR__ . '/../..' . '/lib/TwilioEmail.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitba6c4e5c536f3271e2abc8ca033d41f5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitba6c4e5c536f3271e2abc8ca033d41f5::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb8cdbfd36fe8771e1ec1488c63934b81::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb8cdbfd36fe8771e1ec1488c63934b81::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb8cdbfd36fe8771e1ec1488c63934b81::$classMap;
 
         }, null, ClassLoader::class);
     }
