@@ -12,6 +12,7 @@ orders/export_proforma.php
 
 # Ignore these folders
 
+temp/
 backup/
 export/prosperity_movement.php
 export/prosperity_frequency.php
